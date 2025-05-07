@@ -1,6 +1,6 @@
 const colors = {
   primary: "#FFC0B8",
-  background: "#FDFFF3",
+  background: "#FDEEDA", 
   marker: "#351313",
   active: "#D93036",
   border: "#492700",

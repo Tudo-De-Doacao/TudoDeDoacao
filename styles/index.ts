@@ -6,6 +6,27 @@ import typog from "./type";
 const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create ({
+drwBtn: 
+ { 
+   flex: 1, 
+   alignItems: 'center', 
+   justifyContent: 'center'
+ },
+tabBar:
+ {
+    height: 70,
+    backgroundColor: colors.background,
+    elevation: 10,
+    position: 'absolute',
+    paddingTop: 5,
+  },
+ iconTab :
+  {
+    marginTop : 20,
+    marginBottom: 10,
+    gap : 5,
+    paddingBottom: 10,
+ },
  scroll: 
  {
     paddingBottom: 10,
@@ -17,7 +38,7 @@ const styles = StyleSheet.create ({
   },
   navigatioDrawer: 
   {
-    backgroundColor: '#ecf0f1',
+    backgroundColor: colors.background,
   },
   body: 
   {

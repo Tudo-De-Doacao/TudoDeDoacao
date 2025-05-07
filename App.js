@@ -1,15 +1,19 @@
  
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {Text, Pressable} from 'react-native';
+import { Text } from 'react-native';
+
+
 import Icon from 'react-native-vector-icons/Feather';
+import Drawer from "./components/Drawer";
 
 import typog from './styles/type';
+import colors from './styles/color';
+import styles from './styles/index';
 
-import DrawerBtn from "./components/DrawerButton";
+
 import HomeScreen from "./src/pages/home";
 import LoginScreen from "./src/pages/login";
 import FavoriteScreen from "./src/pages/favorite";
@@ -19,7 +23,6 @@ import DonateScreen from "./src/pages/donate";
 
 const Tabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
 
 function TabsNav() {
   return (
@@ -42,7 +45,8 @@ function TabsNav() {
         case 'Donate':
           iconName = 'plus-circle';
           break;
-    
+        case 'Drawer':
+          iconName = 'menu'
       }
 
       return <Icon name={iconName} size={size} color={color} />;
@@ -52,9 +56,14 @@ function TabsNav() {
   <Text style={focused ? typog.tabOn : typog.tabOff}>
     {route.name}
   </Text>, 
-    tabBarStyle: {
-      height: 60,
-    },
+      tabBarStyle: {
+            height: 70,
+            backgroundColor: colors.background,
+            elevation: 10,
+            position: 'absolute',
+            paddingTop: 5,
+          },
+          headerShown: false,
   })}
 >
 
@@ -63,25 +72,11 @@ function TabsNav() {
   <Tabs.Screen name="Search" component={SearchScreen} />
   <Tabs.Screen name="Donate" component={DonateScreen} />
   <Tabs.Screen name="Favorite" component={FavoriteScreen} />
-  <Tabs.Screen
-  name="Menu"
-  component={() => null}
-  options={{
-    tabBarButton: (props) => <DrawerBtn {...props} />,
-  }}
-/>
+  <Tabs.Screen name="Drawer" component={() => null} />
 </Tabs.Navigator>
   );
 }
 
-function DrawerNav() {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Início" component={TabsNav} />
-      <Drawer.Screen name="Login" component={LoginScreen} />
-    </Drawer.Navigator>
-  );
-}
 
 
 export default function App() {
@@ -89,7 +84,7 @@ export default function App() {
     <NavigationContainer> 
      <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-        <Stack.Screen name="Drawer" component={DrawerNav} />
+        <Stack.Screen name="Tabs" component={TabsNav} />
 
  
       </Stack.Navigator>
