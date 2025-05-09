@@ -7,13 +7,12 @@ import { Text } from 'react-native';
 
 
 import Icon from 'react-native-vector-icons/Feather';
-import Drawer from "./components/Drawer";
 
 import typog from './styles/type';
 import colors from './styles/color';
 import styles from './styles/index';
 
-
+import DrawerScreen from './src/pages/drawer';
 import HomeScreen from "./src/pages/home";
 import LoginScreen from "./src/pages/login";
 import FavoriteScreen from "./src/pages/favorite";
@@ -45,7 +44,7 @@ function TabsNav() {
         case 'Donate':
           iconName = 'plus-circle';
           break;
-        case 'Drawer':
+        case 'Menu':
           iconName = 'menu'
       }
 
@@ -62,17 +61,17 @@ function TabsNav() {
             elevation: 10,
             position: 'absolute',
             paddingTop: 5,
+            borderTopColor: colors.marker,
+            borderTopWidth: 2,
           },
           headerShown: false,
   })}
 >
-
-  
   <Tabs.Screen name="Home" component={HomeScreen}  />    
   <Tabs.Screen name="Search" component={SearchScreen} />
   <Tabs.Screen name="Donate" component={DonateScreen} />
   <Tabs.Screen name="Favorite" component={FavoriteScreen} />
-  <Tabs.Screen name="Drawer" component={() => null} />
+  <Tabs.Screen name="Menu" component={DrawerScreen} />
 </Tabs.Navigator>
   );
 }

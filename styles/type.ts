@@ -19,11 +19,6 @@ const typog = {
     gap:3,
     margin: 5,
   },
-  txtDrawer: {
-    padding: 16,
-    fontSize: 15,
-    textAlign: 'center',
-  },
    tabOff: {
    fontFamily: 'DGrotesque',
     fontSize: 18,  
@@ -42,7 +37,22 @@ const typog = {
     alignItems:'center', 
     color:"#000",
     justifyContent:'center'
-  }
+  },
+  drwTitle: {
+    marginRight: 10,   
+    fontSize: 32,
+    fontWeight: 'bolder',
+    fontFamily: 'DGrotesque',
+    alignSelf: 'flex-end',
+           },
+  txtDrw: {
+    padding: 16,
+    fontSize: 24,
+    marginBottom : 10,
+    textAlign: 'right',
+    fontWeight: 'bold',
+    fontFamily: 'DGrotesque',
+  },
 };
 
 export default typog;

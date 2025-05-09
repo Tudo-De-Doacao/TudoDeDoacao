@@ -1,17 +1,10 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 import colors from "./color";
-import typog from "./type";
 
 const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create ({
-drwBtn: 
- { 
-   flex: 1, 
-   alignItems: 'center', 
-   justifyContent: 'center'
- },
 tabBar:
  {
     height: 70,
@@ -36,11 +29,7 @@ tabBar:
     flex: 1,
     paddingHorizontal: 16,
   },
-  navigatioDrawer: 
-  {
-    backgroundColor: colors.background,
-  },
-  body: 
+  bodyPrin: 
   {
     borderRadius: 30, 
     alignItems: 'center'
@@ -79,16 +68,33 @@ tabBar:
     backgroundColor: colors.background,
     borderColor: '#000',
   },
-  pressDraw: 
-  {
-    flex: 1, 
-    alignItems: 'center', 
-    justifyContent: 'center'
+ containerDrw: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  drw: {
+    position: 'absolute',
+    top: 0,
+    left: 0, // drawer vindo da esquerda
+    width: width,
+    height: '100%',
+    backgroundColor: colors.background,
+    paddingTop: 60,
+    paddingHorizontal: 20,
+    zIndex: 20,
+    elevation: 5,
+      },
+  drwCont: {
+    flex: 1,
+  drawerSeparator: {
+    borderWidth: 1,
+    borderColor : colors.marker,
   }
+  },
 }
 );
 
 
-export default { styles, typog, colors };
+export default styles;
 
 

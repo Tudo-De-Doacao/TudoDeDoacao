@@ -13,7 +13,7 @@ return (
           resizeMode = "cover"
         />
  <ScrollView contentContainerStyle={styles.scroll}>
- <View style={styles.body}>
+ <View style={styles.bodyPrin}>
 <H1> 
 Login
 </H1>

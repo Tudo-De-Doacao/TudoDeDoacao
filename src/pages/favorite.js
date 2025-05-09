@@ -2,21 +2,20 @@ import {ScrollView, View, ImageBackground,} from 'react-native';
 
 
 import H1 from '../../components/H1';
-import styles from '../../styles/index';
-
+import styles from '../../styles/index'
 
 function FavoriteScreen() {
 return (
    <>
    <ImageBackground
           source={require('../../assets/BGHome.png')}
-          style={styles.imagem}
+          style={styles.bgimagem}
           resizeMode = "cover"
         />
  <ScrollView contentContainerStyle={styles.scroll}>
- <View style={styles.body}>
+ <View style={styles.bodyPrin}>
 <H1> 
-Login
+Fav
 </H1>
 </View>
 </ScrollView>
