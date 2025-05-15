@@ -9,7 +9,7 @@ return (
   <>
    <ImageBackground
           source={require('../../assets/BGHome.png')}
-          style={styles.imagem}
+          style={styles.bgimagem}
           resizeMode = "cover"
         />
  <ScrollView contentContainerStyle={styles.scroll}>

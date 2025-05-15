@@ -11,7 +11,7 @@ tabBar:
     backgroundColor: colors.background,
     elevation: 10,
     position: 'absolute',
-    paddingTop: 5,
+    paddingTop: 25,
   },
  iconTab :
   {
@@ -20,9 +20,27 @@ tabBar:
     gap : 5,
     paddingBottom: 10,
  },
+ headerBar: 
+ {  
+    height: 70,
+    backgroundColor: colors.background,
+    elevation: 10,
+    position: 'relative',
+    padding: 5,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+ },
+ iconHeader :
+  {
+  position: 'relative',
+  margin: 10,
+  paddignTop: 25,
+  paddingBottom: 25,
+ },
+ 
  scroll: 
  {
-    paddingBottom: 10,
+    paddingBottom: 25,
  },
   sideBar: 
   {
@@ -86,10 +104,46 @@ tabBar:
       },
   drwCont: {
     flex: 1,
-  drawerSeparator: {
-    borderWidth: 1,
-    borderColor : colors.marker,
-  }
+  },
+  separatorMenu: {
+    width: '100%',
+    borderBottomWidth: 4,
+    borderBottomColor: colors.marker,
+    borderStyle: 'solid', 
+    marginVertical: 10,
+    alignSelf: 'flex-end',
+  },
+  separatorHome: {
+    borderBottomWidth: 2,
+    borderBottomColor: colors.marker,
+    borderStyle: 'solid', 
+    marginVertical: 5,
+    width: '95%',
+    alignSelf: 'flex-end',
+  },
+  separatorSearch: {
+    borderBottomWidth: 2,
+    borderBottomColor: colors.marker,
+    borderStyle: 'solid', 
+    marginVertical: 5,
+    width: '90%',
+    alignSelf: 'flex-end',
+  },
+  separatorDonate: {
+    borderBottomWidth: 2,
+    borderBottomColor: colors.marker,
+    borderStyle: 'solid', 
+    marginVertical: 5,
+    width: '85%',
+    alignSelf: 'flex-end',
+  },
+  separatorFavorite: {
+    borderBottomWidth: 2,
+    borderBottomColor: colors.marker,
+    borderStyle: 'solid', 
+    marginVertical: 5,
+    width: '80%',
+    alignSelf: 'flex-end',
   },
 }
 );

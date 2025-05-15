@@ -1,22 +1,22 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { Ionicons} from '@expo/vector-icons';
+import { View,  Image, Pressable } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
 import H1 from "./H1";
+import styles from '../styles/index';
 
-function Header () {
+export default function Header () {
 return (
-<View>
+<View style={styles.headerBar}>
+<Pressable>
 <Image />
+</Pressable>
 <H1>
 Cabeçalho 
 </H1>
 <View> 
-<TouchableOpacity>
-<Ionicons  name = 'search' size={24} color='#351313' />
-</TouchableOpacity>
-<TouchableOpacity>
-
-</TouchableOpacity>
+<Pressable style={styles.iconHeader}>
+<Icon name = 'search' size={24} color='#351313' />
+</Pressable>
 
 </View>  
 </View>

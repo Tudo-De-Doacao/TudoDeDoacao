@@ -1,12 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import {
-  View,
-  Text,
-  Animated,
-  Pressable,
-  Dimensions,
-} from 'react-native';
+import { View, Text, Animated, Pressable, Dimensions } from 'react-native';
 
 import styles from '../styles/index';
 import typog from '../styles/type';
@@ -27,32 +22,36 @@ export default function Drawer() {
     }, [slideAnim])
   );
 
+const [hoverOn, setHoverOn] = useState(false);
   return (
     <View style={styles.containerDrw}>
       <Animated.View
         style={[styles.drw, { transform: [{ translateX: slideAnim }] }]}>
         <View style={styles.drwCont}>
           <Text style={typog.drwTitle}> Menu </Text>
-          <View style={styles.drawerSeparator}>
-          <Pressable onPress={() => navigation.navigate('Home')}>
+              <View style={styles.separatorMenu} />
+          <Pressable 
+          onPress={() => navigation.navigate('Home')}
+          onHoverOut = {() => setHoverOn(false)}
+          onHoverIn = {() =>setHoverOn(true)}
+          style={ hoverOn  ? { ...styles.separatorHome, borderBottomWidth: 3 }
+    : { ...styles.separatorHome }}>
             <Text style={typog.txtDrw}> Home </Text>
           </Pressable>
-          </View>
-          <View style={styles.drawerSeparator}>
-          <Pressable onPress={() => navigation.navigate('Search')}>
-            <Text style={typog.txtDrw}> Pesquisar </Text>
+           
+          <Pressable 
+          onPress={() => navigation.navigate('Search')}
+          style={styles.separatorSearch} >
+            <Text style={typog.txtDrw}> Pesquisa </Text>
           </Pressable>
-          </View>
-          <View style={styles.drawerSeparator}>
-          <Pressable onPress={() => navigation.navigate('Donate')}>
-            <Text style={typog.txtDrw}> Doe você mesmo </Text>
+          <Pressable onPress={() => navigation.navigate('Donate')}
+          style={styles.separatorDonate}>
+            <Text style={typog.txtDrw}> Doação </Text>
           </Pressable>
-          </View>
-          <View style={styles.drawerSeparator}>
-          <Pressable onPress={() => navigation.navigate('Favorite')}>
+          <Pressable onPress={() => navigation.navigate('Favorite')}
+          style={styles.separatorFavorite}>
             <Text style={typog.txtDrw}> Favoritos </Text>
           </Pressable>
-          </View>
         </View>
       </Animated.View>
     </View>
