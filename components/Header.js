@@ -1,24 +1,33 @@
-import { View,  Image, Pressable } from 'react-native';
+import { View, TextInput, Image, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-
-import H1 from "./H1";
+import { useNavigation } from '@react-navigation/native';
 import styles from '../styles/index';
 
+
 export default function Header () {
+
+const navigation = useNavigation();
+
+
 return (
+
+
 <View style={styles.headerBar}>
-<Pressable>
-<Image />
+<Pressable onPress={() => navigation.navigate('Home')}>
+<Image 
+source={require('../assets/Logo.png')}
+style={styles.logo}/>
 </Pressable>
-<H1>
-Cabeçalho 
-</H1>
-<View> 
-<Pressable style={styles.iconHeader}>
-<Icon name = 'search' size={24} color='#351313' />
+<TextInput 
+placeholder = "O que você procura?"
+style={styles.inputHeader}
+/>
+<Pressable 
+style={styles.iconCont}
+onPress={() => navigation.navigate('Search')}>
+<Icon name = 'search' size={32} color='#351313' style={styles.iconHeader} />
 </Pressable>
 
 </View>  
-</View>
 );
 }

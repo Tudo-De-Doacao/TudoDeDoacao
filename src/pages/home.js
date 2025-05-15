@@ -12,7 +12,7 @@ function HomeScreen() {
       <ImageBackground
         source={require('../../assets/BGHome.png')}
         style={styles.bgimagem}
-        resizeMode="stretch"
+        resizeMode="cover"
       />
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.bodyPrin}>

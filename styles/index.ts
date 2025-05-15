@@ -22,22 +22,40 @@ tabBar:
  },
  headerBar: 
  {  
-    height: 70,
-    backgroundColor: colors.background,
-    elevation: 10,
-    position: 'relative',
-    padding: 5,
+   height: 70,
     flexDirection: 'row',
-    justifyContent: 'flex-start'
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: colors.background,
+    justifyContent: 'space-between',
  },
- iconHeader :
+ iconCont :
   {
-  position: 'relative',
-  margin: 10,
-  paddignTop: 25,
-  paddingBottom: 25,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: colors.background,
+    marginHorizontal: 12,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    maxHeight: 32,
+    maxWidth: 32,
  },
- 
+logo: {
+ height: 50,
+ width: 50,
+ alignSelf: 'center'
+},
+inputHeader: {
+    flex: 1,
+    height: 36,
+    color: colors.marker,
+  },
+iconHeader: {
+ height: 35,
+ width: 35,
+ alignSelf: 'center'
+},
  scroll: 
  {
     paddingBottom: 25,
