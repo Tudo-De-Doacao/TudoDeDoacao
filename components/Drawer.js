@@ -36,20 +36,36 @@ const [hoverOn, setHoverOn] = useState(false);
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorHome, borderBottomWidth: 3 }
     : { ...styles.separatorHome }}>
+
             <Text style={typog.txtDrw}> Home </Text>
+
           </Pressable>
            
           <Pressable 
           onPress={() => navigation.navigate('Search')}
-          style={styles.separatorSearch} >
+          onHoverOut = {() => setHoverOn(false)}
+          onHoverIn = {() =>setHoverOn(true)}
+          style={ hoverOn  ? { ...styles.separatorSearch, borderBottomWidth: 3 }
+    : { ...styles.separatorSearch }}>
+
             <Text style={typog.txtDrw}> Pesquisa </Text>
+
           </Pressable>
           <Pressable onPress={() => navigation.navigate('Donate')}
-          style={styles.separatorDonate}>
+          onHoverOut = {() => setHoverOn(false)}
+          onHoverIn = {() =>setHoverOn(true)}
+          style={ hoverOn  ? { ...styles.separatorDonate, borderBottomWidth: 3 }
+    : { ...styles.separatorDonate }}>
+
             <Text style={typog.txtDrw}> Doação </Text>
+
           </Pressable>
           <Pressable onPress={() => navigation.navigate('Favorite')}
-          style={styles.separatorFavorite}>
+          onHoverOut = {() => setHoverOn(false)}
+          onHoverIn = {() =>setHoverOn(true)}
+          style={ hoverOn  ? { ...styles.separatorFavorite, borderBottomWidth: 3 }
+    : { ...styles.separatorFavorite }}>
+
             <Text style={typog.txtDrw}> Favoritos </Text>
           </Pressable>
         </View>

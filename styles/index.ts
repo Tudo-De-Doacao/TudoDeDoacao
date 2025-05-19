@@ -3,62 +3,133 @@ import {StyleSheet, Dimensions} from 'react-native';
 import colors from "./color";
 
 const { width, height } = Dimensions.get('window');
-
+const CARD_WIDTH = width * 0.61;
 const styles = StyleSheet.create ({
-tabBar:
- {
+ tabBar:
+  {
     height: 70,
     backgroundColor: colors.background,
     elevation: 10,
+    paddingTop: 10,
     position: 'absolute',
-    paddingTop: 25,
   },
  iconTab :
   {
-    marginTop : 20,
-    marginBottom: 10,
-    gap : 5,
-    paddingBottom: 10,
+    padding: 6,
  },
  headerBar: 
  {  
-   height: 70,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    height: 70,
+    elevation: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: colors.marker,
     backgroundColor: colors.background,
     justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',   
  },
  iconCont :
   {
     flex: 1,
-    flexDirection: 'row',
-    backgroundColor: colors.background,
-    marginHorizontal: 12,
-    alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 14,
+    marginHorizontal: 8,
     maxHeight: 32,
     maxWidth: 32,
- },
-logo: {
- height: 50,
- width: 50,
- alignSelf: 'center'
-},
-inputHeader: {
+    alignSelf: 'center',
+   },
+  logo:
+  {
     flex: 1,
-    height: 36,
-    color: colors.marker,
+    paddingHorizontal: 14,
+    marginHorizontal: 8,
+    maxHeight: 40,
+    maxWidth: 40,
+    height: 40,
+    width: 40,
+    position: 'relative',
+    alignSelf: 'center',
   },
-iconHeader: {
- height: 35,
- width: 35,
- alignSelf: 'center'
-},
+  inputHeader: 
+  {
+    flex: 1,
+    paddingHorizontal: 16,
+    marginHorizontal: 8,
+    width: 30,
+    height: 36,
+    borderWidth: 2,
+    borderRadius: 20,
+    borderColor: colors.marker,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    textTrasnform: 'capitalize',
+  },
+  iconHeader: 
+  {
+    maxHeight: 35,
+    maxWidth: 35,
+    alignSelf: 'center'
+  },
+  iconMapHeader :
+  {
+    paddingRight: 2,
+ },
+  card: 
+  {
+    width: CARD_WIDTH,
+    maxWidth: 200,
+    height: 280,
+    borderRadius: 8,
+    borderWidth: 2,
+    marginVertical: 18,
+    borderColor: colors.marker,
+    backgroundColor: colors.background,
+    alignSelf: 'flex-start',
+    overflow: 'hidden',   
+  },
+  bodyCard: 
+  {
+    
+    flexDirection: 'row',
+    gap: 20,
+    paddingRight: 16,
+  },
+  infoBox: 
+  {
+    margin:8,
+    gap:2,
+    paddingLeft: 10,
+    
+  },
+  locationCard: 
+  {
+    gap: 2,
+    marginBottom: 2,
+    paddingTop: 8,
+    flexDirection: 'row',
+
+
+  },
+  imageBox: 
+  {
+    height: 100,
+    backgroundColor: '#A97E76',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: 
+  {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    opacity: 0.1,
+  },
  scroll: 
  {
     paddingBottom: 25,
+
  },
   sideBar: 
   {
@@ -67,8 +138,10 @@ iconHeader: {
   },
   bodyPrin: 
   {
-    borderRadius: 30, 
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection : 'column',
+    gap: 8,
   },
   bgimagem: 
   {

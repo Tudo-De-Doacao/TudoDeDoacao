@@ -48,7 +48,7 @@ function TabsNav() {
           iconName = 'menu'
       }
 
-      return <Icon name={iconName} size={size} color={color} />;
+      return <Icon name={iconName} size={size} color={color} style={styles.iconTab}/>;
     },
     
     tabBarLabel: ({ focused }) =>

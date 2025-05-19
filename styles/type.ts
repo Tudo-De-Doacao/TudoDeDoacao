@@ -5,10 +5,9 @@ const typog = {
      top: 12,
     bottom: 12,
     gap: 5,
-    
+    fontSize: 20,
     color: '#351313',
     fontFamily: 'DGrotesque',
-    fontSize: 20,
     fontWeight : "bolder"
   },
   tabOn: {
@@ -44,7 +43,7 @@ const typog = {
     fontWeight: 'bolder',
     fontFamily: 'DGrotesque',
     alignSelf: 'flex-end',
-    marginBottom: 5,
+    marginBottom: 5, 
            },
   txtDrw: {
     padding: 8,
@@ -54,6 +53,23 @@ const typog = {
     fontWeight: 'bold',
     fontFamily: 'DGrotesque',
   },
+  titleCard: 
+  {
+    fontSize: 20,
+    marginBottom : 7,
+    fontWeight: 580,
+    textAlign: 'left',
+    fontFamily: 'DGrotesque',
+  },
+  txtCard: 
+  {
+    fontSize: 18,
+    marginBottom: 7,
+    fontWeight: 500,
+    textAlign: 'left',
+    fontFamily: 'DGrotesque',
+    lineHeight: 20,
+  }
 };
 
 export default typog;
