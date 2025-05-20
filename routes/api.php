@@ -8,7 +8,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('Users', UserController::class)->except([
+Route::apiResource('users', UserController::class)->except([
     'create',
     'edit'
 ]);
