@@ -15,7 +15,8 @@ class DonationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-          'user_id' => $this->user_id,
+            'id' => $this->id,
+            'user_id' => $this->user_id,
             'donation_name' => $this->donation_name,
             'donation_description' => $this->donation_description,
             'donation_category' => $this->donation_category,

@@ -3,6 +3,8 @@
 namespace App\Http\Requests\DonationRequests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
+use App\Enums\DonationStatus;
 
 class DonationRequest extends FormRequest
 {

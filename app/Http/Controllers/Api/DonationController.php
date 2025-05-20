@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
 use App\Models\Donation;
 use App\Http\Controllers\Controller;
-use App\Requests\DonationRequests\DonationRequest;
-use App\Requests\Resources\DonationResource;
+use App\Http\Requests\DonationRequests\DonationRequest;
+use App\Http\Requests\DonationRequests\DonationUpdateRequest;
+use App\Http\Resources\DonationResource;
 use Illuminate\Http\Request;
 
 class DonationController extends Controller
@@ -16,10 +16,14 @@ class DonationController extends Controller
         return DonationResource::collection($donations);
     }
 
-    public function store(Request $request)
+    public function store(DonationRequest $request)
     {
-        $donation = Donation::create($request->validated());
-        return new Donationresource($donation);
+        $data = $request->validated();
+        if ($request->hasFile('donation_image')) {
+            $data['donation_image'] = $request->file('donation_image')->store('donations', 'public');
+        }
+        $donation = Donation::create($data);
+        return new DonationResource($donation);
     }
 
     public function show(Donation $donation)
@@ -27,7 +31,7 @@ class DonationController extends Controller
         return new DonationResource($donation);
     }
 
-    public function update(Request $request, Donation $donation)
+    public function update(DonationUpdateRequest $request, Donation $donation)
     {
         $donation->update($request->validated());
         return new DonationResource($donation);
