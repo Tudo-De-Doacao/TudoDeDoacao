@@ -1,26 +1,33 @@
-import {ScrollView, View, ImageBackground} from 'react-native';
+import {ScrollView, View, Image, Text, ImageBackground} from 'react-native';
 
 import styles from '../../styles/index';
+import typog from '../../styles/type';
 
+import Input from '../../components/Input'
 
-import H1 from '../../components/H1';
 
 function LoginScreen() {
+
 return (
-  <>
+
+   <ScrollView showsVerticalScrollIndicator = {false} contentContainerStyle={styles.scroll}>
    <ImageBackground
           source={require('../../assets/BGHome.png')}
           style={styles.bgimagem}
           resizeMode = "cover"
         />
- <ScrollView contentContainerStyle={styles.scroll}>
  <View style={styles.bodyPrin}>
-<H1> 
-Login
-</H1>
+ <Image 
+source={require('../../assets/Logo.png')}
+style={styles.logo}/>
+<Text style={typog.titleLogin}> 
+Faça seu cadastro 
+</Text>
+<Input
+ph = "Insira seu nome"/>
 </View>
 </ScrollView>
-</>
+
 );
 }
 

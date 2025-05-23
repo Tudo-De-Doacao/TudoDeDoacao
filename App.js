@@ -3,7 +3,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -23,6 +23,7 @@ import DonateScreen from "./src/pages/donate";
 const Tabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
+
 function TabsNav() {
   return (
    <Tabs.Navigator
@@ -34,6 +35,7 @@ function TabsNav() {
       switch (route.name) {
         case 'Home':
           iconName = 'home';
+          
           break;
         case 'Search':
           iconName = 'search';
@@ -72,6 +74,7 @@ function TabsNav() {
   <Tabs.Screen name="Donate" component={DonateScreen} />
   <Tabs.Screen name="Favorite" component={FavoriteScreen} />
   <Tabs.Screen name="Menu" component={DrawerScreen} />
+  
 </Tabs.Navigator>
   );
 }
@@ -85,7 +88,7 @@ export default function App() {
 
         <Stack.Screen name="Tabs" component={TabsNav} />
 
- 
+        <Tabs.Screen name="Login" component={LoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

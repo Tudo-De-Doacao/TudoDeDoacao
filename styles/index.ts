@@ -28,7 +28,21 @@ const styles = StyleSheet.create ({
     backgroundColor: colors.background,
     justifyContent: 'space-between',
     flexDirection: 'row',
-    alignItems: 'center',   
+    alignItems: 'flex-end',   
+ },
+ bottomBar: 
+ {
+    height: 70, 
+    width: width,
+    elevation: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderTopWidth: 2,
+    borderTopColor: colors.marker,
+    backgroundColor: colors.background,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignSelf: 'flex-end',   
  },
  iconCont :
   {
@@ -42,22 +56,24 @@ const styles = StyleSheet.create ({
   logo:
   {
     flex: 1,
-    paddingHorizontal: 14,
-    marginHorizontal: 8,
+    marginRight: 8,
+    marginTop: 6,
+    marginBottom: 4,
+    paddingBottom: 10,
     maxHeight: 40,
     maxWidth: 40,
     height: 40,
     width: 40,
-    position: 'relative',
     alignSelf: 'center',
   },
-  inputHeader: 
+  inputComponent: 
   {
     flex: 1,
     paddingHorizontal: 16,
-    marginHorizontal: 8,
-    width: 30,
-    height: 36,
+    marginTop: 6,
+    marginBottom: 6,
+    width: 200,
+    height: 70,
     borderWidth: 2,
     borderRadius: 20,
     borderColor: colors.marker,
@@ -70,6 +86,13 @@ const styles = StyleSheet.create ({
   {
     maxHeight: 35,
     maxWidth: 35,
+    alignSelf: 'center'
+  },
+  iconBtnBottom: 
+  {
+    minHeight: 32,
+    minWidth: 32,
+    resizeMode: 'cover',
     alignSelf: 'center'
   },
   iconMapHeader :
@@ -141,6 +164,7 @@ const styles = StyleSheet.create ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection : 'column',
+    padding: 4,
     gap: 8,
   },
   bgimagem: 
@@ -149,18 +173,28 @@ const styles = StyleSheet.create ({
      height: height,
      flex: 1
   },
-  btnBody: {
-    margin: 80,
-    gap: 2,
-    backgroundColor: "#000",
-    height: height,
-    width: width,
-    flex : 1, 
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center'
+  bodyBtnBottom: 
+  {
+   flexDirection: 'row',
+   justifyContent: 'center',
+   alignItems: 'center',
+   flex: 1, 
   },
-  btnMain: 
+  bottomBtn: {
+    flex: 1,
+    maxHeight: 50,
+    maxWidth: 132,
+    marginHorizontal: 10,
+    width: width,
+    backgroundColor: colors.primary,
+    borderWidth: 2,
+
+    borderRadius: 50,
+    borderColor: colors.marker,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  mainBtn: 
   {
     height: 50,
     width: 150,
@@ -171,11 +205,6 @@ const styles = StyleSheet.create ({
     borderColor: colors.border,
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  btnHover: 
-  {
-    backgroundColor: colors.background,
-    borderColor: '#000',
   },
  containerDrw: {
     flex: 1,

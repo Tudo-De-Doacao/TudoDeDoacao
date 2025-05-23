@@ -1,3 +1,5 @@
+import colors from "./color";
+
 const typog = {
    h1: {
     marginTop: 10,
@@ -6,7 +8,7 @@ const typog = {
     bottom: 12,
     gap: 5,
     fontSize: 20,
-    color: '#351313',
+    color: colors.marker,
     fontFamily: 'DGrotesque',
     fontWeight : "bolder"
   },
@@ -14,7 +16,7 @@ const typog = {
    fontFamily: 'DGrotesque',
     fontSize: 18,  
     fontWeight : "bolder",
-    color: '#351313',
+    color: colors.marker,
     gap:3,
     margin: 5,
   },
@@ -22,20 +24,18 @@ const typog = {
    fontFamily: 'DGrotesque',
     fontSize: 18,  
     fontWeight : 500,
-    color: '#351313',
+    color: colors.marker,
     gap: 3,
     margin: 5,
   },
-   txtBtn: {
-    color: '#351313',
-    fontSize: 16,
-    fontWeight: 'bolder',
-    fontFamily: 'DGrotesque'
-  },
-  txtHover: {
-    alignItems:'center', 
-    color:"#000",
-    justifyContent:'center'
+  txtBtnBottom: 
+  {
+    fontSize: 18,
+    marginLeft: 6,
+    marginBottom: 8,
+    fontWeight: 700,
+    textAlign: 'center',
+    fontFamily: 'DGrotesque',
   },
   drwTitle: {
     marginRight: 10,   
@@ -56,7 +56,7 @@ const typog = {
   titleCard: 
   {
     fontSize: 20,
-    marginBottom : 7,
+    marginBottom : 8,
     fontWeight: 580,
     textAlign: 'left',
     fontFamily: 'DGrotesque',
@@ -64,11 +64,24 @@ const typog = {
   txtCard: 
   {
     fontSize: 18,
-    marginBottom: 7,
+    marginBottom: 8,
+    lineHeight: 20,
     fontWeight: 500,
     textAlign: 'left',
     fontFamily: 'DGrotesque',
-    lineHeight: 20,
+    color: colors.marker,
+    
+  },
+  titleLogin: 
+  {
+    fontSize: 24,
+    marginBottom: 8,
+    padding: 10,
+    fontWeight: 700,
+    textAlign: 'center',
+    fontFamily: 'DGrotesque',
+    color: colors.marker,
+    
   }
 };
 

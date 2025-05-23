@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from '../styles/index';
-import typog from '../styles/type';
 
 export default function Header () {
 
@@ -13,17 +12,19 @@ const navigation = useNavigation();
 return (
 
 <View style={styles.headerBar}>
-<Pressable onPress={() => navigation.navigate('Home')}>
+<Pressable onPress={() => navigation.navigate('Login')}>
 <Image 
 source={require('../assets/Logo.png')}
 style={styles.logo}/>
 </Pressable>
 <TextInput 
 placeholder = "O que você procura?"
-
-style={{...styles.inputHeader, 
+autoCapitalize = "sentences"
+style={{...styles.inputComponent, 
+width: 30,
+height: 36,
 fontFamily: 'DGrotesque', 
-fontWeight: 'bold', 
+fontWeight: 700, 
 fontSize: 18}}
 
 maxLength = {16}

@@ -23,7 +23,7 @@ export default function Card({title, location, description, image}) {
         <View style={styles.infoBox}>
 
         <Text style={typog.titleCard}>{title}</Text>
-        <Text style={typog.txtCard}>{description}</Text>
+        <Text style={{...typog.txtCard, marginBottom:6}}>{description}</Text>
 
           <View style={styles.locationCard}>  
 
