@@ -79,7 +79,7 @@ const styles = StyleSheet.create ({
     borderColor: colors.marker,
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center',
+    textAlign: 'left',
     textTrasnform: 'capitalize',
   },
   iconHeader: 
