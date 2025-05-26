@@ -21,12 +21,12 @@ style={styles.logo}/>
 placeholder = "O que você procura?"
 autoCapitalize = "sentences"
 style={{...styles.inputComponent, 
+textAlign: 'center',
 width: 30,
 height: 36,
 fontFamily: 'DGrotesque', 
 fontWeight: 700, 
 fontSize: 18}}
-
 maxLength = {16}
 />
 <Pressable 

@@ -17,6 +17,11 @@ const styles = StyleSheet.create ({
   {
     padding: 6,
  },
+ headerSecure: 
+ {
+  flexDirection: 'row',
+  gap: 2,
+ },
  headerBar: 
  {  
     height: 70,
@@ -73,13 +78,13 @@ const styles = StyleSheet.create ({
     marginTop: 6,
     marginBottom: 6,
     width: 200,
-    height: 70,
+    height: 32,
     borderWidth: 2,
     borderRadius: 20,
     borderColor: colors.marker,
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center',
+    textAlign: 'left',
     textTrasnform: 'capitalize',
   },
   iconHeader: 
