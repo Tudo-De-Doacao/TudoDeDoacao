@@ -3,7 +3,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
 
 import Icon from 'react-native-vector-icons/Feather';
