@@ -17,6 +17,20 @@ const styles = StyleSheet.create ({
   {
     padding: 6,
  },
+ headerSecure: 
+ {
+   marginVertical: 10,
+   justifyContent: 'center',
+   alignItems: 'center',  
+  flexDirection: 'row',
+
+ },
+  loginInput: 
+ {
+   flex : 1,
+   justifyContent: 'center',
+   alignItems: 'center',  
+ },
  headerBar: 
  {  
     height: 70,
@@ -44,6 +58,14 @@ const styles = StyleSheet.create ({
     flexDirection: 'row',
     alignSelf: 'flex-end',   
  },
+ inputIcon: 
+ {
+   right: -40,
+   height: 20,
+   position: 'absolute',
+   flexDirection: 'row',
+   alignSelf: 'center',
+ },
  iconCont :
   {
     flex: 1,
@@ -69,11 +91,11 @@ const styles = StyleSheet.create ({
   inputComponent: 
   {
     flex: 1,
-    paddingHorizontal: 16,
-    marginTop: 6,
-    marginBottom: 6,
+    paddingLeft: 20,
+    paddingRight: 16,
+    marginVertical: 6,
     width: 200,
-    height: 70,
+    height: 32,
     borderWidth: 2,
     borderRadius: 20,
     borderColor: colors.marker,
@@ -179,6 +201,21 @@ const styles = StyleSheet.create ({
    justifyContent: 'center',
    alignItems: 'center',
    flex: 1, 
+  },
+  navBtn: 
+  {
+     flex: 1,
+    maxHeight: 40,
+    maxWidth: 132,
+    marginVertical: 16,
+    paddingVertical: 16,
+    width: width,
+    backgroundColor: colors.primary,
+    borderWidth: 2,
+    borderRadius: 50,
+    borderColor: colors.marker,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   bottomBtn: {
     flex: 1,

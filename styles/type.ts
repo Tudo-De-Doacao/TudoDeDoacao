@@ -28,6 +28,13 @@ const typog = {
     gap: 3,
     margin: 5,
   },
+  txtNavBtn: {
+    fontSize: 18,
+    margin:8,
+    fontWeight: 600,
+    textAlign: 'center',
+    fontFamily: 'DGrotesque',
+  },
   txtBtnBottom: 
   {
     fontSize: 18,

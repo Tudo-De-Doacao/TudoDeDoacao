@@ -1,10 +1,12 @@
-import {ScrollView, View, Image, Text, ImageBackground} from 'react-native';
+import {ScrollView, View, Image, Text } from 'react-native';
+
 
 import styles from '../../styles/index';
 import typog from '../../styles/type';
 import colors from '../../styles/color'
-import Input from '../../components/Input'
 
+import Input from '../../components/Input'
+import NavButton from '../../components/NavButton';
 
 function LoginScreen() {
 
@@ -18,20 +20,29 @@ style={styles.logo}/>
 <Text style={typog.titleLogin}> 
 Faça seu cadastro 
 </Text>
+<View style = {styles.loginInput}>
 <Input
-ph = "Insira seu nome"
-autoComplete = "name"/>
+ph = "Nome"
+autoComplete = "name"
+/>
 <Input
-ph = "Insira seu email"
-autoComplete = "email"/>
+ph = "Email"
+autoComplete = "email"
+/>
 <Input
-ph = "Insira sua senha"
+ph = "Senha"
 autoComplete = "new-password"
-secure = "true"/>
+secure = 'true'
+/>
 <Input
 ph = "Confirme sua senha"
-secure = "true"/>
+autoComplete = "new-password"
+secure = 'true'/>
+</View>
 
+<NavButton
+route = "Tabs"
+text = 'Cadastrar'/> 
 </View>
 </ScrollView>
 

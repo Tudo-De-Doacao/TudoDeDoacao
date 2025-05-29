@@ -25,7 +25,8 @@ export default function BottomBtn({route, icon, text}) {
   return (
     <>
     <Pressable 
-   onPress={() => navigation.navigate(route)}
+   onPress={() => {navigation.navigate(route)
+   console.log("Navegando para:", route);}}
    style = {styles.bottomBtn}
    >
    <View style={styles.bodyBtnBottom}>

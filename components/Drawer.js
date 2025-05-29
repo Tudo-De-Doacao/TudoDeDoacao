@@ -31,7 +31,8 @@ const [hoverOn, setHoverOn] = useState(false);
           <Text style={typog.drwTitle}> Menu </Text>
               <View style={styles.separatorMenu} />
           <Pressable 
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => {console.log("Navegando para:", route);
+          navigation.navigate('Home')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorHome, borderBottomWidth: 3 }
@@ -42,7 +43,8 @@ const [hoverOn, setHoverOn] = useState(false);
           </Pressable>
            
           <Pressable 
-          onPress={() => navigation.navigate('Search')}
+          onPress={() =>{ console.log("Navegando para:", route);
+          navigation.navigate('Search')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorSearch, borderBottomWidth: 3 }
@@ -51,7 +53,9 @@ const [hoverOn, setHoverOn] = useState(false);
             <Text style={typog.txtDrw}> Pesquisa </Text>
 
           </Pressable>
-          <Pressable onPress={() => navigation.navigate('Donate')}
+          <Pressable onPress={() => {
+            console.log("Navegando para:", route);
+            navigation.navigate('Donate')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorDonate, borderBottomWidth: 3 }
@@ -60,7 +64,9 @@ const [hoverOn, setHoverOn] = useState(false);
             <Text style={typog.txtDrw}> Doação </Text>
 
           </Pressable>
-          <Pressable onPress={() => navigation.navigate('Favorite')}
+          <Pressable onPress={() => {
+            console.log("Navegando para:", route);
+           navigation.navigate('Favorite')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorFavorite, borderBottomWidth: 3 }
