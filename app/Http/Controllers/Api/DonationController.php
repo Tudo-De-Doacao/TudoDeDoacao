@@ -7,6 +7,7 @@ use App\Http\Requests\DonationRequests\DonationRequest;
 use App\Http\Requests\DonationRequests\DonationUpdateRequest;
 use App\Http\Resources\DonationResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DonationController extends Controller
 {
@@ -33,7 +34,18 @@ class DonationController extends Controller
 
     public function update(DonationUpdateRequest $request, Donation $donation)
     {
-        $donation->update($request->validated());
+        $validatedData = $request->validated();
+
+        if ($request->hasFile('donation_image')) {
+            if ($donation->donation_image && Storage::disk('public')->exists($donation->donation_image)) {
+                Storage::disk('public')->delete($donation->donation_image);
+            }
+
+            $path = $request->file('donation_image')->store('donations', 'public');
+            $donation->donation_image = $path;
+        }
+        $donation->save();
+
         return new DonationResource($donation);
     }
 
