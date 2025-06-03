@@ -1,6 +1,6 @@
 import { ScrollView, View, FlatList, ImageBackground } from 'react-native';
 
-import H1 from '../../components/H1';
+import FilterBtn from '../../components/FilterBtn';
 import Header from '../../components/Header';
 import Card from '../../components/CardDon';
 
@@ -19,7 +19,10 @@ function HomeScreen() {
       />
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.bodyPrin}>
-          <H1>Login</H1>
+          <View style={homeButton}>  
+            <FilterBtn /> 
+            <FilterBtn />
+          </View> 
          <FlatList
           horizontal
           data={donationCards}

@@ -1,4 +1,7 @@
 import colors from "./color";
+import { useFonts } from 'expo-font';
+
+
 
 const typog = {
    h1: {

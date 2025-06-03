@@ -1,14 +1,38 @@
-import {ScrollView, View, Image, Text } from 'react-native';
-
+import {ScrollView, View, Image, Alert,Text } from 'react-native';
+import { useState } from 'react'; 
 
 import styles from '../../styles/index';
 import typog from '../../styles/type';
 import colors from '../../styles/color'
-
+import api from '../../services/api'
 import Input from '../../components/Input'
-import NavButton from '../../components/NavButton';
+import RegisterButton from '../../components/RegisterButton';
+
+
 
 function LoginScreen() {
+
+ const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+     const [confirmPassword, setConfirmPassword] = useState('');
+
+   const handleRegister = async () => {
+    try {
+      const response = await api.post('/users', {
+        name,
+        email,
+        password,
+        password_confirmation: password,
+      });
+
+      Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
+    } catch (error) {
+      console.log(error.response?.data);
+      Alert.alert('Erro', 'Não foi possível cadastrar.');
+    }
+  };
+
 
 return (
 
@@ -24,25 +48,35 @@ Faça seu cadastro
 <Input
 ph = "Nome"
 autoComplete = "name"
+onChangeText = {setName}
+value = {name}
 />
 <Input
 ph = "Email"
 autoComplete = "email"
+onChangeText = {setEmail}
+value = {email}
 />
 <Input
 ph = "Senha"
 autoComplete = "new-password"
 secure = 'true'
+onChangeText = {setPassword}
+value = {password}
 />
 <Input
 ph = "Confirme sua senha"
 autoComplete = "new-password"
-secure = 'true'/>
+secure = 'true'
+onChangeText = {setConfirmPassword}
+value = {confirmPassword}/>
 </View>
 
-<NavButton
+<RegisterButton
 route = "Tabs"
-text = 'Cadastrar'/> 
+text = 'Cadastrar'
+onPress={handleRegister}
+/> 
 </View>
 </ScrollView>
 

@@ -1,38 +1,32 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
-import colors from "./color";
+import colors from './color';
 
 const { width, height } = Dimensions.get('window');
 const CARD_WIDTH = width * 0.61;
-const styles = StyleSheet.create ({
- tabBar:
-  {
+const styles = StyleSheet.create({
+  tabBar: {
     height: 70,
     backgroundColor: colors.background,
     elevation: 10,
     paddingTop: 10,
     position: 'absolute',
   },
- iconTab :
-  {
+  iconTab: {
     padding: 6,
- },
- headerSecure: 
- {
-   marginVertical: 10,
-   justifyContent: 'center',
-   alignItems: 'center',  
-  flexDirection: 'row',
-
- },
-  loginInput: 
- {
-   flex : 1,
-   justifyContent: 'center',
-   alignItems: 'center',  
- },
- headerBar: 
- {  
+  },
+  headerSecure: {
+    marginVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  loginInput: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerBar: {
     height: 70,
     elevation: 10,
     paddingHorizontal: 14,
@@ -42,11 +36,10 @@ const styles = StyleSheet.create ({
     backgroundColor: colors.background,
     justifyContent: 'space-between',
     flexDirection: 'row',
-    alignItems: 'flex-end',   
- },
- bottomBar: 
- {
-    height: 70, 
+    alignItems: 'flex-end',
+  },
+  bottomBar: {
+    height: 70,
     width: width,
     elevation: 10,
     paddingHorizontal: 14,
@@ -56,27 +49,24 @@ const styles = StyleSheet.create ({
     backgroundColor: colors.background,
     justifyContent: 'space-between',
     flexDirection: 'row',
-    alignSelf: 'flex-end',   
- },
- inputIcon: 
- {
-   right: -40,
-   height: 20,
-   position: 'absolute',
-   flexDirection: 'row',
-   alignSelf: 'center',
- },
- iconCont :
-  {
+    alignSelf: 'flex-end',
+  },
+  inputIcon: {
+    right: -40,
+    height: 20,
+    position: 'absolute',
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  iconCont: {
     flex: 1,
     paddingHorizontal: 14,
     marginHorizontal: 8,
     maxHeight: 32,
     maxWidth: 32,
     alignSelf: 'center',
-   },
-  logo:
-  {
+  },
+  logo: {
     flex: 1,
     marginRight: 8,
     marginTop: 6,
@@ -88,8 +78,7 @@ const styles = StyleSheet.create ({
     width: 40,
     alignSelf: 'center',
   },
-  inputComponent: 
-  {
+  inputComponent: {
     flex: 1,
     paddingLeft: 20,
     paddingRight: 16,
@@ -104,25 +93,21 @@ const styles = StyleSheet.create ({
     textAlign: 'left',
     textTrasnform: 'capitalize',
   },
-  iconHeader: 
-  {
+  iconHeader: {
     maxHeight: 35,
     maxWidth: 35,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
-  iconBtnBottom: 
-  {
+  iconBtnBottom: {
     minHeight: 32,
     minWidth: 32,
     resizeMode: 'cover',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
-  iconMapHeader :
-  {
+  iconMapHeader: {
     paddingRight: 2,
- },
-  card: 
-  {
+  },
+  card: {
     width: CARD_WIDTH,
     maxWidth: 200,
     height: 280,
@@ -132,79 +117,81 @@ const styles = StyleSheet.create ({
     borderColor: colors.marker,
     backgroundColor: colors.background,
     alignSelf: 'flex-start',
-    overflow: 'hidden',   
+    overflow: 'hidden',
   },
-  bodyCard: 
-  {
-    
+  bodyCard: {
     flexDirection: 'row',
     gap: 20,
     paddingRight: 16,
   },
-  infoBox: 
-  {
-    margin:8,
-    gap:2,
+  infoBox: {
+    margin: 8,
+    gap: 2,
     paddingLeft: 10,
-    
   },
-  locationCard: 
-  {
+  locationCard: {
     gap: 2,
     marginBottom: 2,
     paddingTop: 8,
     flexDirection: 'row',
-
-
   },
-  imageBox: 
-  {
+  imageBox: {
     height: 100,
     backgroundColor: '#A97E76',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image: 
-  {
+  image: {
     position: 'absolute',
     height: '100%',
     width: '100%',
     opacity: 0.1,
   },
- scroll: 
- {
+  scroll: {
     paddingBottom: 25,
-
- },
-  sideBar: 
-  {
+  },
+  sideBar: {
     flex: 1,
     paddingHorizontal: 16,
   },
-  bodyPrin: 
-  {
+  bodyPrin: {
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection : 'column',
+    flexDirection: 'column',
     padding: 4,
     gap: 8,
   },
-  bgimagem: 
-  {
-     width: width,
-     height: height,
-     flex: 1
+  bgimagem: {
+    width: width,
+    height: height,
+    flex: 1,
   },
-  bodyBtnBottom: 
-  {
-   flexDirection: 'row',
-   justifyContent: 'center',
-   alignItems: 'center',
-   flex: 1, 
+  bodyBtnBottom: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
   },
-  navBtn: 
+  homeButton:
   {
-     flex: 1,
+
+  },
+  filterBtn: {
+    flex: 1,
+    maxHeight: 20,
+    maxWidth: 90,
+    marginVertical: 16,
+    paddingVertical: 16,
+    width: width,
+    backgroundColor: colors.primary,
+    borderWidth: 2,
+    borderRadius: 50,
+    borderColor: colors.marker,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  navBtn: {
+    flex: 1,
     maxHeight: 40,
     maxWidth: 132,
     marginVertical: 16,
@@ -215,7 +202,7 @@ const styles = StyleSheet.create ({
     borderRadius: 50,
     borderColor: colors.marker,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   bottomBtn: {
     flex: 1,
@@ -229,10 +216,9 @@ const styles = StyleSheet.create ({
     borderRadius: 50,
     borderColor: colors.marker,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
-  mainBtn: 
-  {
+  mainBtn: {
     height: 50,
     width: 150,
     backgroundColor: '#000',
@@ -241,16 +227,16 @@ const styles = StyleSheet.create ({
     borderWidth: 2,
     borderColor: colors.border,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
- containerDrw: {
+  containerDrw: {
     flex: 1,
     backgroundColor: colors.background,
   },
   drw: {
     position: 'absolute',
     top: 0,
-    left: 0, // drawer vindo da esquerda
+    left: 0,
     width: width,
     height: '100%',
     backgroundColor: colors.background,
@@ -258,7 +244,7 @@ const styles = StyleSheet.create ({
     paddingHorizontal: 20,
     zIndex: 20,
     elevation: 5,
-      },
+  },
   drwCont: {
     flex: 1,
   },
@@ -266,14 +252,14 @@ const styles = StyleSheet.create ({
     width: '100%',
     borderBottomWidth: 4,
     borderBottomColor: colors.marker,
-    borderStyle: 'solid', 
+    borderStyle: 'solid',
     marginVertical: 10,
     alignSelf: 'flex-end',
   },
   separatorHome: {
     borderBottomWidth: 2,
     borderBottomColor: colors.marker,
-    borderStyle: 'solid', 
+    borderStyle: 'solid',
     marginVertical: 5,
     width: '95%',
     alignSelf: 'flex-end',
@@ -281,7 +267,7 @@ const styles = StyleSheet.create ({
   separatorSearch: {
     borderBottomWidth: 2,
     borderBottomColor: colors.marker,
-    borderStyle: 'solid', 
+    borderStyle: 'solid',
     marginVertical: 5,
     width: '90%',
     alignSelf: 'flex-end',
@@ -289,7 +275,7 @@ const styles = StyleSheet.create ({
   separatorDonate: {
     borderBottomWidth: 2,
     borderBottomColor: colors.marker,
-    borderStyle: 'solid', 
+    borderStyle: 'solid',
     marginVertical: 5,
     width: '85%',
     alignSelf: 'flex-end',
@@ -297,15 +283,11 @@ const styles = StyleSheet.create ({
   separatorFavorite: {
     borderBottomWidth: 2,
     borderBottomColor: colors.marker,
-    borderStyle: 'solid', 
+    borderStyle: 'solid',
     marginVertical: 5,
     width: '80%',
     alignSelf: 'flex-end',
   },
-}
-);
-
+});
 
 export default styles;
-
-

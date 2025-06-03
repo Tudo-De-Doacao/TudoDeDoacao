@@ -5,8 +5,9 @@ import { useState } from 'react';
 import styles from '../styles/index';
 import colors from '../styles/color';
 
-function Password ({secure, ph, autoComplete}) {
-   const [secureMode, setSecureMode] = useState(true)
+function Password ({secure, ph, autoComplete, value, onChangeText}) {
+  
+     const [secureMode, setSecureMode] = useState(true)
 
   if (!secure)
   {
@@ -15,8 +16,10 @@ function Password ({secure, ph, autoComplete}) {
          <TextInput 
         placeholder = {ph}
         autoComplete = {autoComplete}
-        autoCapitalize = "sentences"
+        onChangeText = {onChangeText}
+        value = {value}
         maxLength = {32}
+        autoCapitalize = "sentences"
         style = {{...styles.inputComponent,
         fontFamily: 'DGrotesque', 
         fontWeight: 600, 
@@ -32,6 +35,8 @@ function Password ({secure, ph, autoComplete}) {
         placeholder = {ph}
         secureTextEntry = {secureMode ? true : false}
         autoComplete = {autoComplete}
+        onChangeText = {onChangeText}
+        value = {value}
         autoCapitalize = "sentences"
         maxLength = {32}
         style = {{...styles.inputComponent,
@@ -49,10 +54,10 @@ function Password ({secure, ph, autoComplete}) {
    
   )
 }
-export default function Input ({ph, autoComplete, secure}) {
+export default function Input ({ph, autoComplete, value, onChangeText, secure}) {
 
   return (
-      <Password ph = {ph} autoComplete = {autoComplete} secure = {secure} />
+      <Password ph = {ph} value = {value} autoComplete = {autoComplete} secure = {secure} onChangeText={onChangeText} />
   );
 }
 

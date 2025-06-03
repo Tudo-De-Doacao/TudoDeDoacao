@@ -5,7 +5,7 @@ import styles from '../styles/index';
 import typog from '../styles/type';
 
 
-export default function NavButton({route, text}) {
+export default function FilterBtn({route, text}) {
 
   const navigation = useNavigation();
 
@@ -16,7 +16,7 @@ export default function NavButton({route, text}) {
     console.log("Navegando para:", route);
     navigation.navigate(route);
   }}
-   style = {styles.navBtn}
+   style = {styles.filterBtn}
    >
    <View style={styles.bodyBtnBottom}>
    <Text style={typog.txtNavBtn}>

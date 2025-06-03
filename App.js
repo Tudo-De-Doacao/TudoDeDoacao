@@ -3,6 +3,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {useFonts } from 'expo-font'
 import { Text } from 'react-native';
 
 
@@ -82,10 +83,16 @@ function TabsNav() {
 
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+  'DGrotesque': require('./assets/GrotesqueFont.ttf'),
+});
+
+  if (!fontsLoaded) return null;
+  
   return (
     <NavigationContainer> 
      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen  name="Login" component={LoginScreen} />
         <Stack.Screen name="Tabs" component={TabsNav} />
        
       </Stack.Navigator>
