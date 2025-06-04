@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
             'email' => ['required', 'email', 'max:50', 'unique:users,email'],
             'tel' => ['required', 'max:20', 'unique:users,tel'],
             'password' => ['required', 'min:8', 'confirmed'],
-            'localization' => ['nullable'],
+            'location' => ['nullable'],
         ];
     }
 }

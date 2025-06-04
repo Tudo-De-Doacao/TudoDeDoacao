@@ -34,6 +34,7 @@ class DonationController extends Controller
 
     public function update(DonationUpdateRequest $request, Donation $donation)
     {
+        //Inserir _method = POST nas requisições form-data para alterar a imagem
         $validatedData = $request->validated();
 
         if ($request->hasFile('donation_image')) {

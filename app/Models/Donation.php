@@ -17,7 +17,7 @@ class Donation extends Model
         'donation_description',
         'donation_category',
         'donation_image',
-        'donation_localization',
+        'donation_location',
         'donation_status',
     ];
 }

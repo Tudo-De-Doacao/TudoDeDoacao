@@ -26,7 +26,7 @@ class UserUpdateRequest extends FormRequest
             'email' => ['sometimes', 'email', 'max:50', 'unique:users,email'],
             'tel' => ['sometimes', 'max:20', 'unique:users,tel'],
             'password' => ['sometimes', 'min:8', 'confirmed'],
-            'localization' => ['nullable'],
+            'location' => ['nullable'],
         ];
     }
 }

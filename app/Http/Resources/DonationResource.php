@@ -21,7 +21,7 @@ class DonationResource extends JsonResource
             'donation_description' => $this->donation_description,
             'donation_category' => $this->donation_category,
             'donation_image' => $this->donation_image,
-            'donation_localization' => $this->donation_localization,
+            'donation_location' => $this->donation_location,
             'donation_status' => $this->donation_status,
             'created_at' => $this->created_at,  
             'updated_at' => $this->updated_at, 
