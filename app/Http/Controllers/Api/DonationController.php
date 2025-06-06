@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\DonationRequests\DonationRequest;
 use App\Http\Requests\DonationRequests\DonationUpdateRequest;
 use App\Http\Resources\DonationResource;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -62,8 +63,23 @@ class DonationController extends Controller
         return DonationResource::collection($donations);
     }
 
+    public function getMyDonations()
+    {
+        $donations = Donation::where('user_id','=', Auth()->user())->get();
+
+        if ($donations->isEmpty()) {
+            return response()->json(['message' => 'Nenhuma doação encontrada'], 404);
+        }
+
+        return DonationResource::collection($donations);
+    }
+
     public function destroy(Donation $donation)
     {
+        if ($donation->donation_image && Storage::disk('public')->exists($donation->donation_image)) {
+            Storage::disk('public')->delete($donation->donation_image);
+        }
+        
         $donation->delete();
         return response(null, 204);
     }
