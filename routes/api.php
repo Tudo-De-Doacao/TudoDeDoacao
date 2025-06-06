@@ -20,10 +20,10 @@ Route::apiResource('donations', DonationController::class)->except([
     'edit'
 ]);
 
-Route::get('/donations/users/{user}', [DonationController::class, 'getByUser']);
+Route::get('/donations/users/{id}', [DonationController::class, 'getByUser']);
 
-route::middleware('api')->get('/users', function (Request $request) {
+/* route::middleware('api')->get('/users', function (Request $request) {
     return $request->user();
-});
+}); */
 
 Route::post('/login', [AuthController::class, 'login']);

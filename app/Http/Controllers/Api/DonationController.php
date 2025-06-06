@@ -51,9 +51,9 @@ class DonationController extends Controller
         return new DonationResource($donation);
     }
 
-    public function getByUser(DonationRequest $request, User $user)
+    public function getByUser($id)
     {
-        $donations = Donation::where('user_id', $user->id)->get();
+        $donations = Donation::where('user_id','=', $id)->get();
 
         if ($donations->isEmpty()) {
             return response()->json(['message' => 'Nenhuma doação encontrada'], 404);
