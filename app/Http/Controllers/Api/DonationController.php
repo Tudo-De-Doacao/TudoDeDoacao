@@ -74,6 +74,18 @@ class DonationController extends Controller
         return DonationResource::collection($donations);
     }
 
+    public function getByMyLocation()
+    {
+        $user = auth()->user();
+        $donations = Donation::where('donation_location','=', $user->location)->where('user_id', '!=', $user->id)->get();
+
+        if ($donations->isEmpty()) {
+            return response()->json(['message'=> 'Nenhuma doação disponível na sua localização'],404);
+        }
+
+        return DonationResource::collection($donations);
+    }
+
     public function getMyDonations()
     {
         $user = auth()->user();
