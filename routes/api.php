@@ -22,7 +22,7 @@ Route::apiResource('donations', DonationController::class)->except([
 
 Route::get('/donations/users/{id}', [DonationController::class, 'getByUser']);
 
-Route::get('/donations/users', [DonationController::class, 'getMyDonations'])->middleware('jwt.auth');
+Route::get('/getMyDonations', [DonationController::class, 'getMyDonations'])->middleware('jwt.auth');
 
 /* route::middleware('api')->get('/users', function (Request $request) {
     return $request->user();

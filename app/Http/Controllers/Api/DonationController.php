@@ -36,7 +36,7 @@ class DonationController extends Controller
 
     public function update(DonationUpdateRequest $request, Donation $donation)
     {
-        //Inserir _method = POST nas requisições form-data para alterar a imagem
+        //Inserir _method = PATCH nas requisições POST de form-data para atualizar a imagem e seus outros atributos
         $validatedData = $request->validated();
 
         if ($request->hasFile('donation_image')) {
@@ -65,7 +65,8 @@ class DonationController extends Controller
 
     public function getMyDonations()
     {
-        $donations = Donation::where('user_id','=', Auth()->user())->get();
+        $user = auth()->user();
+        $donations = Donation::where('user_id','=', $user->id)->get();
 
         if ($donations->isEmpty()) {
             return response()->json(['message' => 'Nenhuma doação encontrada'], 404);
@@ -79,7 +80,7 @@ class DonationController extends Controller
         if ($donation->donation_image && Storage::disk('public')->exists($donation->donation_image)) {
             Storage::disk('public')->delete($donation->donation_image);
         }
-        
+
         $donation->delete();
         return response(null, 204);
     }
