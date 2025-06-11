@@ -63,6 +63,17 @@ class DonationController extends Controller
         return DonationResource::collection($donations);
     }
 
+    public function getByCategory($category)
+    {
+        $donations = Donation::where('donation_category', '=', $category)->get();
+
+        if ($donations->isEmpty()) {
+            return response()->json(['message'=> 'Nenhuma doação encontrada para essa categoria'],404);
+        }
+
+        return DonationResource::collection($donations);
+    }
+
     public function getByLocation($location)
     {
         $donations = Donation::where('donation_location','=', $location)->get();

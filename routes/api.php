@@ -22,6 +22,8 @@ Route::get('/donations/getByLocation/{location}', [DonationController::class, 'g
 
 Route::get('/donations/getByMyLocation', [DonationController::class, 'getByMyLocation'])->middleware('jwt.auth');
 
+Route::get('/donations/getByCategory/{category}', [DonationController::class, 'getByCategory']);
+
 Route::apiResource('donations', DonationController::class)->except([
     'create',
     'edit'
