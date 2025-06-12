@@ -16,13 +16,15 @@ Route::apiResource('users', UserController::class)->except([
     'edit'
 ]);
 
-Route::get('/donations/getMyDonations', [DonationController::class, 'getMyDonations'])->middleware('jwt.auth');
+Route::get('/donations/getmydonations', [DonationController::class, 'getMyDonations'])->middleware('jwt.auth');
 
-Route::get('/donations/getByLocation/{location}', [DonationController::class, 'getByLocation']);
+Route::get('/donations/getbylocation/{location}', [DonationController::class, 'getByLocation']);
 
-Route::get('/donations/getByMyLocation', [DonationController::class, 'getByMyLocation'])->middleware('jwt.auth');
+Route::get('/donations/getbymylocation', [DonationController::class, 'getByMyLocation'])->middleware('jwt.auth');
 
-Route::get('/donations/getByCategory/{category}', [DonationController::class, 'getByCategory']);
+Route::get('/donations/getbycategory/{category}', [DonationController::class, 'getByCategory']);
+
+Route::get('/donations/getbyname/{name}', [DonationController::class, 'getByName']);
 
 Route::apiResource('donations', DonationController::class)->except([
     'create',

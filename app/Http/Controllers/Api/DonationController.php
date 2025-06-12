@@ -10,6 +10,7 @@ use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\str;
 
 class DonationController extends Controller
 {
@@ -26,6 +27,8 @@ class DonationController extends Controller
             $data['donation_image'] = $request->file('donation_image')->store('donations', 'public');
         }
         $donation = Donation::create($data);
+        $donation->donation_filteredName = strtolower(str::ascii($donation->donation_name));
+        $donation->save();
         return new DonationResource($donation);
     }
 
@@ -39,7 +42,7 @@ class DonationController extends Controller
         //Inserir _method = PATCH nas requisições POST de form-data para atualizar a imagem e seus outros atributos
         $validatedData = $request->validated();
 
-        if ($request->hasFile('donation_image')) {
+        if ($validatedData->hasFile('donation_image')) {
             if ($donation->donation_image && Storage::disk('public')->exists($donation->donation_image)) {
                 Storage::disk('public')->delete($donation->donation_image);
             }
@@ -58,6 +61,19 @@ class DonationController extends Controller
 
         if ($donations->isEmpty()) {
             return response()->json(['message' => 'Nenhuma doação encontrada'], 404);
+        }
+
+        return DonationResource::collection($donations);
+    }
+
+    public function getByName($name)
+    {
+        //TODO buscar pelo primeiro nome da doação
+        $firstWord = explode(' ', $name)[0];
+        $donations = Donation::where('donation_filteredName','=', strtolower($name))->where('donation_filteredName', '=', $firstWord)->get();
+
+        if ($donations->isEmpty()) {
+            return response()->json(['message' => 'Nenhuma doação encontrada com este nome']);
         }
 
         return DonationResource::collection($donations);
