@@ -57,7 +57,7 @@ class DonationController extends Controller
 
     public function getByUser($id)
     {
-        $donations = Donation::where('user_id','=', $id)->get();
+        $donations = Donation::where('user_id', '=', $id)->get();
 
         if ($donations->isEmpty()) {
             return response()->json(['message' => 'Nenhuma doação encontrada'], 404);
@@ -68,9 +68,8 @@ class DonationController extends Controller
 
     public function getByName($name)
     {
-        //TODO buscar pelo primeiro nome da doação
         $firstWord = explode(' ', $name)[0];
-        $donations = Donation::where('donation_filteredName','=', strtolower($name))->where('donation_filteredName', '=', $firstWord)->get();
+        $donations = Donation::where('donation_filteredName', 'like', '%' . strtolower($firstWord) . '%')->get();
 
         if ($donations->isEmpty()) {
             return response()->json(['message' => 'Nenhuma doação encontrada com este nome']);
@@ -92,7 +91,7 @@ class DonationController extends Controller
 
     public function getByLocation($location)
     {
-        $donations = Donation::where('donation_location','=', $location)->get();
+        $donations = Donation::where('donation_location', '=', $location)->get();
 
         if ($donations->isEmpty()) {
             return response()->json(['message'=> 'Nenhuma doação encontrada para a sua localização'],404);
@@ -104,7 +103,7 @@ class DonationController extends Controller
     public function getByMyLocation()
     {
         $user = auth()->user();
-        $donations = Donation::where('donation_location','=', $user->location)->where('user_id', '!=', $user->id)->get();
+        $donations = Donation::where('donation_location', '=', $user->location)->where('user_id', '!=', $user->id)->get();
 
         if ($donations->isEmpty()) {
             return response()->json(['message'=> 'Nenhuma doação disponível na sua localização'],404);
@@ -116,7 +115,7 @@ class DonationController extends Controller
     public function getMyDonations()
     {
         $user = auth()->user();
-        $donations = Donation::where('user_id','=', $user->id)->get();
+        $donations = Donation::where('user_id', '=', $user->id)->get();
 
         if ($donations->isEmpty()) {
             return response()->json(['message' => 'Nenhuma doação encontrada'], 404);
