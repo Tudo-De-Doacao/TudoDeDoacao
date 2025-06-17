@@ -1,172 +1,207 @@
-import {StyleSheet, Dimensions} from 'react-native';
-
-import colors from "./color";
+import { StyleSheet, Dimensions } from 'react-native';
+import colors from './color';
 
 const { width, height } = Dimensions.get('window');
+const CARD_WIDTH = width * 0.61;
 
-const styles = StyleSheet.create ({
-tabBar:
- {
+const styles = StyleSheet.create({
+  tabBar: {
     height: 70,
     backgroundColor: colors.background,
     elevation: 10,
+    paddingTop: 10,
     position: 'absolute',
-    paddingTop: 25,
   },
- iconTab :
-  {
-    marginTop : 20,
-    marginBottom: 10,
-    gap : 5,
-    paddingBottom: 10,
- },
- headerBar: 
- {  
-   height: 70,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+  iconTab: {
+    padding: 6,
+  },
+  headerBar: {
+    height: 70,
+    elevation: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: colors.marker,
     backgroundColor: colors.background,
     justifyContent: 'space-between',
- },
- iconCont :
-  {
-    flex: 1,
     flexDirection: 'row',
-    backgroundColor: colors.background,
-    marginHorizontal: 12,
     alignItems: 'center',
-    paddingHorizontal: 10,
+  },
+  iconCont: {
+    flex: 1,
+    paddingHorizontal: 14,
+    marginHorizontal: 8,
     maxHeight: 32,
     maxWidth: 32,
- },
-logo: {
- height: 50,
- width: 50,
- alignSelf: 'center'
-},
-inputHeader: {
-    flex: 1,
-    height: 36,
-    color: colors.marker,
+    alignSelf: 'center',
   },
-iconHeader: {
- height: 35,
- width: 35,
- alignSelf: 'center'
-},
- scroll: 
- {
-    paddingBottom: 25,
- },
-  sideBar: 
-  {
+  logo: {
+    flex: 1,
+    paddingHorizontal: 14,
+    marginHorizontal: 8,
+    maxHeight: 40,
+    maxWidth: 40,
+    height: 40,
+    width: 40,
+    position: 'relative',
+    alignSelf: 'center',
+  },
+  inputHeader: {
     flex: 1,
     paddingHorizontal: 16,
+    marginHorizontal: 8,
+    width: 30,
+    height: 36,
+    borderWidth: 2,
+    borderRadius: 20,
+    borderColor: colors.marker,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
   },
-  bodyPrin: 
-  {
-    borderRadius: 30, 
-    alignItems: 'center'
+  iconHeader: {
+    maxHeight: 35,
+    maxWidth: 35,
+    alignSelf: 'center',
+  },
+  iconMapHeader: {
+    paddingRight: 2,
+  },
+  card: {
+    width: CARD_WIDTH,
+    maxWidth: 200,
+    height: 280,
+    borderRadius: 8,
+    borderWidth: 2,
+    marginVertical: 18,
+    borderColor: colors.marker,
+    backgroundColor: colors.background,
+    alignSelf: 'flex-start',
+    overflow: 'hidden',
+  },
+  cardExpandido: {
+    width: '100%',
+    padding: 16,
+    borderWidth: 2,
+    borderColor: colors.marker,
+    backgroundColor: '#FFE8E2',
+    borderRadius: 12,
+    marginTop: 20,
+    alignSelf: 'center',
+  },
+  botaoLinha: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  botaoPrincipal: {
+    flex: 1,
+    backgroundColor: colors.active,
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginRight: 6,
+  },
+  botaoSecundario: {
+    flex: 1,
+    backgroundColor: colors.primary,
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  botaoTextoBranco: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 15,
+  },
+  botaoTextoEscuro: {
+    color: '#2e1e1c',
+    fontWeight: 'bold',
+    fontSize: 15,
+  },
+  bodyCard: {
+    flexDirection: 'row',
+    marginRight: 20,
+    paddingRight: 16,
+  },
+  infoBox: {
+    margin: 8,
+    paddingLeft: 10,
+    marginBottom: 2,
+  },
+  locationCard: {
+    marginBottom: 2,
+    paddingTop: 8,
+    flexDirection: 'row',
   },
   bgimagem: 
-  {
+  {   
      width: width,
      height: height,
-     flex: 1
+     flex: 1,
+    
   },
-  btnBody: {
-    margin: 80,
-    gap: 2,
-    backgroundColor: "#000",
-    height: height,
-    width: width,
-    flex : 1, 
+  imageBox: {
+    height: 100,
+    backgroundColor: '#A97E76',
     justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center'
-  },
-  btnMain: 
-  {
-    height: 50,
-    width: 150,
-    backgroundColor: '#000',
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    borderWidth: 2,
-    borderColor: colors.border,
     alignItems: 'center',
-    justifyContent: 'center'
   },
-  btnHover: 
-  {
-    backgroundColor: colors.background,
-    borderColor: '#000',
-  },
- containerDrw: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  drw: {
+  image: {
     position: 'absolute',
-    top: 0,
-    left: 0, // drawer vindo da esquerda
-    width: width,
     height: '100%',
-    backgroundColor: colors.background,
-    paddingTop: 60,
-    paddingHorizontal: 20,
-    zIndex: 20,
-    elevation: 5,
-      },
-  drwCont: {
-    flex: 1,
-  },
-  separatorMenu: {
     width: '100%',
-    borderBottomWidth: 4,
-    borderBottomColor: colors.marker,
-    borderStyle: 'solid', 
+    opacity: 0.1,
+  },
+  imageDonation: {
+    backgroundColor: colors.background,
+    height: 200,
+    width: width,
+    resizeMode: 'cover',
+    borderRadius: 15,
+    alignSelf: 'center',
     marginVertical: 10,
-    alignSelf: 'flex-end',
   },
-  separatorHome: {
-    borderBottomWidth: 2,
-    borderBottomColor: colors.marker,
-    borderStyle: 'solid', 
-    marginVertical: 5,
-    width: '95%',
-    alignSelf: 'flex-end',
+  h1: {
+    textAlign: 'center',
+    marginTop: 4,
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#2e1e1c',
   },
-  separatorSearch: {
-    borderBottomWidth: 2,
-    borderBottomColor: colors.marker,
-    borderStyle: 'solid', 
-    marginVertical: 5,
-    width: '90%',
-    alignSelf: 'flex-end',
+  duvidasText: {
+    color: '#2e1e1c',
+    textDecorationLine: 'underline',
+    marginTop: 16,
+    fontWeight: '600',
+    textAlign: 'center',
   },
-  separatorDonate: {
-    borderBottomWidth: 2,
-    borderBottomColor: colors.marker,
-    borderStyle: 'solid', 
-    marginVertical: 5,
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    backgroundColor: colors.background,
+    borderRadius: 10,
+    padding: 20,
     width: '85%',
-    alignSelf: 'flex-end',
+    elevation: 5,
   },
-  separatorFavorite: {
-    borderBottomWidth: 2,
-    borderBottomColor: colors.marker,
-    borderStyle: 'solid', 
-    marginVertical: 5,
-    width: '80%',
-    alignSelf: 'flex-end',
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#2e1e1c',
   },
-}
-);
-
+  modalText: {
+    fontSize: 16,
+    marginBottom: 8,
+    color: '#2e1e1c',
+  },
+  // Continue o restante seguindo o mesmo padrão...
+});
 
 export default styles;
-
-
