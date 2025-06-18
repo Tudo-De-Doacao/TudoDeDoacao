@@ -1,42 +1,30 @@
 import colors from "./color";
-import { useFonts } from 'expo-font';
+import { Platform } from 'react-native';
 
-
+const isWeb = Platform.OS === 'web'; 
 
 const typog = {
-   h1: {
-    marginTop: 10,
-    marginLeft: 20,
-     top: 12,
-    bottom: 12,
-    gap: 5,
-    fontSize: 20,
-    color: colors.marker,
-    fontFamily: 'DGrotesque',
-    fontWeight : "bolder"
-  },
   tabOn: {
-   fontFamily: 'DGrotesque',
-    fontSize: 18,  
-    fontWeight : "bolder",
+   fontFamily: 'DGrotesque-SemiBold',
+    fontSize: isWeb ?  18 : 20,  
     color: colors.marker,
-    gap:3,
-    margin: 5,
+   marginVertical : 5,
+
   },
    tabOff: {
-   fontFamily: 'DGrotesque',
-    fontSize: 18,  
-    fontWeight : 500,
+   fontFamily: 'DGrotesque-Medium',
+    fontSize: isWeb ?  18 : 20,  
     color: colors.marker,
-    gap: 3,
-    margin: 5,
+   marginVertical : 5,
+
+ 
   },
   txtNavBtn: {
-    fontSize: 18,
-    margin:8,
-    fontWeight: 600,
+    fontSize:  18 ,
+    margin: isWeb ? 8 : 4,
     textAlign: 'center',
-    fontFamily: 'DGrotesque',
+    fontFamily: 'DGrotesque-Medium',
+    color: colors.marker,
   },
   txtBtnBottom: 
   {
@@ -50,8 +38,7 @@ const typog = {
   drwTitle: {
     marginRight: 10,   
     fontSize: 32,
-    fontWeight: 'bolder',
-    fontFamily: 'DGrotesque',
+    fontFamily: 'DGrotesque-Bold',
     alignSelf: 'flex-end',
     marginBottom: 5, 
            },
@@ -61,7 +48,7 @@ const typog = {
     marginBottom : 5,
     textAlign: 'right',
     fontWeight: 'bold',
-    fontFamily: 'DGrotesque',
+    fontFamily: 'DGrotesque-Medium',
   },
   titleCard: 
   {
@@ -69,7 +56,7 @@ const typog = {
     marginBottom : 8,
     fontWeight: 580,
     textAlign: 'left',
-    fontFamily: 'DGrotesque',
+    fontFamily: 'DGrotesque-SemiBold',
   },
   txtCard: 
   {
@@ -80,7 +67,16 @@ const typog = {
     textAlign: 'left',
     fontFamily: 'DGrotesque',
     color: colors.marker,
-    
+  },
+  txtSearch: 
+  {
+    fontSize: 18,
+    marginBottom: 8,
+    lineHeight: 20,
+    fontWeight: 500,
+    textAlign: 'left',
+    fontFamily: 'DGrotesque',
+    color: colors.marker,
   },
   titleLogin: 
   {
@@ -89,9 +85,16 @@ const typog = {
     padding: 10,
     fontWeight: 700,
     textAlign: 'center',
-    fontFamily: 'DGrotesque',
+    fontFamily: 'DGrotesque-SemiBold',
     color: colors.marker,
-    
+  },
+  headerTitle:
+  {
+    fontSize: 30,
+    textAlign: 'center',
+    fontFamily: 'DGrotesque-SemiBold',
+    color: colors.marker,
+    margin: isWeb ? 6 : 24,
   }
 };
 

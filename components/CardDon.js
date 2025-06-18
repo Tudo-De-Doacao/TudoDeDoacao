@@ -1,14 +1,30 @@
 
 
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Pressable } from 'react-native';
+
 import Icon from 'react-native-vector-icons/Feather';
+
+import { useNavigation } from '@react-navigation/native';
 
 import styles from '../styles/index';
 import typog from '../styles/type';
 import colors from '../styles/color';
 
-export default function Card({title, location, description, image}) {
+export default function Card({name, location, description, image}) {
+
+const navigation = useNavigation();
+
+    const handlePress = () => {
+    navigation.navigate('Card', {
+      name,
+      location,
+      description,
+      image
+    });
+  };
+  
   return (
+  <Pressable onPress={handlePress} >
     <View style={styles.card}>
       <View style={styles.imageBox}>
         <Image
@@ -17,12 +33,12 @@ export default function Card({title, location, description, image}) {
             uri: image
           }}
         />
-        <Text style={styles.imageText}>*CARDS*</Text>
+
       </View>
 
         <View style={styles.infoBox}>
 
-        <Text style={typog.titleCard}>{title}</Text>
+        <Text style={typog.titleCard}>{name}</Text>
         <Text style={{...typog.txtCard, marginBottom:6}}>{description}</Text>
 
           <View style={styles.locationCard}>  
@@ -32,6 +48,7 @@ export default function Card({title, location, description, image}) {
           </View>
         </View>
     </View>
+  </Pressable>
   );
 }
 

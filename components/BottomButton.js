@@ -13,6 +13,9 @@ if (icon === '')
           style={styles.iconBtnBottom}
           source={require('../assets/hand-heart.svg')}
         />
+} if (icon === 'null')
+{
+  return null;
 }
 
 return <Icon name = {icon} size = {32} color = {colors.marker} />

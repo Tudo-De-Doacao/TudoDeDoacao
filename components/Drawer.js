@@ -7,7 +7,7 @@ import styles from '../styles/index';
 import typog from '../styles/type';
 const { width } = Dimensions.get('window');
 
-export default function Drawer() {
+export default function Drawer({route}) {
   const slideAnim = useRef(new Animated.Value(width)).current;
   const navigation = useNavigation();
   useFocusEffect(
@@ -44,7 +44,7 @@ const [hoverOn, setHoverOn] = useState(false);
            
           <Pressable 
           onPress={() =>{ console.log("Navegando para:", route);
-          navigation.navigate('Search')}}
+          navigation.navigate('Pesquisar')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorSearch, borderBottomWidth: 3 }
@@ -55,7 +55,7 @@ const [hoverOn, setHoverOn] = useState(false);
           </Pressable>
           <Pressable onPress={() => {
             console.log("Navegando para:", route);
-            navigation.navigate('Donate')}}
+            navigation.navigate('Doação')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorDonate, borderBottomWidth: 3 }
@@ -66,7 +66,7 @@ const [hoverOn, setHoverOn] = useState(false);
           </Pressable>
           <Pressable onPress={() => {
             console.log("Navegando para:", route);
-           navigation.navigate('Favorite')}}
+           navigation.navigate('Favoritos')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorFavorite, borderBottomWidth: 3 }

@@ -1,63 +1,48 @@
-import { TextInput, View, Pressable }from 'react-native';
+import { TextInput, View, Platform, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-
 import { useState } from 'react';
 import styles from '../styles/index';
-import colors from '../styles/color';
 
-function Password ({secure, ph, autoComplete, value, onChangeText}) {
-  
-     const [secureMode, setSecureMode] = useState(true)
-
-  if (!secure)
-  {
-    return (
-    <View style={styles.headerSecure}> 
-         <TextInput 
-        placeholder = {ph}
-        autoComplete = {autoComplete}
-        onChangeText = {onChangeText}
-        value = {value}
-        maxLength = {32}
-        autoCapitalize = "sentences"
-        style = {{...styles.inputComponent,
-        fontFamily: 'DGrotesque', 
-        fontWeight: 600, 
-        fontSize: 18}}
-        />
-      </View>
-    );
-  } 
+function Password({ secure, ph, autoComplete, value, onChangeText }) {
+  const [secureMode, setSecureMode] = useState(true);
+  const isWeb = Platform.OS === 'web';
   return (
-
-  <View style = {styles.headerSecure}> 
-        <TextInput 
-        placeholder = {ph}
-        secureTextEntry = {secureMode ? true : false}
-        autoComplete = {autoComplete}
-        onChangeText = {onChangeText}
-        value = {value}
-        autoCapitalize = "sentences"
-        maxLength = {32}
-        style = {{...styles.inputComponent,
-        fontFamily: 'DGrotesque', 
-        fontWeight: 600, 
-        fontSize: 18}}
-        />
-       
-        <Pressable 
-      style={styles.inputIcon}
-      onPress={() => setSecureMode(!secureMode)}>
-      <Icon name ={secureMode ? 'eye-off' : 'eye'} size={22} color='#351313'  />
-      </Pressable>
-      </View>
-   
-  )
-}
-export default function Input ({ph, autoComplete, value, onChangeText, secure}) {
-
-  return (
-      <Password ph = {ph} value = {value} autoComplete = {autoComplete} secure = {secure} onChangeText={onChangeText} />
+    <View style={styles.headerSecure}>
+      <TextInput
+        placeholder={ph}
+        placeholderTextColor='#351313'
+        secureTextEntry={secure && secureMode}
+        autoComplete={autoComplete}
+      autoCapitalize =  "none"
+        maxLength={32}
+        value={value}
+        onChangeText={onChangeText}
+        style={[
+          isWeb ? styles.inputComponent : styles.inputComponentMobile,
+          {
+            borderColor : '#351313',
+            fontFamily: 'DGrotesque',
+            fontWeight: 'bold',
+            fontSize: 18,
+          }
+        ]}
+      />
+      {secure && (
+        <Pressable
+          style={ isWeb ? styles.inputIcon : styles.inputIconMobile}
+          onPress={() => setSecureMode(!secureMode)}
+        >
+          <Icon
+            name={secureMode ? 'eye-off' : 'eye'}
+            size= {22}
+            color="#351313"
+          />
+        </Pressable>
+      )}
+    </View>
   );
 }
 
+export default function Input(props) {
+  return <Password {...props} />;
+}

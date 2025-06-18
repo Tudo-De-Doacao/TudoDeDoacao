@@ -1,9 +1,11 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 import colors from './color';
 
 const { width, height } = Dimensions.get('window');
 const CARD_WIDTH = width * 0.61;
+const isWeb = Platform.OS === 'web';
+
 const styles = StyleSheet.create({
   tabBar: {
     height: 70,
@@ -13,7 +15,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   iconTab: {
-    padding: 6,
+    padding: isWeb ? 6 : 0,
+    resizeMode: 'contain'
   },
   headerSecure: {
     marginVertical: 10,
@@ -21,13 +24,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  headerSearch: {
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
   loginInput: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   headerBar: {
-    height: 70,
+    height: isWeb ? 70 : 120,
     elevation: 10,
     paddingHorizontal: 14,
     paddingVertical: 10,
@@ -58,45 +67,94 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
   },
-  iconCont: {
-    flex: 1,
-    paddingHorizontal: 14,
-    marginHorizontal: 8,
-    maxHeight: 32,
-    maxWidth: 32,
+  inputIconMobile: {
+    
+    position: 'absolute',
+    right: -40,
+    minHeight: '15%',
+    flexDirection: 'row',
     alignSelf: 'center',
+  },
+  iconCont: {
+    paddingRight: isWeb ? 8 : 12,
+    marginHorizontal: isWeb ? 4 : 8,
+    minHeight: isWeb ? 32 : 28,
+    minWidth: isWeb ? 32 : 28,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logo: {
-    flex: 1,
-    marginRight: 8,
-    marginTop: 6,
+    marginHorizontal: isWeb ? 8 : 12,
+    marginTop: isWeb ? 12 : 40,
     marginBottom: 4,
+    paddingTop: isWeb ? 4 : 24,
     paddingBottom: 10,
-    maxHeight: 40,
-    maxWidth: 40,
-    height: 40,
-    width: 40,
+    minHeight: isWeb ? 32 : 24,
+    minWidth: isWeb ?  32 : 24,
+    resizeMode: 'contain',
     alignSelf: 'center',
   },
-  inputComponent: {
-    flex: 1,
+  inputSearch: {
+    
     paddingLeft: 20,
     paddingRight: 16,
     marginVertical: 6,
+    width: width * 0.80,
+    height: isWeb ? 32: 50,
+    borderWidth: 2,
+    borderRadius: 200,
+    fontFamily: 'DGrotesque-Medium',
+    fontSize : isWeb ? 18 : 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'left',
+  },
+  inputComponent: {
+
+    paddingLeft: isWeb ? 20 : 0 ,
+    paddingRight: isWeb ? 16 : 0,
     width: 200,
-    height: 32,
+    height: isWeb ? 32 : 44,
     borderWidth: 2,
     borderRadius: 20,
     borderColor: colors.marker,
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'left',
-    textTrasnform: 'capitalize',
+  },
+  inputComponentMobile: {
+
+    paddingLeft: 20,
+    paddingRight: 16,
+    marginVertical: 6,
+    width: width * 0.70,
+    minHeight: 44,
+    borderWidth: 3,
+    borderRadius: 40,
+    borderColor: colors.marker,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'left',
   },
   iconHeader: {
-    maxHeight: 35,
-    maxWidth: 35,
+    minHeight: isWeb ? 32 : 28,
+    minWidth: isWeb ? 32 : 28,
+    paddingTop: isWeb ? 0 : 24,
     alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    resizeMode: 'contain'
+  },
+  iconFilter: {
+    minHeight: isWeb ? 22 : 16,
+    minWidth: isWeb ? 22 : 16,
+    marginHorizontal : 4,
+    paddingTop : 8,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    resizeMode: 'contain'
   },
   iconBtnBottom: {
     minHeight: 32,
@@ -107,10 +165,18 @@ const styles = StyleSheet.create({
   iconMapHeader: {
     paddingRight: 2,
   },
+  cardScreen: {
+    maxWidth: 200,
+    height: 280,
+    alignSelf: 'flex-start',
+    overflow: 'hidden',
+  },
   card: {
     width: CARD_WIDTH,
     maxWidth: 200,
     height: 280,
+    borderTopLeftRadius : 0,
+    borderTopRightRadius : 0,
     borderRadius: 8,
     borderWidth: 2,
     marginVertical: 18,
@@ -141,11 +207,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  imageBoxScreen: {
+    height: 100,
+    backgroundColor: '#A97E76',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   image: {
     position: 'absolute',
     height: '100%',
     width: '100%',
-    opacity: 0.1,
+
   },
   scroll: {
     paddingBottom: 25,
@@ -161,6 +233,14 @@ const styles = StyleSheet.create({
     padding: 4,
     gap: 8,
   },
+  bodySearch: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    padding: 4,
+    paddingTop: 16,
+    gap: 8,
+  },
   bgimagem: {
     width: width,
     height: height,
@@ -170,36 +250,37 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
   },
   homeButton:
   {
-
+    justifyContent: 'center',
+    alignItems: 'center',
+   flexDirection : 'row',
+   width : width,
+   paddingHorizontal: 12,
+   gap: 4,
   },
   filterBtn: {
-    flex: 1,
-    maxHeight: 20,
-    maxWidth: 90,
-    marginVertical: 16,
-    paddingVertical: 16,
-    width: width,
+    paddingHorizontal: isWeb ?  12 : 4,
+    paddingVertical: isWeb ? 0 : 2,
+    height: 40,
+    minWidth: 100,
+    marginVertical: 24,
+    marginHorizontal: 8,
     backgroundColor: colors.primary,
     borderWidth: 2,
-    borderRadius: 50,
+    borderRadius: 999,
     borderColor: colors.marker,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
-  navBtn: {
-    flex: 1,
-    maxHeight: 40,
-    maxWidth: 132,
-    marginVertical: 16,
-    paddingVertical: 16,
-    width: width,
+  regBtn: {
+    minHeight: 40,
+    minWidth: isWeb ? 132 : '30%',
+    marginTop: 16,
     backgroundColor: colors.primary,
     borderWidth: 2,
-    borderRadius: 50,
+    borderRadius: 500,
     borderColor: colors.marker,
     alignItems: 'center',
     justifyContent: 'center',

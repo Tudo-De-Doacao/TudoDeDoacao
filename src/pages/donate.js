@@ -1,8 +1,8 @@
-import {ScrollView, View, ImageBackground,} from 'react-native';
+import {ScrollView, View, Text, ImageBackground,} from 'react-native';
 
 import styles from '../../styles/index';
 
-import H1 from '../../components/H1';
+
 
 function DonateScreen() {
 return (
@@ -14,9 +14,9 @@ return (
         />
  <ScrollView contentContainerStyle={styles.scroll}>
  <View style={styles.bodyPrin}>
-<H1> 
+<Text> 
 Login
-</H1>
+</Text>
 </View>
 </ScrollView>
 </>

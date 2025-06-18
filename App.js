@@ -1,11 +1,11 @@
-  
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {useFonts } from 'expo-font'
-import { Text } from 'react-native';
+import { useFonts } from 'expo-font';
+import { Text, Platform, View } from 'react-native';
 
+/* {"data":[{"id":1,"user_id":1,"donation_name":"Monitor antigo","donation_description":"Estou doando esse notebook antigo bem conservado","donation_category":"Eletrônico","donation_image":"donations/ynh1LdGTjJLjjaAnQrZlVECL1Rx1ih64n8fJkjEM.jpg","donation_location":"Taboão da Serra","donation_status":"active","created_at":"2025-06-12T22:56:11.000000Z","updated_at":"2025-06-12T22:56:11.000000Z"},{"id":2,"user_id":2,"donation_name":"Monitor antigo","donation_description":"Estou doando esse notebook antigo bem conservado","donation_category":"Eletrônico","donation_image":"donations/eIyklD7Xq2EgQmNjJQCH13FLzaeeLNenKqPEsJ4H.jpg","donation_location":"Taboão da Serra","donation_status":"active","created_at":"2025-06-12T22:59:28.000000Z","updated_at":"2025-06-12T22:59:28.000000Z"}]}
+ */
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -14,90 +14,114 @@ import colors from './styles/color';
 import styles from './styles/index';
 
 import DrawerScreen from './src/pages/drawer';
-import HomeScreen from "./src/pages/home";
-import LoginScreen from "./src/pages/login";
-import FavoriteScreen from "./src/pages/favorite";
-import SearchScreen from "./src/pages/search";
-import DonateScreen from "./src/pages/donate";
-
+import HomeScreen from './src/pages/home';
+import RegisterScreen from './src/pages/register';
+import LoginScreen from './src/pages/login';
+import CardScreen from './src/pages/card';
+import FavoriteScreen from './src/pages/favorite';
+import SearchScreen from './src/pages/search';
+import DonateScreen from './src/pages/donate';
 
 const Tabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-
+const isWeb = Platform.OS === 'web';
 
 function TabsNav() {
   return (
-   <Tabs.Navigator
-  screenOptions={({ route }) => ({
-    tabBarIcon: ({ focused }) => {
-      let iconName;
-      const size = focused ? 35 : 30
-      const color = focused ? '#D93036' : '#351313'
-      switch (route.name) {
-        case 'Home':
-          iconName = 'home';
-          
-          break;
-        case 'Search':
-          iconName = 'search';
-          break;
-        case 'Favorite':
-          iconName = 'heart';
-          break;
-        case 'Donate':
-          iconName = 'plus-circle';
-          break;
-        case 'Menu':
-          iconName = 'menu'
-      }
+    <>
+      {Platform.OS !== 'web' && (
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 80,
+            left: 0,
+            right: 0,
+            height: 2,
+            backgroundColor: '#351313',
+            zIndex: 1000,
+          }}
+        />
+      )}
 
-      return <Icon name={iconName} size={size} color={color} style={styles.iconTab}/>;
-    },
-    
-    tabBarLabel: ({ focused }) =>
-  <Text style={focused ? typog.tabOn : typog.tabOff}>
-    {route.name}
-  </Text>, 
-      tabBarStyle: {
-            height: 70,
+      <Tabs.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused }) => {
+            let iconName;
+            const size = isWeb ? (focused ? 35 : 30) : focused ? 28 : 24;
+            const color = focused ? '#D93036' : '#351313';
+            switch (route.name) {
+              case 'Home':
+                iconName = 'home';
+                break;
+              case 'Pesquisar':
+                iconName = 'search';
+                break;
+              case 'Favoritos':
+                iconName = 'heart';
+                break;
+              case 'Doação':
+                iconName = 'plus-circle';
+                break;
+              case 'Menu':
+                iconName = 'menu';
+                break;
+            }
+            return (
+              <Icon
+                name={iconName}
+                size={size}
+                color={color}
+                style={styles.iconTab}
+              />
+            );
+          },
+          tabBarLabel: ({ focused }) => (
+            <Text style={focused ? typog.tabOn : typog.tabOff}>
+              {route.name}
+            </Text>
+          ),
+          tabBarStyle: {
+            height: isWeb ? 70 : 80,
             backgroundColor: colors.background,
-            elevation: 10,
+            elevation: isWeb ? 10 : 0,
             position: 'absolute',
             paddingTop: 5,
             borderTopColor: colors.marker,
-            borderTopWidth: 2,
+            borderTopWidth: isWeb ? 2 : 0,
           },
           headerShown: false,
-  })}
->
-  <Tabs.Screen name="Home" component={HomeScreen}  />    
-  <Tabs.Screen name="Search" component={SearchScreen} />
-  <Tabs.Screen name="Donate" component={DonateScreen} />
-  <Tabs.Screen name="Favorite" component={FavoriteScreen} />
-  <Tabs.Screen name="Menu" component={DrawerScreen} />
-  
-</Tabs.Navigator>
+        })}>
+        <Tabs.Screen name="Home" component={HomeScreen} />
+        <Tabs.Screen name="Pesquisar" component={SearchScreen} />
+        <Tabs.Screen name="Doação" component={DonateScreen} />
+        <Tabs.Screen name="Favoritos" component={FavoriteScreen} />
+        <Tabs.Screen name="Menu" component={DrawerScreen} />
+      </Tabs.Navigator>
+    </>
   );
 }
 
-
-
 export default function App() {
   const [fontsLoaded] = useFonts({
-  'DGrotesque': require('./assets/GrotesqueFont.ttf'),
-});
+    DGrotesque: require('./assets/fonts/DarkerGrotesque-Regular.ttf'),
+    'DGrotesque-Medium': require('./assets/fonts/DarkerGrotesque-Medium.ttf'),
+    'DGrotesque-SemiBold': require('./assets/fonts/DarkerGrotesque-SemiBold.ttf'),
+    'DGrotesque-Bold': require('./assets/fonts/DarkerGrotesque-Bold.ttf'),
+    'DGrotesque-ExtraBold': require('./assets/fonts/DarkerGrotesque-ExtraBold.ttf'),
+    'DGrotesque-Black': require('./assets/fonts/DarkerGrotesque-Black.ttf'),
+    'DGrotesque-Light': require('./assets/fonts/DarkerGrotesque-Light.ttf'),
+  });
 
   if (!fontsLoaded) return null;
-  
+
+  // <Stack.Screen name="Register" component={RegisterScreen} /> <Stack.Screen name="Login" component={LoginScreen} />   <Stack.Screen name="Tabs" component={TabsNav} />
+
   return (
-    <NavigationContainer> 
-     <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen  name="Login" component={LoginScreen} />
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Tabs" component={TabsNav} />
-       
+        <Stack.Screen name="Card" component={CardScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-
