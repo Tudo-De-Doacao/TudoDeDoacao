@@ -37,7 +37,7 @@ export default function HomeScreen() {
  const renderFilterItem = ({ item }) => {
      console.log('Botão de categoria:', item);
      return(
-  <FilterBtn route={item.rota} icon={item.icon} text={item.nome} filtro={item.filter} />
+  <FilterBtn rota={item.rota} icon={item.icon} text={item.nome} filter={item.filter} />
      ); 
  };
 

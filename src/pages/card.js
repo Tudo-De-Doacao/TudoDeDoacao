@@ -2,6 +2,7 @@ import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 
+import TabDonation from '../../components/TabDonation'
 import colors from '../../styles/color';
 import typog from '../../styles/type';
 
@@ -10,6 +11,7 @@ export default function CardScreen() {
   const { name, location, description, image } = route.params;
 
   return (
+    <>
     <ScrollView style={styles.container}>
       <Image source={{ uri: image }} style={styles.image} />
 
@@ -24,6 +26,8 @@ export default function CardScreen() {
         <Text style={styles.description}>{description}</Text>
       </View>
     </ScrollView>
+    <TabDonation/>
+    </>
   );
 }
 

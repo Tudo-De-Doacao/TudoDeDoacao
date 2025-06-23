@@ -1,7 +1,7 @@
 import { ScrollView, View, Text, ImageBackground } from 'react-native';
 import { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native'; 
-import { getDonates } from '../../services/api/donations'; // arquivo unificado
+import { getDonates } from '../../services/api/donations';
 
 import styles from '../../styles/index';
 import colors from '../../styles/color';
@@ -14,17 +14,20 @@ function SearchScreen() {
 
   const route = useRoute();
 
-  const [inputValue, setInputValue] = useState('');      // Texto digitado
-  const [browseTerm, setBrowseTerm] = useState('');      // Termo de busca
+  const [inputValue, setInputValue] = useState('');     
+  const [browseTerm, setBrowseTerm] = useState('');    
   const [filterDonation, setFilterDonation] = useState([]);
 
-  useEffect(() => {
-    if (route.params?.filter) {
-      setInputValue(route.params.filter);
-      setBrowseTerm(route.params.filter);
-    }
-  }, [route.params?.filter]);
-  
+
+useEffect(() => {
+  const termoRecebido = route.params?.termo || route.params?.filter;
+  if (termoRecebido) {
+    setInputValue(termoRecebido);
+    setBrowseTerm(termoRecebido); 
+  }
+}, [route.params?.termo, route.params?.filter]);
+
+
   useEffect(() => {
     async function fetchDonations() {
       if (browseTerm.trim() !== '') {
@@ -32,17 +35,18 @@ function SearchScreen() {
         console.log('Dados recebidos para busca:', data); // DEBUG
         setFilterDonation(data);
       } else {
-        setFilterDonation([]); // limpa resultados se termo vazio
+        setFilterDonation([]); 
       }
     }
 
     fetchDonations();
   }, [browseTerm]);
 
-  const handleSubmit = () => {
-    setBrowseTerm(inputValue); // dispara a busca só ao enviar
-  };
-
+const handleSubmit = () => {
+  if (inputValue.trim() !== '') {
+    setBrowseTerm(inputValue);
+  }
+};
   return (
     <>
       <Header />
@@ -54,7 +58,7 @@ function SearchScreen() {
         <View style={{ padding: 16, justifyContent: 'flex-start' }}>
           <InputSearch
             ph="O que você deseja?"
-            value={inputValue}      // corrigido para inputValue aqui
+            value={inputValue}    
             onChangeText={setInputValue}
             onSubmitEditing={handleSubmit}
           />
@@ -67,7 +71,7 @@ function SearchScreen() {
                 console.log('Item para renderizar card:', item); // DEBUG
                 return (
                   <Card
-                    key={item.id ?? index} // usa id ou índice se id não existir
+                    key={item.id ?? index} 
                     name={item.donation_name}
                     description={item.donation_description}
                     location={item.donation_location}

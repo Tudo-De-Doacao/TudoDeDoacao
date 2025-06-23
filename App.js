@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+  import { NavigationContainer, useRoute } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
@@ -27,9 +27,11 @@ const Stack = createNativeStackNavigator();
 const isWeb = Platform.OS === 'web';
 
 function TabsNav() {
+  const route = useRoute();
+
   return (
     <>
-      {Platform.OS !== 'web' && (
+      {Platform.OS !== 'web' && route.name !== DonateScreen && (
         <View
           style={{
             position: 'absolute',
@@ -93,7 +95,13 @@ function TabsNav() {
         })}>
         <Tabs.Screen name="Home" component={HomeScreen} />
         <Tabs.Screen name="Pesquisar" component={SearchScreen} />
-        <Tabs.Screen name="Doação" component={DonateScreen} />
+        <Tabs.Screen
+          name="Doação"
+          component={DonateScreen}
+          options={{
+            tabBarStyle: { display: 'none' },
+          }}
+        />
         <Tabs.Screen name="Favoritos" component={FavoriteScreen} />
         <Tabs.Screen name="Menu" component={DrawerScreen} />
       </Tabs.Navigator>
@@ -119,8 +127,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Tabs" component={TabsNav} />
-        <Stack.Screen name="Card" component={CardScreen} />
+
+      <Stack.Screen name="Tabs" component={TabsNav} />
       </Stack.Navigator>
     </NavigationContainer>
   );

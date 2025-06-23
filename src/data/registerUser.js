@@ -20,7 +20,8 @@ export async function registerUser({ name, email, location, user_id, phone, pass
   try {
     const response = await api.post('/users', data);
    if (response.status == 200 || response.status == 201) {
-      return true;
+       const logged = await getUser({ email, password });
+      return logged;
    }
   } catch (error) {
     console.error(error.response?.data || error.message);

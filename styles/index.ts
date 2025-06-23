@@ -202,7 +202,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   imageBox: {
-    height: 100,
+    height: 250,
+    borderTopWidth: 3, 
+    borderBottomWidth: 3,
+    borderColor: colors.marker,
     backgroundColor: '#A97E76',
     justifyContent: 'center',
     alignItems: 'center',
@@ -217,6 +220,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: '100%',
     width: '100%',
+    resizeMode: 'cover'
 
   },
   scroll: {
@@ -286,7 +290,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   bottomBtn: {
-    flex: 1,
     maxHeight: 50,
     maxWidth: 132,
     marginHorizontal: 10,

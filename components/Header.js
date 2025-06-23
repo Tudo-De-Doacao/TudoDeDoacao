@@ -1,7 +1,7 @@
 import { View, TextInput, Image, Text,Platform, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import styles from '../styles/index';
@@ -9,12 +9,24 @@ import typog from '../styles/type';
 import colors from '../styles/color';
 
 export default function Header() {
+
   const navigation = useNavigation();
+
   const route = useRoute();
+
   const isWeb = Platform.OS === 'web';
+
   const [searchTerm, setSearchTerm] = useState('');
 
+useEffect(() => {
+  const termoRecebido = route.params?.termo || route.params?.filter;
+  if (termoRecebido) {
+    setSearchTerm(termoRecebido);
+  }
+}, [route.params?.termo, route.params?.filter]);
+
   const isSearchScreen = ['Pesquisar'].includes(route.name);
+
 
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
@@ -29,7 +41,10 @@ export default function Header() {
         <Image source={require('../assets/Logo.png')} style={{...styles.logo, maxWidth: isWeb ? 40 : 45, marginBottom: isWeb ?  4 : 10, maxHeight: isWeb ? 40 : 50 }} />
       </Pressable>
       {isSearchScreen ? (
+        <Pressable
+        onPress={() => navigation.navigate('Home')}> 
         <Text style={typog.headerTitle}>TudoDeDoacao</Text>
+        </Pressable>
       ) : (
         <TextInput
           placeholder="O que você procura?"
@@ -65,7 +80,7 @@ export default function Header() {
       ) : (
         <Pressable
           style={styles.iconCont}
-          onPress={() => navigation.navigate('Pesquisar')}>
+          onPress={() => navigation.navigate('Pesquisar'), {termo: searchTerm}}>
           <Icon
             name="search"
             size={32}

@@ -1,6 +1,9 @@
 import { TextInput, View, Platform, Pressable } from 'react-native';
+
 import Icon from 'react-native-vector-icons/Feather';
+
 import { useState } from 'react';
+
 import styles from '../styles/index';
 
 function Password({ secure, ph, autoComplete, value, onChangeText }) {
@@ -8,12 +11,13 @@ function Password({ secure, ph, autoComplete, value, onChangeText }) {
   const isWeb = Platform.OS === 'web';
   return (
     <View style={styles.headerSecure}>
+    
       <TextInput
         placeholder={ph}
         placeholderTextColor='#351313'
         secureTextEntry={secure && secureMode}
         autoComplete={autoComplete}
-      autoCapitalize =  "none"
+        autoCapitalize =  "none"
         maxLength={32}
         value={value}
         onChangeText={onChangeText}
@@ -21,8 +25,7 @@ function Password({ secure, ph, autoComplete, value, onChangeText }) {
           isWeb ? styles.inputComponent : styles.inputComponentMobile,
           {
             borderColor : '#351313',
-            fontFamily: 'DGrotesque',
-            fontWeight: 'bold',
+            fontFamily: 'DGrotesque-SemiBold',
             fontSize: 18,
           }
         ]}

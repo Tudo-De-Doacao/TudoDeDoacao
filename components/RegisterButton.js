@@ -25,7 +25,15 @@ export default function RegisterButton({route, text, onPress}) {
       }}
       style = {styles.regBtn}
    >
-   <Text style= {isWeb ? typog.txtNavBtn : {fontSize: 18}} >
+  <Text
+  style={[
+    typog.txtNavBtn,
+    {
+      fontSize: 18,
+      ...(isWeb && { fontFamily: 'DGrotesque-Bold' }),
+    },
+  ]}
+>
    {text}
    </Text>
    </Pressable>

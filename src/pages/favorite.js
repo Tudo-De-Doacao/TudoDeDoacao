@@ -1,5 +1,6 @@
 import {ScrollView, View, Text, ImageBackground,} from 'react-native';
 
+
 import styles from '../../styles/index'
 
 function FavoriteScreen() {
