@@ -18,7 +18,7 @@ export default function CardScreen() {
       <View style={styles.content}>
         <Text style={typog.titleCard}>{name}</Text>
 
-        <View style={styles.locationBox}>
+        <View style={styles.locationBox}>   
           <Icon name="map-pin" size={20} color={colors.marker} />
           <Text style={styles.locationText}>{location}</Text>
         </View>
