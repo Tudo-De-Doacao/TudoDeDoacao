@@ -37,7 +37,7 @@ useEffect(() => {
 
   return (
     <View style={styles.headerBar}>
-      <Pressable onPress={() => navigation.navigate('Home')}>
+      <Pressable onPress={() => navigation.navigate('Card')}>
         <Image source={require('../assets/Logo.png')} style={{...styles.logo, maxWidth: isWeb ? 40 : 45, marginBottom: isWeb ?  4 : 10, maxHeight: isWeb ? 40 : 50 }} />
       </Pressable>
       {isSearchScreen ? (

@@ -12,7 +12,13 @@ export default function CardScreen() {
 
   return (
     <>
-    <ScrollView style={styles.container}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        ...styles.scroll,
+        backgroundColor: colors.background,
+        height: '100%',
+      }}> 
       <Image source={{ uri: image }} style={styles.image} />
 
       <View style={styles.content}>
@@ -30,35 +36,3 @@ export default function CardScreen() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.bgLight,
-  },
-  image: {
-    width: '100%',
-    height: 250,
-    resizeMode: 'cover',
-  },
-  content: {
-    padding: 16,
-  },
-  locationBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  locationText: {
-    fontSize: 16,
-    color: colors.text,
-    marginLeft: 6,
-    ...typog.txtCard,
-  },
-  description: {
-    fontSize: 16,
-    color: colors.text,
-    marginTop: 10,
-    ...typog.txtCard,
-  },
-});

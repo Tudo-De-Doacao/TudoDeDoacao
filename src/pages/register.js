@@ -24,6 +24,7 @@ function RegisterScreen() {
     }
 
     const success = await registerUser({ name, email, location, phone, password });
+    if (success == true)
     return success;
   };
 
@@ -57,7 +58,7 @@ function RegisterScreen() {
             value={location}
           />
           <Input
-            ph="Telefone"
+            ph="Celular"
             autoComplete="tel"
             onChangeText={setPhone}
             value={phone}
@@ -79,10 +80,11 @@ function RegisterScreen() {
         </View>
 
         <RegisterButton
-          route="Tabs"
+          route="Login"
           text="Cadastrar"
-          onPress={() => navigation.navigate('Register'), handleRegister}
-        />
+onPress={
+  handleRegister
+} />
       </View>
     </ScrollView>
   );

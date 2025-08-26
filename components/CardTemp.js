@@ -1,44 +1,33 @@
 import { Text, View, Image, Pressable } from 'react-native';
-
 import Icon from 'react-native-vector-icons/Feather';
-
-import { useNavigation } from '@react-navigation/native';
 
 import styles from '../styles/index';
 import typog from '../styles/type';
 import colors from '../styles/color';
 
-export default function Card({ name, location, description, image }) {
-  const navigation = useNavigation();
-
-  const handlePress = () => {
-    navigation.navigate('Card', {
-      name,
-      location,
-      description,
-      image,
-    });
-  };
-
+export default function CardTemp() {
   return (
-    <Pressable onPress={handlePress}>
+    <Pressable onPress={() => console.log('CardTemplate Pressionado')}>
       <View style={styles.card}>
         <View style={styles.imageBox}>
           <Image
             style={styles.image}
             source={{
-              uri: image,
+              uri: 'https://placekitten.com/400/300',
             }}
           />
         </View>
 
         <View style={styles.infoBox}>
-          <Text style={typog.titleCard}>{name}</Text>
+          <Text style={typog.titleCard}>Cadeira de Escritório</Text>
           <Text
             style={{ ...typog.txtCard, marginBottom: 18 }}
             numberOfLines={4}
             ellipsizeMode="tail">
-            {description}
+            Cadeira confortável em bom estado, ideal para home office.
+             Cadeira confortável em bom estado, ideal para home office.
+              Cadeira confortável em bom estado, ideal para home office.
+
           </Text>
 
           <View style={styles.locationCard}>
@@ -48,7 +37,9 @@ export default function Card({ name, location, description, image }) {
               color={colors.marker}
               style={styles.iconMapHeader}
             />
-            <Text style={{ ...typog.txtCard, fontSize: 16 }}>{location}</Text>
+            <Text style={{ ...typog.txtCard, fontSize: 16 }}>
+              São Paulo - SP
+            </Text>
           </View>
         </View>
       </View>

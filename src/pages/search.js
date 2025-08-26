@@ -15,7 +15,7 @@ function SearchScreen() {
   const route = useRoute();
 
   const [inputValue, setInputValue] = useState('');     
-  const [browseTerm, setBrowseTerm] = useState('');    
+  const [searchTerm, setSearchTerm] = useState('');    
   const [filterDonation, setFilterDonation] = useState([]);
 
 
@@ -23,15 +23,15 @@ useEffect(() => {
   const termoRecebido = route.params?.termo || route.params?.filter;
   if (termoRecebido) {
     setInputValue(termoRecebido);
-    setBrowseTerm(termoRecebido); 
+    setSearchTerm(termoRecebido); 
   }
 }, [route.params?.termo, route.params?.filter]);
 
 
   useEffect(() => {
     async function fetchDonations() {
-      if (browseTerm.trim() !== '') {
-        const data = await getDonates(browseTerm);
+      if (searchTerm.trim() !== '') {
+        const data = await getDonates(searchTerm);
         console.log('Dados recebidos para busca:', data); // DEBUG
         setFilterDonation(data);
       } else {
@@ -40,11 +40,11 @@ useEffect(() => {
     }
 
     fetchDonations();
-  }, [browseTerm]);
+  }, [searchTerm]);
 
 const handleSubmit = () => {
   if (inputValue.trim() !== '') {
-    setBrowseTerm(inputValue);
+    setSearchTerm(inputValue);
   }
 };
   return (

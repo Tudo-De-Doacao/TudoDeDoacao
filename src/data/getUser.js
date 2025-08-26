@@ -5,7 +5,7 @@ import api from '../../services/api/api';
 
 export async function getUser({ email, password }) {
   try {
-    const response = await api.post('/login', { email, password });
+    const response = await api.post('/auth/login', { email, password });
     console.log('📦 Resposta completa do login:', response.data);
     
     const token = response.data; 

@@ -60,7 +60,7 @@ export default function InputCategory({ value, onChangeText, ph }) {
               borderColor: '#351313',
               fontFamily: 'DGrotesque-SemiBold',
               fontSize: 18,
-              paddingRight: 35, // espaço para o ícone
+              paddingRight: 35,
             },
           ]}
         />

@@ -5,10 +5,11 @@ import colors from './color';
 const { width, height } = Dimensions.get('window');
 const CARD_WIDTH = width * 0.61;
 const isWeb = Platform.OS === 'web';
+const isAndroid = Platform.OS ===  'android'
 
 const styles = StyleSheet.create({
   tabBar: {
-    height: 70,
+    height: isWeb ? 70 : 70,
     backgroundColor: colors.background,
     elevation: 10,
     paddingTop: 10,
@@ -48,12 +49,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   bottomBar: {
-    height: 70,
+    height: isWeb ? 70 : 80,
     width: width,
     elevation: 10,
     paddingHorizontal: 14,
     paddingVertical: 10,
-    borderTopWidth: 2,
+    borderTopWidth: isWeb ? 2 : 1,
     borderTopColor: colors.marker,
     backgroundColor: colors.background,
     justifyContent: 'space-between',
@@ -167,19 +168,21 @@ const styles = StyleSheet.create({
   },
   cardScreen: {
     maxWidth: 200,
-    height: 280,
+    height: height,
     alignSelf: 'flex-start',
     overflow: 'hidden',
   },
   card: {
     width: CARD_WIDTH,
     maxWidth: 200,
-    height: 280,
+    height: 440,
     borderTopLeftRadius : 0,
     borderTopRightRadius : 0,
     borderRadius: 8,
     borderWidth: 2,
     marginVertical: 18,
+    marginBottom: 20,
+    paddingtBottom: 20,
     borderColor: colors.marker,
     backgroundColor: colors.background,
     alignSelf: 'flex-start',
@@ -189,6 +192,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 20,
     paddingRight: 16,
+    paddingBottom: 20,
   },
   infoBox: {
     margin: 8,
@@ -235,7 +239,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     padding: 4,
-    gap: 8,
+    gap: 20,
   },
   bodySearch: {
     justifyContent: 'center',
@@ -279,7 +283,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   regBtn: {
-    minHeight: 40,
+    minHeight: isWeb ? 40: 50,
     minWidth: isWeb ? 132 : '30%',
     marginTop: 16,
     backgroundColor: colors.primary,
@@ -292,7 +296,7 @@ const styles = StyleSheet.create({
   bottomBtn: {
     maxHeight: 50,
     maxWidth: 132,
-    marginHorizontal: 10,
+    marginHorizontal: isWeb ?  10 : 20,
     width: width,
     backgroundColor: colors.primary,
     borderWidth: 2,
