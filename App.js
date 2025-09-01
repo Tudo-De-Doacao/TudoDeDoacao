@@ -1,11 +1,8 @@
-  import { NavigationContainer, useRoute } from '@react-navigation/native';
+import { NavigationContainer, useRoute } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 import { Text, Platform, View } from 'react-native';
-
-/* {"data":[{"id":1,"user_id":1,"donation_name":"Monitor antigo","donation_description":"Estou doando esse notebook antigo bem conservado","donation_category":"Eletrônico","donation_image":"donations/ynh1LdGTjJLjjaAnQrZlVECL1Rx1ih64n8fJkjEM.jpg","donation_location":"Taboão da Serra","donation_status":"active","created_at":"2025-06-12T22:56:11.000000Z","updated_at":"2025-06-12T22:56:11.000000Z"},{"id":2,"user_id":2,"donation_name":"Monitor antigo","donation_description":"Estou doando esse notebook antigo bem conservado","donation_category":"Eletrônico","donation_image":"donations/eIyklD7Xq2EgQmNjJQCH13FLzaeeLNenKqPEsJ4H.jpg","donation_location":"Taboão da Serra","donation_status":"active","created_at":"2025-06-12T22:59:28.000000Z","updated_at":"2025-06-12T22:59:28.000000Z"}]}
- */
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -127,8 +124,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-
-      <Stack.Screen name="Tabs" component={TabsNav} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Tabs" component={TabsNav} />
       </Stack.Navigator>
     </NavigationContainer>
   );

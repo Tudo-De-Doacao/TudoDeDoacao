@@ -11,6 +11,7 @@ export default function InputDescription({ ph, value, onChangeText }) {
         placeholderTextColor="#351313"
         value={value}
         onChangeText={onChangeText}
+        maxLength={70}
         multiline
         numberOfLines={isWeb ? 3 : 4}
         textAlignVertical="top"
