@@ -99,8 +99,14 @@ function RegisterScreen() {
           route="Login"
           text="Cadastrar"
 <<<<<<< HEAD
+<<<<<<< HEAD
           onPress={handleRegister}
         />
+=======
+onPress={
+  handleRegister
+} />
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
 =======
 onPress={
   handleRegister

@@ -286,7 +286,11 @@ const styles = StyleSheet.create({
   },
   regBtn: {
 <<<<<<< HEAD
+<<<<<<< HEAD
     minHeight: isWeb ? 44 : 54,
+=======
+    minHeight: isWeb ? 40: 50,
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
 =======
     minHeight: isWeb ? 40: 50,
 >>>>>>> 23f22453472bb99be476864822446dafc87422b2

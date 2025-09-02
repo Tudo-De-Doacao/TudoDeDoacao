@@ -40,6 +40,7 @@ function DonateScreen() {
       category,
       image,
 <<<<<<< HEAD
+<<<<<<< HEAD
       description,
       status
     });
@@ -51,6 +52,12 @@ function DonateScreen() {
     });
     
     if (response) {
+=======
+      description
+    });
+    
+    if (response) {
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
       Alert.alert('Sucesso', 'Doação cadastrada com sucesso!');
 >>>>>>> 23f22453472bb99be476864822446dafc87422b2
       navigation.navigate('Tabs'); 

@@ -124,14 +124,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-<<<<<<< HEAD
-       {/*
-        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
-        */} 
-=======
-        <Stack.Screen name="Register" component={RegisterScreen} />
->>>>>>> 23f22453472bb99be476864822446dafc87422b2
         <Stack.Screen name="Tabs" component={TabsNav} />
       </Stack.Navigator>
     </NavigationContainer>

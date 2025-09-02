@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useState } from 'react';
 import { View, Image, Text, Pressable, Platform, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
@@ -72,6 +73,8 @@ export default function InputImage({ value, onChange }) {
   );
 }
 =======
+=======
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
 import{ useState } from 'react';
 import { View, Image, Text, Pressable, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
@@ -132,5 +135,9 @@ export default function InputImage({ value, onChange }) {
       ) : null }
     </View>
   );
+<<<<<<< HEAD
+}
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
+=======
 }
 >>>>>>> 23f22453472bb99be476864822446dafc87422b2
