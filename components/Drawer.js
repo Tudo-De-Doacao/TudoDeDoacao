@@ -44,7 +44,7 @@ const [hoverOn, setHoverOn] = useState(false);
            
           <Pressable 
           onPress={() =>{ console.log("Navegando para:", route);
-          navigation.navigate('Pesquisar')}}
+          navigation.navigate('Search')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorSearch, borderBottomWidth: 3 }
@@ -55,24 +55,24 @@ const [hoverOn, setHoverOn] = useState(false);
           </Pressable>
           <Pressable onPress={() => {
             console.log("Navegando para:", route);
-            navigation.navigate('Doação')}}
+            navigation.navigate('Donation')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorDonate, borderBottomWidth: 3 }
     : { ...styles.separatorDonate }}>
 
-            <Text style={typog.txtDrw}> Doação </Text>
+            <Text style={typog.txtDrw}> Donation </Text>
 
           </Pressable>
           <Pressable onPress={() => {
             console.log("Navegando para:", route);
-           navigation.navigate('Favoritos')}}
+           navigation.navigate('Favorites')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorFavorite, borderBottomWidth: 3 }
     : { ...styles.separatorFavorite }}>
 
-            <Text style={typog.txtDrw}> Favoritos </Text>
+            <Text style={typog.txtDrw}> Favorites </Text>
           </Pressable>
         </View>
       </Animated.View>

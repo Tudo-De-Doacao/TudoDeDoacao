@@ -32,7 +32,7 @@ function LoginScreen() {
         height: '100%',
       }}>
       <View style={styles.bodyPrin}>
-        <Image source={require('../../assets/Logo.png')} style={styles.logo} />
+        <Image source={require('../../assets/Logo.png')} style={{...styles.logo, marginTop: 24}} />
         <Text style={typog.titleLogin}>Bem vindo de volta</Text>
         <View style={styles.loginInput}>
           <Input

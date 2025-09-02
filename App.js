@@ -52,13 +52,13 @@ function TabsNav() {
               case 'Home':
                 iconName = 'home';
                 break;
-              case 'Pesquisar':
+              case 'Search':
                 iconName = 'search';
                 break;
-              case 'Favoritos':
+              case 'Favorites':
                 iconName = 'heart';
                 break;
-              case 'Doação':
+              case 'Donation':
                 iconName = 'plus-circle';
                 break;
               case 'Menu':
@@ -91,15 +91,15 @@ function TabsNav() {
           headerShown: false,
         })}>
         <Tabs.Screen name="Home" component={HomeScreen} />
-        <Tabs.Screen name="Pesquisar" component={SearchScreen} />
+        <Tabs.Screen name="Search" component={SearchScreen} />
         <Tabs.Screen
-          name="Doação"
+          name="Donation"
           component={DonateScreen}
           options={{
             tabBarStyle: { display: 'none' },
           }}
         />
-        <Tabs.Screen name="Favoritos" component={FavoriteScreen} />
+        <Tabs.Screen name="Favorites" component={FavoriteScreen} />
         <Tabs.Screen name="Menu" component={DrawerScreen} />
       </Tabs.Navigator>
     </>
@@ -119,12 +119,15 @@ export default function App() {
 
   if (!fontsLoaded) return null;
 
-  // <Stack.Screen name="Register" component={RegisterScreen} /> <Stack.Screen name="Login" component={LoginScreen} />   <Stack.Screen name="Tabs" component={TabsNav} />
+{/* <Stack.Screen name="Register" component={RegisterScreen} /> <Stack.Screen name="Login" component={LoginScreen} />   <Stack.Screen name="Tabs" component={TabsNav} */}
 
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+       {/*
+        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        */} 
         <Stack.Screen name="Tabs" component={TabsNav} />
       </Stack.Navigator>
     </NavigationContainer>

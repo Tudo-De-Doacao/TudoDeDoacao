@@ -22,7 +22,7 @@ function DonateScreen() {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
   const [location, setLocation] = useState('');
 
   const handleRegister = async () => {
@@ -39,11 +39,12 @@ function DonateScreen() {
       location,
       category,
       image,
-      description
+      description,
+      status
     });
     
     if (response) {
-      Alert.alert('Sucesso', 'Doação cadastrada com sucesso!');
+      Alert.alert('Sucesso', 'Donation cadastrada com sucesso!');
       navigation.navigate('Tabs'); 
     }
   };
@@ -60,7 +61,7 @@ function DonateScreen() {
       }}>
         <View style={{...styles.bodyPrin, marginTop: 60, marginBottom: 8, paddingTop: 14 }}>
           <Input
-            ph="Nome da Doação"
+            ph="Nome da Donation"
             autoComplete=""
             onChangeText={setName}
             value={name}

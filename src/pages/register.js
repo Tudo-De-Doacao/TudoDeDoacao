@@ -5,7 +5,7 @@ import { useState } from 'react';
 import styles from '../../styles/index';
 import typog from '../../styles/type';
 import colors from '../../styles/color';
-import Input from '../../components/Input'
+import Input from '../../components/Input';
 import RegisterButton from '../../components/RegisterButton';
 import { registerUser } from '../data/registerUser';
 
@@ -23,9 +23,16 @@ function RegisterScreen() {
       return false;
     }
 
-    const success = await registerUser({ name, email, location, phone, password });
-    if (success == true)
-    return success;
+    const success = await registerUser({
+      name,
+      email,
+      location,
+      phone,
+      password,
+    });
+    if (success == true){
+    navigation.navigate('Login');
+    return success; }
   };
 
   return (
@@ -37,14 +44,18 @@ function RegisterScreen() {
         height: '100%',
       }}>
       <View style={styles.bodyPrin}>
-        <Image source={require('../../assets/Logo.png')} style={styles.logo} />
+        <Image
+          source={require('../../assets/Logo.png')}
+          style={{ ...styles.logo, marginTop: 24 }}
+        />
         <Text style={typog.titleLogin}>Faça seu cadastro</Text>
         <View style={styles.loginInput}>
-          <Input 
+          <Input
             ph="Nome"
             autoComplete="name"
             onChangeText={setName}
-            value={name}/>
+            value={name}
+          />
           <Input
             ph="Email"
             autoComplete="email"
@@ -78,13 +89,11 @@ function RegisterScreen() {
             value={confirmPassword}
           />
         </View>
-
         <RegisterButton
           route="Login"
           text="Cadastrar"
-onPress={
-  handleRegister
-} />
+          onPress={handleRegister}
+        />
       </View>
     </ScrollView>
   );

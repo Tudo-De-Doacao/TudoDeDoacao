@@ -49,10 +49,10 @@ export default function HomeScreen() {
   const renderCardItem = ({ item }) => (
     <Card
       key={item.id}
-      name={item.donation_name}
-      description={item.donation_description}
-      location={item.donation_location || 'Localização desconhecida'}
-      image={`http://127.0.0.1:8000/storage/${item.donation_image}`}
+      name={item.name}
+      description={item.description}
+      location={item.location || 'Localização desconhecida'}
+      image={`http://127.0.0.1:8000/storage/${item.image}`}
     />
   );
 
@@ -80,7 +80,9 @@ export default function HomeScreen() {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
             paddingHorizontal: 16,
+            maxHeight: 100,
             paddingVertical: 4,
+            flex: 1,
             marginBottom: 12,
           }}
         />
@@ -88,7 +90,9 @@ export default function HomeScreen() {
         horizontal={true}
           contentContainerStyle={{
             ...styles.scroll,
-            alignItems: 'center',
+            alignContent: 'center',
+            justifyContent: 'center',
+            flex: 1,
             paddingBottom: 60,
           }}
           showsVerticalScrollIndicator={false}
@@ -100,7 +104,7 @@ export default function HomeScreen() {
             <ActivityIndicator
               size={100}
               color="#D93036"
-              style={{ marginTop: 40 }}
+              style={{padding: 10, marginBottom: 80, justifyContent: 'center', alignItems:'center', marginTop: 10 }}
             />
           )}
 
@@ -113,7 +117,7 @@ export default function HomeScreen() {
           )}
 
           {!loading && donationCards.length === 0 && errorMsg === '' && (
-            <Text style={{ ...styles.txtCard,  color: '#351313', padding: 40, margin: 40, marginBottom: 80, justifyContent: 'flex-start' }}>
+            <Text style={{ ...styles.txtCard,  color: '#351313',  padding: 20, margin: 20, marginBottom: 30, textAling: 'right',   justifyContent: 'center' }}>
               Nenhuma doação encontrada.
             </Text>
           )}

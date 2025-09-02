@@ -1,4 +1,4 @@
-import { Pressable, Platform,Text } from 'react-native';
+import { TouchableOpacity, Platform,Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from '../styles/index';
@@ -9,7 +9,7 @@ export default function RegisterButton({route, text, onPress}) {
   const navigation = useNavigation();
  const isWeb = Platform.OS === 'web';
   return (
-    <Pressable 
+    <TouchableOpacity 
      onPress={async () => {
         if (onPress) {
          try {
@@ -36,7 +36,7 @@ export default function RegisterButton({route, text, onPress}) {
 >
    {text}
    </Text>
-   </Pressable>
+   </TouchableOpacity>
   );
 }
 

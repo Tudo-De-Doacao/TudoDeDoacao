@@ -25,19 +25,19 @@ useEffect(() => {
   }
 }, [route.params?.termo, route.params?.filter]);
 
-  const isSearchScreen = ['Pesquisar'].includes(route.name);
+  const isSearchScreen = ['Search'].includes(route.name);
 
 
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
-      navigation.navigate('Pesquisar', { termo: searchTerm });
+      navigation.navigate('Search', { termo: searchTerm });
       setSearchTerm('');
     }
   };
 
   return (
     <View style={styles.headerBar}>
-      <Pressable onPress={() => navigation.navigate('Card')}>
+      <Pressable onPress={() => navigation.navigate('Home')}>
         <Image source={require('../assets/Logo.png')} style={{...styles.logo, maxWidth: isWeb ? 40 : 45, marginBottom: isWeb ?  4 : 10, maxHeight: isWeb ? 40 : 50 }} />
       </Pressable>
       {isSearchScreen ? (
@@ -52,12 +52,14 @@ useEffect(() => {
           autoCapitalize="sentences"
           style={{
             ...styles.inputComponent,
+            width: isWeb ? 180 : 200,
+            height: isWeb ? 32 : 44,
             marginVertical: isWeb ? 8 : 12,
             color: colors.marker,
             textDecorationColor: colors.marker,
             textAlign: 'center',
             fontFamily: 'DGrotesque-Medium',
-            fontSize: isWeb ? 18 : 20,
+            fontSize: isWeb ? 16 : 18,
           }}
           maxLength={16}
           value={searchTerm}
@@ -69,7 +71,7 @@ useEffect(() => {
       {isSearchScreen ? (
         <Pressable
           style={styles.iconCont}
-          onPress={() => navigation.navigate('Favoritos')}>
+          onPress={() => navigation.navigate('Favorites')}>
           <Icon
             name="heart"
             size={32}
@@ -80,7 +82,7 @@ useEffect(() => {
       ) : (
         <Pressable
           style={styles.iconCont}
-          onPress={() => navigation.navigate('Pesquisar'), {termo: searchTerm}}>
+          onPress={() => navigation.navigate('Search'), {termo: searchTerm}}>
           <Icon
             name="search"
             size={32}
