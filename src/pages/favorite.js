@@ -7,6 +7,8 @@ import {
   Text,
 } from 'react-native';
 import { useEffect, useState } from 'react';
+<<<<<<< HEAD
+=======
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -15,7 +17,19 @@ import Header from '../../components/Header';
 
 import styles from '../../styles/index';
 import typog from '../../styles/type';
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
 
+import Icon from 'react-native-vector-icons/Feather';
+
+<<<<<<< HEAD
+import Card from '../../components/CardDon';
+import Header from '../../components/Header';
+
+import styles from '../../styles/index';
+import typog from '../../styles/type';
+
+=======
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
 import { getDonates } from '../../services/api/donations';
 import { categorias } from '../../components/FilterBtn';
 
@@ -42,6 +56,7 @@ function FavoriteScreen() {
     fetchDonations();
   }, []);
 
+<<<<<<< HEAD
   const renderCardItem = ({ item }) => (
     <Card
       key={item.id}
@@ -49,6 +64,17 @@ function FavoriteScreen() {
       description={item.description}
       location={item.location || 'Localização desconhecida'}
       image={`http://127.0.0.1:8000/storage/${item.image}`}
+=======
+
+
+  const renderCardItem = ({ item }) => (
+    <Card
+      key={item.id}
+      name={item.donation_name}
+      description={item.donation_description}
+      location={item.donation_location || 'Localização desconhecida'}
+      image={`http://127.0.0.1:8000/storage/${item.donation_image}`}
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
     />
   );
 
@@ -59,6 +85,7 @@ function FavoriteScreen() {
         source={require('../../assets/BGHome.png')}
         style={styles.bgimagem}
         resizeMode="stretch">
+<<<<<<< HEAD
 
 
       <ScrollView
@@ -74,6 +101,54 @@ function FavoriteScreen() {
         <View>
         <Text /> 
         </View>
+=======
+        <ScrollView contentContainerStyle={styles.scroll}>
+          <View style={[styles.bodyPrin, { alignItems: 'flex-start', width: '100%', paddingHorizontal: 20 }]}>
+          <View style={{flexDirection: 'row'}}>
+           <Icon
+            name="heart"
+            size={32}
+            color="#D93036"
+            style={styles.iconHeader}
+          />
+            <Text style={{ ...typog.txtDrw, textAlign: 'left' }}>
+              Doações Favoritas
+            </Text>
+            </View>
+             {loading && (
+            <ActivityIndicator
+              size={100}
+              color="#D93036"
+              style={{ marginTop: 40 }}
+            />
+          )}
+
+          {errorMsg !== '' && (
+            <Text
+              style={{ color: 'red', textAlign: 'center', marginTop: 20 }}
+            >
+              {errorMsg}
+            </Text>
+          )}
+
+          {!loading && donationCards.length === 0 && errorMsg === '' && (
+            <Text style={{ ...styles.txtCard,paddingRight: 24 }}>
+              Nenhuma doação favoritada ainda.
+            </Text>
+          )}
+
+          {!loading && donationCards.length > 0 && (
+            <FlatList
+              data={donationCards}
+              renderItem={renderCardItem}
+              keyExtractor={(item) => item.id.toString()}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.bodyCard}
+            />
+          )}
+          </View>
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
         </ScrollView>
       </ImageBackground>
     </>

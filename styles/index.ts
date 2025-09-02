@@ -285,7 +285,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   regBtn: {
+<<<<<<< HEAD
     minHeight: isWeb ? 44 : 54,
+=======
+    minHeight: isWeb ? 40: 50,
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
     minWidth: isWeb ? 132 : '30%',
     marginTop: 16,
     backgroundColor: colors.primary,

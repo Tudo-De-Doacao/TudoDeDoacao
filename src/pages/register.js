@@ -23,6 +23,7 @@ function RegisterScreen() {
       return false;
     }
 
+<<<<<<< HEAD
     const success = await registerUser({
       name,
       email,
@@ -33,6 +34,11 @@ function RegisterScreen() {
     if (success == true){
     navigation.navigate('Login');
     return success; }
+=======
+    const success = await registerUser({ name, email, location, phone, password });
+    if (success == true)
+    return success;
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
   };
 
   return (
@@ -92,8 +98,14 @@ function RegisterScreen() {
         <RegisterButton
           route="Login"
           text="Cadastrar"
+<<<<<<< HEAD
           onPress={handleRegister}
         />
+=======
+onPress={
+  handleRegister
+} />
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
       </View>
     </ScrollView>
   );

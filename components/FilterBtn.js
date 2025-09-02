@@ -6,12 +6,21 @@ import styles from '../styles/index';
 import typog from '../styles/type';
 
 export const categorias = [
+<<<<<<< HEAD
   { nome: 'Móveis', rota: 'Search', filter: 'Móveis', icon: 'bed-outline' },
   { nome: 'Decoração', rota: 'Search', filter: 'Decoração', icon: 'cafe-outline' },
   { nome: 'Infantil', rota: 'Search', filter: 'Infantil', icon: 'balloon-outline' },
   { nome: 'Eletrônicos', rota: 'Search', filter: 'Eletrônicos', icon: 'tv-outline' },
   { nome: 'Roupas', rota: 'Search', filter: 'Roupas', icon: 'shirt-outline' },
     { nome: 'Comida', rota: 'Search', filter: 'Comida', icon: 'fast-food-outline' },
+=======
+  { nome: 'Móveis', rota: 'Pesquisar', filter: 'Móveis', icon: 'bed-outline' },
+  { nome: 'Decoração', rota: 'Pesquisar', filter: 'Decoração', icon: 'cafe-outline' },
+  { nome: 'Infantil', rota: 'Pesquisar', filter: 'Infantil', icon: 'balloon-outline' },
+  { nome: 'Eletrônicos', rota: 'Pesquisar', filter: 'Eletrônicos', icon: 'tv-outline' },
+  { nome: 'Roupas', rota: 'Pesquisar', filter: 'Roupas', icon: 'shirt-outline' },
+    { nome: 'Comida', rota: 'Pesquisar', filter: 'Comida', icon: 'fast-food-outline' },
+>>>>>>> 23f22453472bb99be476864822446dafc87422b2
 
 ];
 
