@@ -12,6 +12,8 @@ import BottomBtn from '../../components/BottomButton';
 import { getUser } from '../data/getUser';
 
 function LoginScreen() {
+  
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();

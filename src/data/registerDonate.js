@@ -8,6 +8,7 @@ export async function registerDonate({
   image,
   description
 }) {
+
   try {
     const formData = new FormData();
 
@@ -20,7 +21,7 @@ export async function registerDonate({
       formData.append("image", {
         uri: Platform.OS === "android" ? image.uri : image.uri.replace("file://", ""),
         name: image.fileName || image.name || "photo.jpg",
-        type: image.type || "image/jpeg",
+        type: image.type.includes("/") ? image.type : "image/jpeg"
       });
     } else {
       Alert.alert("Erro", "Imagem inválida ou ausente.");

@@ -182,7 +182,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginVertical: 18,
     marginBottom: 20,
-    paddingtBottom: 20,
     borderColor: colors.marker,
     backgroundColor: colors.background,
     alignSelf: 'flex-start',
@@ -285,15 +284,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   regBtn: {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    minHeight: isWeb ? 44 : 54,
-=======
     minHeight: isWeb ? 40: 50,
->>>>>>> 23f22453472bb99be476864822446dafc87422b2
-=======
-    minHeight: isWeb ? 40: 50,
->>>>>>> 23f22453472bb99be476864822446dafc87422b2
     minWidth: isWeb ? 132 : '30%',
     marginTop: 16,
     backgroundColor: colors.primary,
@@ -308,9 +299,9 @@ const styles = StyleSheet.create({
     maxWidth: 132,
     marginHorizontal: isWeb ?  10 : 20,
     width: width,
+    paddingVertical: 25,
     backgroundColor: colors.primary,
     borderWidth: 2,
-
     borderRadius: 50,
     borderColor: colors.marker,
     alignItems: 'center',

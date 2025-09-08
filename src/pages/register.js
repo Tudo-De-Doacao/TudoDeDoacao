@@ -8,6 +8,7 @@ import colors from '../../styles/color';
 import Input from '../../components/Input';
 import RegisterButton from '../../components/RegisterButton';
 import { registerUser } from '../data/registerUser';
+import { useNavigation } from '@react-navigation/native';
 
 function RegisterScreen() {
   const [name, setName] = useState('');
@@ -16,14 +17,13 @@ function RegisterScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [location, setLocation] = useState('');
   const [phone, setPhone] = useState('');
-
+  const navigation = useNavigation();
   const handleRegister = async () => {
     if (password !== confirmPassword) {
       Alert.alert('Erro', 'As senhas não coincidem.');
       return false;
     }
 
-<<<<<<< HEAD
     const success = await registerUser({
       name,
       email,
@@ -34,11 +34,6 @@ function RegisterScreen() {
     if (success == true){
     navigation.navigate('Login');
     return success; }
-=======
-    const success = await registerUser({ name, email, location, phone, password });
-    if (success == true)
-    return success;
->>>>>>> 23f22453472bb99be476864822446dafc87422b2
   };
 
   return (
@@ -98,20 +93,8 @@ function RegisterScreen() {
         <RegisterButton
           route="Login"
           text="Cadastrar"
-<<<<<<< HEAD
-<<<<<<< HEAD
           onPress={handleRegister}
         />
-=======
-onPress={
-  handleRegister
-} />
->>>>>>> 23f22453472bb99be476864822446dafc87422b2
-=======
-onPress={
-  handleRegister
-} />
->>>>>>> 23f22453472bb99be476864822446dafc87422b2
       </View>
     </ScrollView>
   );

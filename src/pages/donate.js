@@ -14,6 +14,7 @@ import styles from '../../styles/index';
 import colors from '../../styles/color';
 
 import { registerDonate } from '../data/registerDonate'
+import BottomBtn from '../../components/BottomButton';
 
 
 function DonateScreen() {
@@ -39,30 +40,12 @@ function DonateScreen() {
       location,
       category,
       image,
-<<<<<<< HEAD
-<<<<<<< HEAD
       description,
-      status
     });
-    
-    if (response) {
-      Alert.alert('Sucesso', 'Donation cadastrada com sucesso!');
-=======
-      description
-    });
-    
-    if (response) {
-=======
-      description
-    });
-    
-    if (response) {
->>>>>>> 23f22453472bb99be476864822446dafc87422b2
+  
       Alert.alert('Sucesso', 'Doação cadastrada com sucesso!');
->>>>>>> 23f22453472bb99be476864822446dafc87422b2
       navigation.navigate('Tabs'); 
     }
-  };
 
   
   return (
@@ -108,8 +91,10 @@ function DonateScreen() {
         text="Doar"
         onPress={handleRegister}
         />
+
         </View>
 
+      <BottomBtn  route={'Home'} icon={"home"} text="home"/>
       </ScrollView>
   
 
