@@ -5,10 +5,13 @@ import { useState } from 'react';
 import styles from '../../styles/index';
 import typog from '../../styles/type';
 import colors from '../../styles/color';
-import Input from '../../components/Input';
+
+
+import PhoneInput from '../../components/PhoneInput';
+import FloatingInput from '../../components/FloatingInput';
+
 import RegisterButton from '../../components/RegisterButton';
 import { registerUser } from '../data/registerUser';
-import { useNavigation } from '@react-navigation/native';
 
 function RegisterScreen() {
   const [name, setName] = useState('');
@@ -17,7 +20,7 @@ function RegisterScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [location, setLocation] = useState('');
   const [phone, setPhone] = useState('');
-  const navigation = useNavigation();
+
   const handleRegister = async () => {
     if (password !== confirmPassword) {
       Alert.alert('Erro', 'As senhas não coincidem.');
@@ -31,9 +34,9 @@ function RegisterScreen() {
       phone,
       password,
     });
-    if (success == true){
-    navigation.navigate('Login');
-    return success; }
+    if (success == true) { return success; }
+
+    if (success) {  navigation.navigate('Login'); }
   };
 
   return (
@@ -46,44 +49,45 @@ function RegisterScreen() {
       }}>
       <View style={styles.bodyPrin}>
         <Image
-          source={require('../../assets/Logo.png')}
+          source={require('../../assets/logo.png')}
           style={{ ...styles.logo, marginTop: 24 }}
         />
         <Text style={typog.titleLogin}>Faça seu cadastro</Text>
         <View style={styles.loginInput}>
-          <Input
-            ph="Nome"
+          <FloatingInput
+            placeholder="Insira seu nome"
+            label= "Nome"
             autoComplete="name"
             onChangeText={setName}
             value={name}
           />
-          <Input
-            ph="Email"
+          <FloatingInput
+            placeholder="Insira seu email"
+            label = "Email"
             autoComplete="email"
             onChangeText={setEmail}
             value={email}
           />
-          <Input
-            ph="Localização"
+          <FloatingInput
+            placeholder="Insira seu Bairro"
+            label="Localização"
             autoComplete="street-address"
             onChangeText={setLocation}
             value={location}
           />
-          <Input
-            ph="Celular"
-            autoComplete="tel"
+          <PhoneInput
             onChangeText={setPhone}
             value={phone}
           />
-          <Input
-            ph="Senha"
+          <FloatingInput
+            placeholder="Senha"
             autoComplete="new-password"
             secure="true"
             onChangeText={setPassword}
             value={password}
           />
-          <Input
-            ph="Confirme sua senha"
+          <FloatingInput
+            placeholder="Confirme sua senha"
             autoComplete="new-password"
             secure="true"
             onChangeText={setConfirmPassword}
