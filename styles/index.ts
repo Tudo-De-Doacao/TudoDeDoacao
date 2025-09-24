@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   loginInput: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   headerBar: {
     height: isWeb ? 70 : 120,
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     padding: 4,
-    gap: 20,
+    gap: 20
   },
   bodySearch: {
     justifyContent: 'center',
