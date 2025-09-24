@@ -11,7 +11,7 @@ export default function FloatingInput({ label, value, secure, autoComplete, disa
   const isWeb = Platform.OS === 'web';
 
   return (
-    <View style={styles.bodyPrin}>
+    <View style={{...styles.bodyPrin, gap:-12}}>
       <TextInput
         label={label}
         disabled={disabled} // Mudar para true quando for email, do contrário deixar sempre falso ou nulo
@@ -28,7 +28,7 @@ export default function FloatingInput({ label, value, secure, autoComplete, disa
           fontSize: 20,
           width: 220,
           height: isWeb ? 36 : 48,
-          padding: 10,
+          padding: isWeb ? 10 : 2,
         }}
         outlineColor="#351313"
         activeOutlineColor="#351313"

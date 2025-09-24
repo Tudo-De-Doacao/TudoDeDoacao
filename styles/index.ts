@@ -238,6 +238,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     padding: 4,
+    paddingTop: isWeb? 0 : 36,
+    marginTop: isWeb? 0 : 12,
     gap: 20,
   },
   bodySearch: {
