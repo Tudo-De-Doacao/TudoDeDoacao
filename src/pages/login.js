@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 import { ScrollView, View, Image, Alert, Text } from 'react-native';
 
 import { useState } from 'react';
@@ -10,18 +7,12 @@ import { useNavigation } from '@react-navigation/native';
 import styles from '../../styles/index';
 import typog from '../../styles/type';
 import colors from '../../styles/color';
-<<<<<<< HEAD
-import Input from '../../components/Input';
-import RegisterButton from '../../components/RegisterButton';
-import BottomBtn from '../../components/BottomButton';
-=======
 
 
 import Input from '../../components/Input';
 import RegisterButton from '../../components/RegisterButton';
 import BottomBtn from '../../components/BottomButton';
 
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 import { getUser } from '../data/getUser';
 
 function LoginScreen() {
@@ -45,11 +36,7 @@ function LoginScreen() {
         height: '100%',
       }}>
       <View style={styles.bodyPrin}>
-<<<<<<< HEAD
-        <Image source={require('../../assets/Logo.png')} style={styles.logo} />
-=======
         <Image source={require('../../assets/logo.png')} style={{...styles.logo, marginTop: 24}} />
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
         <Text style={typog.titleLogin}>Bem vindo de volta</Text>
         <View style={styles.loginInput}>
           <Input

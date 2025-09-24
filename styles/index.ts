@@ -5,18 +5,11 @@ import colors from './color';
 const { width, height } = Dimensions.get('window');
 const CARD_WIDTH = width * 0.61;
 const isWeb = Platform.OS === 'web';
-<<<<<<< HEAD
-
-const styles = StyleSheet.create({
-  tabBar: {
-    height: 70,
-=======
 const isAndroid = Platform.OS ===  'android'
 
 const styles = StyleSheet.create({
   tabBar: {
     height: isWeb ? 70 : 70,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     backgroundColor: colors.background,
     elevation: 10,
     paddingTop: 10,
@@ -50,29 +43,17 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderBottomWidth: 2,
     borderBottomColor: colors.marker,
-<<<<<<< HEAD
-    backgroundColor: colors.background,
-=======
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'flex-end',
   },
   bottomBar: {
-<<<<<<< HEAD
-    height: 70,
-=======
     height: isWeb ? 70 : 80,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     width: width,
     elevation: 10,
     paddingHorizontal: 14,
     paddingVertical: 10,
-<<<<<<< HEAD
-    borderTopWidth: 2,
-=======
     borderTopWidth: isWeb ? 2 : 1,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     borderTopColor: colors.marker,
     backgroundColor: colors.background,
     justifyContent: 'space-between',
@@ -134,11 +115,7 @@ const styles = StyleSheet.create({
     paddingLeft: isWeb ? 20 : 0 ,
     paddingRight: isWeb ? 16 : 0,
     width: 200,
-<<<<<<< HEAD
-    height: isWeb ? 32 : 44,
-=======
     height: isWeb ? 36 : 48,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     borderWidth: 2,
     borderRadius: 20,
     borderColor: colors.marker,
@@ -190,32 +167,21 @@ const styles = StyleSheet.create({
   },
   cardScreen: {
     maxWidth: 200,
-<<<<<<< HEAD
-    height: 280,
-=======
     height: height,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     alignSelf: 'flex-start',
     overflow: 'hidden',
   },
   card: {
     width: CARD_WIDTH,
     maxWidth: 200,
-<<<<<<< HEAD
-    height: 280,
-=======
     height: 440,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     borderTopLeftRadius : 0,
     borderTopRightRadius : 0,
     borderRadius: 8,
     borderWidth: 2,
     marginVertical: 18,
-<<<<<<< HEAD
-=======
     marginBottom: 20,
     paddingBottom: 20,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     borderColor: colors.marker,
     backgroundColor: colors.background,
     alignSelf: 'flex-start',
@@ -225,10 +191,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 20,
     paddingRight: 16,
-<<<<<<< HEAD
-=======
     paddingBottom: 20,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
   },
   infoBox: {
     margin: 8,
@@ -275,11 +238,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     padding: 4,
-<<<<<<< HEAD
-    gap: 8,
-=======
     gap: 20,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
   },
   bodySearch: {
     justifyContent: 'center',
@@ -296,10 +255,7 @@ const styles = StyleSheet.create({
   },
   bodyBtnBottom: {
     flexDirection: 'row',
-<<<<<<< HEAD
-=======
     flex: 1,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -322,20 +278,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderWidth: 2,
     borderRadius: 999,
-<<<<<<< HEAD
-=======
     flex:1,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     borderColor: colors.marker,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
   regBtn: {
-<<<<<<< HEAD
-    minHeight: 40,
-=======
     minHeight: isWeb ? 44 : 54,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     minWidth: isWeb ? 132 : '30%',
     marginTop: 16,
     backgroundColor: colors.primary,
@@ -348,11 +297,7 @@ const styles = StyleSheet.create({
   bottomBtn: {
     maxHeight: 50,
     maxWidth: 132,
-<<<<<<< HEAD
-    marginHorizontal: 10,
-=======
     marginHorizontal: isWeb ?  10 : 20,
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     width: width,
     backgroundColor: colors.primary,
     borderWidth: 2,

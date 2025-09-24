@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { ScrollView, View, FlatList, ImageBackground, ActivityIndicator, Text } from 'react-native';
-=======
 import {
   ScrollView,
   View,
@@ -9,27 +6,20 @@ import {
   ActivityIndicator,
   Text,
 } from 'react-native';
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 import { useEffect, useState } from 'react';
 
 import FilterBtn from '../../components/FilterBtn';
 import Header from '../../components/Header';
 import Card from '../../components/CardDon';
-<<<<<<< HEAD
-=======
 import CardTemp from '../../components/CardTemp';
 
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 
 import { getDonates } from '../../services/api/donations';
 import { categorias } from '../../components/FilterBtn';
 
 import styles from '../../styles/index';
 import colors from '../../styles/color';
-<<<<<<< HEAD
-=======
 import typog from '../../styles/type';
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 
 export default function HomeScreen() {
   const [donationCards, setDonationCards] = useState([]);
@@ -54,29 +44,11 @@ export default function HomeScreen() {
     fetchDonations();
   }, []);
 
-<<<<<<< HEAD
- const renderFilterItem = ({ item }) => {
-     console.log('Botão de categoria:', item);
-     return(
-  <FilterBtn rota={item.rota} icon={item.icon} text={item.nome} filter={item.filter} />
-     ); 
- };
-=======
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 
 
   const renderCardItem = ({ item }) => (
     <Card
       key={item.id}
-<<<<<<< HEAD
-      name={item.donation_name}
-      description={item.donation_description}
-      location={item.donation_location || item.donation_localization || 'Localização desconhecida'}
-      image={`http://127.0.0.1:8000/storage/${item.donation_image}`}
-    />
-  );
-
-=======
       name={item.name}
       description={item.description}
       location={item.location || 'Localização desconhecida'}
@@ -92,51 +64,12 @@ export default function HomeScreen() {
       filter={item.filter}
     />
   );
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
   return (
     <>
       <Header />
       <ImageBackground
         source={require('../../assets/BGHome.png')}
         style={styles.bgimagem}
-<<<<<<< HEAD
-        resizeMode="cover"
-      >
-        <ScrollView contentContainerStyle={styles.scroll}>
-          <View style={styles.bodyPrin}>
-            <FlatList
-              data={categorias}
-              renderItem={renderFilterItem}
-              keyExtractor={item => item.nome}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.container}
-            />
-
-            {loading && <ActivityIndicator size="large" color="#D93036" style={{ marginTop: 20 }} />}
-
-            {errorMsg !== '' && (
-              <Text style={{ color: 'red', textAlign: 'center', marginTop: 20 }}>{errorMsg}</Text>
-            )}
-
-            {!loading && donationCards.length === 0 && errorMsg === '' && (
-              <Text style={{...styles.txtCard, color: '#351313'}}>
-                Nenhuma doação encontrada.
-              </Text>
-            )}
-
-            {!loading && donationCards.length > 0 && (
-              <FlatList
-                data={donationCards}
-                renderItem={renderCardItem}
-                keyExtractor={item => item.id.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.bodyCard}
-              />
-            )}
-          </View>
-=======
         resizeMode="stretch"
       >
         <FlatList
@@ -208,7 +141,6 @@ export default function HomeScreen() {
             </ScrollView>
             </View>
           )}
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
         </ScrollView>
       </ImageBackground>
     </>

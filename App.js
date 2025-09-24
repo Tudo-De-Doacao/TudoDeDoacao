@@ -1,19 +1,9 @@
-<<<<<<< HEAD
-  import { NavigationContainer, useRoute } from '@react-navigation/native';
-=======
 import { NavigationContainer, useRoute } from '@react-navigation/native';
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 import { Text, Platform, View } from 'react-native';
 
-<<<<<<< HEAD
-/* {"data":[{"id":1,"user_id":1,"donation_name":"Monitor antigo","donation_description":"Estou doando esse notebook antigo bem conservado","donation_category":"Eletrônico","donation_image":"donations/ynh1LdGTjJLjjaAnQrZlVECL1Rx1ih64n8fJkjEM.jpg","donation_location":"Taboão da Serra","donation_status":"active","created_at":"2025-06-12T22:56:11.000000Z","updated_at":"2025-06-12T22:56:11.000000Z"},{"id":2,"user_id":2,"donation_name":"Monitor antigo","donation_description":"Estou doando esse notebook antigo bem conservado","donation_category":"Eletrônico","donation_image":"donations/eIyklD7Xq2EgQmNjJQCH13FLzaeeLNenKqPEsJ4H.jpg","donation_location":"Taboão da Serra","donation_status":"active","created_at":"2025-06-12T22:59:28.000000Z","updated_at":"2025-06-12T22:59:28.000000Z"}]}
- */
-
-=======
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 import Icon from 'react-native-vector-icons/Feather';
 
 import typog from './styles/type';
@@ -62,15 +52,6 @@ function TabsNav() {
               case 'Home':
                 iconName = 'home';
                 break;
-<<<<<<< HEAD
-              case 'Pesquisar':
-                iconName = 'search';
-                break;
-              case 'Favoritos':
-                iconName = 'heart';
-                break;
-              case 'Doação':
-=======
               case 'Search':
                 iconName = 'search';
                 break;
@@ -78,7 +59,6 @@ function TabsNav() {
                 iconName = 'heart';
                 break;
               case 'Donation':
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
                 iconName = 'plus-circle';
                 break;
               case 'Menu':
@@ -111,25 +91,15 @@ function TabsNav() {
           headerShown: false,
         })}>
         <Tabs.Screen name="Home" component={HomeScreen} />
-<<<<<<< HEAD
-        <Tabs.Screen name="Pesquisar" component={SearchScreen} />
-        <Tabs.Screen
-          name="Doação"
-=======
         <Tabs.Screen name="Search" component={SearchScreen} />
         <Tabs.Screen
           name="Donation"
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
           component={DonateScreen}
           options={{
             tabBarStyle: { display: 'none' },
           }}
         />
-<<<<<<< HEAD
-        <Tabs.Screen name="Favoritos" component={FavoriteScreen} />
-=======
         <Tabs.Screen name="Favorites" component={FavoriteScreen} />
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
         <Tabs.Screen name="Menu" component={DrawerScreen} />
       </Tabs.Navigator>
     </>
@@ -149,23 +119,14 @@ export default function App() {
 
   if (!fontsLoaded) return null;
 
-<<<<<<< HEAD
-  // <Stack.Screen name="Register" component={RegisterScreen} /> <Stack.Screen name="Login" component={LoginScreen} />   <Stack.Screen name="Tabs" component={TabsNav} />
-=======
 {/* <Stack.Screen name="Register" component={RegisterScreen} /> <Stack.Screen name="Login" component={LoginScreen} />   <Stack.Screen name="Tabs" component={TabsNav} */}
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-<<<<<<< HEAD
-
-      <Stack.Screen name="Tabs" component={TabsNav} />
-=======
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Tabs" component={TabsNav} />
->>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
       </Stack.Navigator>
     </NavigationContainer>
   );
