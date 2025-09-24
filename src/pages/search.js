@@ -15,7 +15,11 @@ function SearchScreen() {
   const route = useRoute();
 
   const [inputValue, setInputValue] = useState('');     
+<<<<<<< HEAD
   const [browseTerm, setBrowseTerm] = useState('');    
+=======
+  const [searchTerm, setSearchTerm] = useState('');    
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
   const [filterDonation, setFilterDonation] = useState([]);
 
 
@@ -23,15 +27,24 @@ useEffect(() => {
   const termoRecebido = route.params?.termo || route.params?.filter;
   if (termoRecebido) {
     setInputValue(termoRecebido);
+<<<<<<< HEAD
     setBrowseTerm(termoRecebido); 
+=======
+    setSearchTerm(termoRecebido); 
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
   }
 }, [route.params?.termo, route.params?.filter]);
 
 
   useEffect(() => {
     async function fetchDonations() {
+<<<<<<< HEAD
       if (browseTerm.trim() !== '') {
         const data = await getDonates(browseTerm);
+=======
+      if (searchTerm.trim() !== '') {
+        const data = await getDonates(searchTerm);
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
         console.log('Dados recebidos para busca:', data); // DEBUG
         setFilterDonation(data);
       } else {
@@ -40,11 +53,19 @@ useEffect(() => {
     }
 
     fetchDonations();
+<<<<<<< HEAD
   }, [browseTerm]);
 
 const handleSubmit = () => {
   if (inputValue.trim() !== '') {
     setBrowseTerm(inputValue);
+=======
+  }, [searchTerm]);
+
+const handleSubmit = () => {
+  if (inputValue.trim() !== '') {
+    setSearchTerm(inputValue);
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
   }
 };
   return (

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Pressable, Platform,Text } from 'react-native';
+=======
+import { TouchableOpacity, Platform,Text } from 'react-native';
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 import { useNavigation } from '@react-navigation/native';
 
 import styles from '../styles/index';
@@ -9,7 +13,11 @@ export default function RegisterButton({route, text, onPress}) {
   const navigation = useNavigation();
  const isWeb = Platform.OS === 'web';
   return (
+<<<<<<< HEAD
     <Pressable 
+=======
+    <TouchableOpacity 
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
      onPress={async () => {
         if (onPress) {
          try {
@@ -36,7 +44,11 @@ export default function RegisterButton({route, text, onPress}) {
 >
    {text}
    </Text>
+<<<<<<< HEAD
    </Pressable>
+=======
+   </TouchableOpacity>
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
   );
 }
 

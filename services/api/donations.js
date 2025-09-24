@@ -1,6 +1,12 @@
+<<<<<<< HEAD
   
 import { Alert } from 'react-native';
 import api from './api'
+=======
+import { Alert } from 'react-native';
+import api from './api'
+
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 export async function getDonates(searchTerm = '') {
   try {
     console.log('🔍 Iniciando busca de doações...');
@@ -18,23 +24,39 @@ export async function getDonates(searchTerm = '') {
 
     // Buscar por nome
     console.log(`➡️ Buscando por nome: ${term}`);
+<<<<<<< HEAD
     let response = await api.get(`/donations/getbyname/${term}`);
     console.log('🔁 Resposta (nome):', response.data.data);
     if (response.data.data.length > 0) return response.data.data;
+=======
+    let response = await api.get(`/donations/search/${term}`);
+    console.log('🔁 Resposta (nome):', response.data.data);
+    if (response.data.data?.length) return response.data.data;
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 
     // Buscar por categoria
     console.log(`➡️ Buscando por categoria: ${term}`);
     response = await api.get(`/donations/getbycategory/${term}`);
     console.log('🔁 Resposta (categoria):', response.data.data);
+<<<<<<< HEAD
     if (response.data.data.length > 0) return response.data.data;
+=======
+    if (response.data.data?.length) return response.data.data;
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 
     // Buscar por localização
     console.log(`➡️ Buscando por localização: ${term}`);
     response = await api.get(`/donations/getbylocation/${term}`);
     console.log('🔁 Resposta (localização):', response.data.data);
+<<<<<<< HEAD
     if (response.data.data.length > 0) return response.data.data;
 
     return []; 
+=======
+    if (response.data.data?.length) return response.data.data;
+
+    return [];
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 
   } catch (error) {
     console.error('❌ Erro ao buscar doações:', error.message);
@@ -46,6 +68,7 @@ export async function getDonates(searchTerm = '') {
     }
     return [];
   }
+<<<<<<< HEAD
 }
 
 
@@ -75,4 +98,6 @@ export async function registerDonate({ name, id, user_id, location, category, im
     Alert.alert('Erro', 'Não foi possível cadastrar a doação');
     return false;
   }
+=======
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 }

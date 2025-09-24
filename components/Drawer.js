@@ -44,7 +44,11 @@ const [hoverOn, setHoverOn] = useState(false);
            
           <Pressable 
           onPress={() =>{ console.log("Navegando para:", route);
+<<<<<<< HEAD
           navigation.navigate('Pesquisar')}}
+=======
+          navigation.navigate('Search')}}
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorSearch, borderBottomWidth: 3 }
@@ -55,24 +59,40 @@ const [hoverOn, setHoverOn] = useState(false);
           </Pressable>
           <Pressable onPress={() => {
             console.log("Navegando para:", route);
+<<<<<<< HEAD
             navigation.navigate('Doação')}}
+=======
+            navigation.navigate('Donation')}}
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorDonate, borderBottomWidth: 3 }
     : { ...styles.separatorDonate }}>
 
+<<<<<<< HEAD
             <Text style={typog.txtDrw}> Doação </Text>
+=======
+            <Text style={typog.txtDrw}> Donation </Text>
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 
           </Pressable>
           <Pressable onPress={() => {
             console.log("Navegando para:", route);
+<<<<<<< HEAD
            navigation.navigate('Favoritos')}}
+=======
+           navigation.navigate('Favorites')}}
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorFavorite, borderBottomWidth: 3 }
     : { ...styles.separatorFavorite }}>
 
+<<<<<<< HEAD
             <Text style={typog.txtDrw}> Favoritos </Text>
+=======
+            <Text style={typog.txtDrw}> Favorites </Text>
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
           </Pressable>
         </View>
       </Animated.View>

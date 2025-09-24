@@ -1,5 +1,9 @@
 import axios from 'axios';
 import { Alert } from 'react-native';
+<<<<<<< HEAD
+=======
+import {getUser} from './getUser'
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
 import api from  '../../services/api/api';
 
 
@@ -14,7 +18,11 @@ export async function registerUser({ name, email, location, user_id, phone, pass
     password,
     password_confirmation: password, 
     location,
+<<<<<<< HEAD
     tel: phone,
+=======
+    phone,
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
   };
 
   try {

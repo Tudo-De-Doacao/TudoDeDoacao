@@ -1,5 +1,6 @@
 {
   "expo": {
+<<<<<<< HEAD
     "name": "tudodedoacao",
     "slug": "snack-b261c5e9-1b0f-4414-b396-8245827003d5",
     "version": "1.0.0",
@@ -11,19 +12,47 @@
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+=======
+    "name": "Tudo De Doação",
+    "slug": "snack-c665a3af-14c9-41df-8e81-4a63bd4cc347",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FDEEDA"
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
+<<<<<<< HEAD
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+=======
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#FDEEDA"
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
+<<<<<<< HEAD
       "favicon": "./assets/favicon.png"
     }
   }
 }
+=======
+      "favicon": "./assets/logo.png"
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
+>>>>>>> 4a9db380a3690dca674e2cf1e608fd2c374bb469
