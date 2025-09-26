@@ -35,8 +35,8 @@ export default function Header() {
   return (
     <LinearGradient
       colors={[colors.background, colors.primary]} 
-      start={{ x: 2, y:1 }}
-      end={{ x: 2}}
+      start={{ x: 0, y: 0}}
+      end={{ x: 1, y: 1}}
       style={styles.headerBar}
     >
       <Pressable onPress={() => navigation.navigate('Home')}>

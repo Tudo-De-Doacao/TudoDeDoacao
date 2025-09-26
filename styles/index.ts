@@ -146,11 +146,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     resizeMode: 'contain'
   },
-  iconFilter: {
+  iconFilterMob: {
     minHeight: isWeb ? 22 : 16,
     minWidth: isWeb ? 22 : 16,
     marginHorizontal : 4,
-    paddingTop : 8,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -271,16 +270,17 @@ const styles = StyleSheet.create({
    gap: 4,
   },
   filterBtn: {
-    paddingHorizontal: isWeb ?  12 : 4,
-    paddingVertical: isWeb ? 0 : 2,
+    paddingHorizontal: isWeb ?  12 : 6,
+
     height: 40,
     minWidth: 100,
     marginVertical: 24,
-    marginHorizontal: 8,
+    
+    marginHorizontal: 4, 
     backgroundColor: colors.primary,
     borderWidth: 2,
     borderRadius: 999,
-    flex:1,
+    flex: isWeb ? 1 : 0 ,
     borderColor: colors.marker,
     alignItems: 'center',
     justifyContent: 'flex-start',
