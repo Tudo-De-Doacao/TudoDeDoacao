@@ -59,7 +59,7 @@ function DonateScreen() {
       }}>
         <View style={{...styles.bodyPrin, marginTop: 60, marginBottom: 8, paddingTop: 14 }}>
           <Input
-            ph="Nome da Donation"
+            ph="Nome da doação"
             autoComplete=""
             onChangeText={setName}
             value={name}
@@ -94,7 +94,6 @@ function DonateScreen() {
 
         </View>
 
-      <BottomBtn  route={'Home'} icon={"home"} text="home"/>
       </ScrollView>
   
 
