@@ -1,5 +1,5 @@
 
-import { ScrollView, View, Image, Alert, Text } from 'react-native';
+import { ScrollView, View, Image, Alert, Text, Button } from 'react-native';
 
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -54,12 +54,13 @@ function LoginScreen() {
           />
         </View>
 
-        <RegisterButton route="Tabs" text="Entrar" onPress={handleLogin} />
+        <RegisterButton route="Tabs" text="Entrar" /*onPress={handleLogin}*/ onPress={() => navigation.navigate('Tabs')} />
         <RegisterButton
           route="Register"
           text="Cadastrar"
          onPress={() => navigation.navigate('Register')}  
         />
+       
       </View>
     </ScrollView>
   );

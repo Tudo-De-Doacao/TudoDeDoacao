@@ -234,11 +234,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   bodyPrin: {
-    justifyContent: 'center',
+    justifyContent: "flex-start",
     alignItems: 'center',
     flexDirection: 'column',
     padding: 4,
-    gap: 20
+    gap: 20,
+    flex: 1
   },
   bodySearch: {
     justifyContent: 'center',
@@ -377,6 +378,82 @@ const styles = StyleSheet.create({
     width: '80%',
     alignSelf: 'flex-end',
   },
+  savedCard:{
+     width: CARD_WIDTH,
+    maxWidth: 200,
+    height: 440,
+    borderTopLeftRadius : 0,
+    borderTopRightRadius : 0,
+    borderRadius: 8,
+    borderWidth: 2,
+    marginVertical: 18,
+    marginBottom: 20,
+    paddingBottom: 20,
+    borderColor: colors.marker,
+    backgroundColor: colors.background,
+    alignSelf: 'flex-start',
+    overflow: 'hidden',
+  },
+  imageBoxSavedCard:{
+    height: isWeb? 260: 260,
+    borderTopWidth: isWeb? 1 : 0, 
+    borderBottomWidth: 3,
+    borderColor: colors.marker,
+    backgroundColor: '#A97E76',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageSavedCard:{
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    resizeMode: 'cover'
+  },
+   infoBoxSavedCard: {
+    margin: 8,
+    gap: 2,
+    paddingLeft: 10,
+  },
+  locationSavedCard: {
+    gap: 2,
+    marginBottom: 2,
+    paddingTop: 8,
+    flexDirection: 'row',
+  },
+  donationFavContainer:{
+   borderWidth: 1,
+    height: "50%",
+    width: "100%"
+
+  },
+  favoriteTextContainer:{
+    
+    alignSelf: "center"
+
+  },
+  titleFavContainer:{
+    borderBottomWidth: 1,
+    width: "100%",
+    height: "20%"
+  },
+  iconDonationFav:{
+    
+    alignSelf: "center"
+  },
+  iconTextContainer:{
+   
+     width: "100%",
+     height: "96%",
+     flexDirection: "row",
+     alignItems: "stretch"
+  },
+  imageTreeBranch: {
+    width: isWeb? "15%" : "45%", 
+    height: isWeb? "100%" : "100%", 
+    position: "absolute", 
+    left: isWeb? "85%" : "55%"
+  }
+
 });
 
 export default styles;
