@@ -133,9 +133,22 @@ function FavoriteScreen() {
 
             </SavedCard> */}
 
-           <PendingDonationCard
-           title="Doações pendentesr"
-           />
+            <PendingDonationCard
+            title={"Doações pendentes"}
+            iconName={"heart"}
+            //image receives tree or trunk
+            image={"tree"}
+            />
+
+             <PendingDonationCard
+            title={"Doações concluídass"}
+            iconName={"block"}
+            //image receives tree or trunk
+            image={"trunk"}
+            />
+
+           
+          
 
           </View>
         </ScrollView>

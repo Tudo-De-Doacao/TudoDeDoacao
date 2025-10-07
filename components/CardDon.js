@@ -1,4 +1,4 @@
-import { Text, View, Image, Pressable } from 'react-native';
+import { Text, View, Image, Pressable, ScrollView } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -32,6 +32,7 @@ export default function Card({ name, location, description, image }) {
           />
         </View>
 
+          <ScrollView>
         <View style={styles.infoBox}>
           <Text style={typog.titleCard}>{name}</Text>
           <Text
@@ -51,6 +52,7 @@ export default function Card({ name, location, description, image }) {
             <Text style={{ ...typog.txtCard, fontSize: 16 }}>{location}</Text>
           </View>
         </View>
+          </ScrollView>
       </View>
     </Pressable>
   );

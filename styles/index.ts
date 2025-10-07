@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
   card: {
     width: CARD_WIDTH,
     maxWidth: 200,
-    height: 440,
+    height: 300,
     borderTopLeftRadius : 0,
     borderTopRightRadius : 0,
     borderRadius: 8,
@@ -196,16 +196,19 @@ const styles = StyleSheet.create({
   infoBox: {
     margin: 8,
     gap: 2,
-    paddingLeft: 10,
+    paddingLeft: 10, borderWidth: 1,
+    height: "100%"
+
   },
   locationCard: {
     gap: 2,
     marginBottom: 2,
     paddingTop: 8,
     flexDirection: 'row',
+    borderWidth: 1
   },
   imageBox: {
-    height: 250,
+    height: 180,
     borderTopWidth: 3, 
     borderBottomWidth: 3,
     borderColor: colors.marker,
@@ -423,7 +426,8 @@ const styles = StyleSheet.create({
   donationFavContainer:{
    borderWidth: 1,
     height: "50%",
-    width: "100%"
+    width: "100%",
+    overflow: "hidden"
 
   },
   favoriteTextContainer:{
@@ -433,25 +437,33 @@ const styles = StyleSheet.create({
   },
   titleFavContainer:{
     borderBottomWidth: 1,
+    overflow: "hidden",
     width: "100%",
     height: "20%"
   },
   iconDonationFav:{
-    
+ 
+    marginTop: isWeb? "1%":"0%" ,
     alignSelf: "center"
   },
   iconTextContainer:{
    
      width: "100%",
      height: "96%",
-     flexDirection: "row",
-     alignItems: "stretch"
+     flexDirection: "row"
   },
   imageTreeBranch: {
     width: isWeb? "15%" : "45%", 
     height: isWeb? "100%" : "100%", 
     position: "absolute", 
     left: isWeb? "85%" : "55%"
+  },
+  imageTrunk:{
+     width: isWeb? "15%" : "45%", 
+    height: isWeb? "200%" : "200%", 
+    position: "absolute", 
+    left: isWeb? "92.5%" : "76%",
+    bottom: isWeb? "0%" : "0%"
   }
 
 });
