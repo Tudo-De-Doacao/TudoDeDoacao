@@ -1,5 +1,5 @@
 import react from "react"
-import { View, Text, Image, ScrollView} from "react-native";
+import { View, Text, Image, ScrollView, FlatList} from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import Card from "./CardDon";
 
@@ -7,14 +7,17 @@ import styles from "../styles";
 import colors from "../styles/color";
 import typog from "../styles/type";
 
-export default function PendingDonationCard({title, content, iconName, image}){
+export default function PendingDonationCard({title, content, iconName, image, dataCard}){
   const images = {
   tree: require("../assets/treebranch.png"),
   trunk: require("../assets/trunk.png")
   }
+
+  
     return(
          <View style={styles.donationFavContainer}>
 
+           {/* Cabeçalho do card*/}
               <View style={styles.titleFavContainer}>
                 <Image
                 source={images[image]}
@@ -47,20 +50,25 @@ export default function PendingDonationCard({title, content, iconName, image}){
                 
               </View>
 
-
-              <View style={{backgroundColor:colors.background, width: "100%", height: "80%", flexDirection: "row"}}>
-                <ScrollView
-                showsVerticalScrollIndicator={true}
+              {/* Corpo do card*/}
+              <View style={{backgroundColor:colors.background, width: "100%", height: "80%", borderWidth: 1}}>
                 
-
-                >
-                  <Card
-                  name={"bola"}
-                  location={"São Paulo"}
-                  description={"bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente"}
-                  ></Card>
-                   
-                </ScrollView>
+              <FlatList
+              data={dataCard}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({item}) => (
+                <Card
+                name={item.name}
+                location={item.location}
+                description={item.description}
+                />
+              )}
+              horizontal
+              contentContainerStyle={{ paddingHorizontal: 16, alignItems: "center", gap: 20}}
+              showsHorizontalScrollIndicator={false}
+              />
+                 
+    
               </View>
 
             </View>

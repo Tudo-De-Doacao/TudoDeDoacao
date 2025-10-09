@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
   card: {
     width: CARD_WIDTH,
     maxWidth: 200,
-    height: 300,
+    height: 360,
     borderTopLeftRadius : 0,
     borderTopRightRadius : 0,
     borderRadius: 8,
@@ -195,8 +195,7 @@ const styles = StyleSheet.create({
   },
   infoBox: {
     margin: 8,
-    gap: 2,
-    paddingLeft: 10, borderWidth: 1,
+   
     height: "100%"
 
   },
@@ -205,10 +204,10 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     paddingTop: 8,
     flexDirection: 'row',
-    borderWidth: 1
+    
   },
   imageBox: {
-    height: 180,
+    height: 150,
     borderTopWidth: 3, 
     borderBottomWidth: 3,
     borderColor: colors.marker,
@@ -425,7 +424,7 @@ const styles = StyleSheet.create({
   },
   donationFavContainer:{
    borderWidth: 1,
-    height: "50%",
+    height: "52%",
     width: "100%",
     overflow: "hidden"
 

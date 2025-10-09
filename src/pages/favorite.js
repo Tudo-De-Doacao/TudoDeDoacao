@@ -57,6 +57,14 @@ function FavoriteScreen() {
 
     />
   );
+  const donations = [
+    { id: 1, name: "Bola", location: "São Paulo, Campo limpoaaaaaaaaaaaaaaaa", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
+    { id: 2, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
+    { id: 3, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,  
+    { id: 4, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,
+    { id: 5, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,
+
+  ]
 
   return (
     <>
@@ -68,12 +76,11 @@ function FavoriteScreen() {
 
 
         <ScrollView
-          horizontal={true}
+          
             contentContainerStyle={{
               ...styles.scroll,
-              alignContent: 'flex-start',
-              justifyContent: 'flex-start',
-              flex: 1,
+              
+              flex: 1
             }}
             showsVerticalScrollIndicator={false}
           >
@@ -138,14 +145,18 @@ function FavoriteScreen() {
             iconName={"heart"}
             //image receives tree or trunk
             image={"tree"}
+            dataCard={donations}
             />
-
-             <PendingDonationCard
-            title={"Doações concluídass"}
-            iconName={"block"}
+            <PendingDonationCard
+            title={"Doações pendentes"}
+            iconName={"heart"}
             //image receives tree or trunk
-            image={"trunk"}
+            image={"tree"}
+            dataCard={donations}
             />
+          
+
+             
 
            
           

@@ -21,18 +21,19 @@ export default function Card({ name, location, description, image }) {
   };
 
   return (
-    <Pressable onPress={handlePress}>
-      <View style={styles.card}>
-        <View style={styles.imageBox}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: image,
-            }}
-          />
-        </View>
+    <View style={styles.card}>
+        <Pressable onPress={handlePress}>
+          <View style={styles.imageBox}>
+            <Image
+              style={styles.image}
+              source={{
+                uri: image,
+              }}
+            />
+          </View>
+        </Pressable>
 
-          <ScrollView>
+        
         <View style={styles.infoBox}>
           <Text style={typog.titleCard}>{name}</Text>
           <Text
@@ -52,8 +53,8 @@ export default function Card({ name, location, description, image }) {
             <Text style={{ ...typog.txtCard, fontSize: 16 }}>{location}</Text>
           </View>
         </View>
-          </ScrollView>
+        
       </View>
-    </Pressable>
+    
   );
 }
