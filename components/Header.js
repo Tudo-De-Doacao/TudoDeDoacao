@@ -41,7 +41,7 @@ export default function Header() {
     >
       <Pressable onPress={() => navigation.navigate('Home')}>
         <Image
-          source={require('../assets/logo.png')}
+          source={require('../assets/Logo.png')}
           style={{
             ...styles.logo,
             maxWidth: isWeb ? 40 : 45,
