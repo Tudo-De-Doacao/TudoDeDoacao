@@ -58,7 +58,7 @@ function FavoriteScreen() {
     />
   );
   const donations = [
-    { id: 1, name: "Bola", location: "São Paulo, Campo limpoaaaaaaaaaaaaaaaa", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
+    { id: 1, name: "Bola", location: "São Paulo, Campo limpo - SP", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
     { id: 2, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
     { id: 3, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,  
     { id: 4, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,
@@ -69,24 +69,16 @@ function FavoriteScreen() {
   return (
     <>
       <Header />
+      
       <ImageBackground
         source={require('../../assets/BGHome.png')}
-        style={styles.bgimagem}
-        resizeMode="stretch">
-
-
-        <ScrollView
+        style={[styles.bgimagem]}
+        resizeMode="stretch"
+      >
+        <ScrollView 
+        contentContainerStyle={{paddingBottom: 70}}>
           
-            contentContainerStyle={{
-              ...styles.scroll,
-              
-              flex: 1
-            }}
-            showsVerticalScrollIndicator={false}
-          >
-          
-
-          <View style={styles.bodyPrin}>
+          {/* <View style={styles.bodyPrin}> */}
             {/* <View style={{flexDirection: 'row'}}>
             <Icon
               name="heart"
@@ -141,29 +133,37 @@ function FavoriteScreen() {
             </SavedCard> */}
 
             <PendingDonationCard
-            title={"Doações pendentes"}
+            title={"Pedidos pendentes"}
             iconName={"heart"}
             //image receives tree or trunk
             image={"tree"}
             dataCard={donations}
             />
+            
             <PendingDonationCard
-            title={"Doações pendentes"}
+            title={"Pedidos pendentes"}
             iconName={"heart"}
             //image receives tree or trunk
             image={"tree"}
             dataCard={donations}
             />
-          
+            
+            <PendingDonationCard
+            title={"Pedidos pendentes"}
+            iconName={"heart"}
+            //image receives tree or trunk
+            image={"tree"}
+            dataCard={donations}
+            />
 
-             
-
+            
+            
+            
            
-          
-
-          </View>
-        </ScrollView>
+          {/* </View> */}
+          </ScrollView>
       </ImageBackground>
+        
     </>
   );
 }

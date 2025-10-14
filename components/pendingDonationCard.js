@@ -51,7 +51,7 @@ export default function PendingDonationCard({title, content, iconName, image, da
               </View>
 
               {/* Corpo do card*/}
-              <View style={{backgroundColor:colors.background, width: "100%", height: "80%", borderWidth: 1}}>
+            <View style={{backgroundColor:colors.background, width: "100%", height: "80%", borderWidth: 1}}>
                 
               <FlatList
               data={dataCard}
@@ -64,12 +64,12 @@ export default function PendingDonationCard({title, content, iconName, image, da
                 />
               )}
               horizontal
-              contentContainerStyle={{ paddingHorizontal: 16, alignItems: "center", gap: 20}}
+              contentContainerStyle={{ paddingHorizontal: 16, alignItems: "center", gap: 20, marginTop: 15, marginBottom: 15}}
               showsHorizontalScrollIndicator={false}
               />
                  
     
-              </View>
+            </View>
 
             </View>
     )

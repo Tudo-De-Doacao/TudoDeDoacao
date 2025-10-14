@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     
   },
   imageBox: {
-    height: 150,
+    height: 180,
     borderTopWidth: 3, 
     borderBottomWidth: 3,
     borderColor: colors.marker,
@@ -236,11 +236,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   bodyPrin: {
-    justifyContent: "flex-start",
     alignItems: 'center',
     flexDirection: 'column',
-    padding: 4,
-    gap: 20,
+    padding: "0.5%",
     flex: 1
   },
   bodySearch: {
@@ -423,30 +421,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   donationFavContainer:{
-   borderWidth: 1,
-    height: "52%",
+  borderWidth: 1,
+    height: 500,
     width: "100%",
     overflow: "hidden"
 
   },
   favoriteTextContainer:{
-    
     alignSelf: "center"
 
   },
   titleFavContainer:{
-    borderBottomWidth: 1,
     overflow: "hidden",
     width: "100%",
     height: "20%"
   },
   iconDonationFav:{
- 
+    padding: isWeb? 4: 10,
     marginTop: isWeb? "1%":"0%" ,
     alignSelf: "center"
   },
   iconTextContainer:{
-   
+
      width: "100%",
      height: "96%",
      flexDirection: "row"
