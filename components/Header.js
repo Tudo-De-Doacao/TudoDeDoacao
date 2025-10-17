@@ -73,6 +73,9 @@ export default function Header() {
           }}
           maxLength={16}
           value={searchTerm}
+          numberOfLines={1}
+          clearTextOnFocus = {true}
+          scrollEnabled = {false}
           onChangeText={setSearchTerm}
           onSubmitEditing={handleSearch}
         />
