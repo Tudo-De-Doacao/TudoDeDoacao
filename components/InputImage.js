@@ -53,7 +53,7 @@ export default function InputImage({ value, onChange }) {
       </Pressable>
 
       {donation_image ? (
-        <Text style={{...typog.txtNavBtn, fontFamily: 'DGrotesque-SemiBold'}}>
+        <Text style={{...typog.txtNavBtn, fontFamily: 'DGrotesque-SemiBold', fontWeight: 'bold' }}>
       Imagem carregada com Sucesso
       </Text>
       ) : null }

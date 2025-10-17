@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   bodyCard: {
     flexDirection: 'row',
     gap: 20,
-    paddingRight: 16,
+    paddingHorizontal: 16,
     paddingBottom: 20,
   },
   infoBox: {
@@ -219,10 +219,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    position: 'absolute',
     height: '100%',
     width: '100%',
-    resizeMode: 'cover'
+    resizeMode: 'stretch'
 
   },
   scroll: {

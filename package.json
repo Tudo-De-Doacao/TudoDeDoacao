@@ -16,6 +16,7 @@
     "@react-navigation/native": "*",
     "@react-navigation/native-stack": "*",
     "axios": "*",
+    "check": "^1.0.0",
     "expo": "~53.0.23",
     "expo-font": "~13.3.2",
     "expo-image-picker": "~16.1.4",

@@ -36,7 +36,7 @@ function TabsNav() {
             left: 0,
             right: 0,
             height: 2,
-            backgroundColor: '#351313',
+            backgroundColor: colors.marker,
             zIndex: 1000,
           }}
         />
@@ -75,7 +75,7 @@ function TabsNav() {
             );
           },
           tabBarLabel: ({ focused }) => (
-            <Text style={focused ? typog.tabOn : typog.tabOff}>
+            <Text style={ focused ? typog.tabOn : typog.tabOff}>
               {route.name}
             </Text>
           ),
@@ -96,10 +96,9 @@ function TabsNav() {
           name="Donation"
           component={DonateScreen}
           options={{
-            tabBarStyle: { display: 'none' },
           }}
         />
-        <Tabs.Screen name="Favorites" component={FavoriteScreen} />
+        <Tabs.Screen name="Favorites" component={CardScreen} />
         <Tabs.Screen name="Menu" component={DrawerScreen} />
       </Tabs.Navigator>
     </>
@@ -119,7 +118,7 @@ export default function App() {
 
   if (!fontsLoaded) return null;
 
-{/* <Stack.Screen name="Register" component={RegisterScreen} /> <Stack.Screen name="Login" component={LoginScreen} />   <Stack.Screen name="Tabs" component={TabsNav} */}
+{/* <Stack.Screen name="Register" component={RegisterScreen} /> <Stack.Screen name="Login" component={LoginScreen} />   <Stack.Screen name="Tabs" component={TabsNqxav} */}
 
   return (
     <NavigationContainer>

@@ -1,4 +1,4 @@
-import { ScrollView, View, Alert } from 'react-native';
+import { ScrollView, View, Alert, Text } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
@@ -12,6 +12,7 @@ import TabDonation from '../../components/TabDonation';
 
 import styles from '../../styles/index';
 import colors from '../../styles/color';
+import typog from '../../styles/type';
 
 import { registerDonate } from '../data/registerDonate'
 import BottomBtn from '../../components/BottomButton';
@@ -55,11 +56,13 @@ function DonateScreen() {
       contentContainerStyle={{
         ...styles.scroll,
         backgroundColor: colors.background,
+
         height: '100%',
       }}>
         <View style={{...styles.bodyPrin, marginTop: 60, marginBottom: 8, paddingTop: 14 }}>
+        <Text style={{...typog.headerTitle, fontSize: 24}}>O que você quer doar ?</Text>
           <Input
-            ph="Nome da Donation"
+            ph="Nome da doação"
             autoComplete=""
             onChangeText={setName}
             value={name}
@@ -91,10 +94,9 @@ function DonateScreen() {
         text="Doar"
         onPress={handleRegister}
         />
-
         </View>
-
-      <BottomBtn  route={'Home'} icon={"home"} text="home"/>
+      
+   
       </ScrollView>
   
 
