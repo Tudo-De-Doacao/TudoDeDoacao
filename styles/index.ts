@@ -436,13 +436,24 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "20%"
   },
-  iconDonationFav:{
-    padding: isWeb? 4: 10,
-    marginTop: isWeb? "1%":"0%" ,
-    alignSelf: "center"
+  clockIconStyle:{
+    padding: isWeb? 4: 18,
+    // marginTop: isWeb? "1%":"1%" ,
+    alignContent: "center",
+    alignSelf: "center",
+    
+    marginTop: isWeb? 10 : 3
+  },
+  heartIconStyle: {
+     padding: isWeb? 4: 18,
+    // marginTop: isWeb? "1%":"1%" ,
+    alignContent: "center",
+    alignSelf: "center",
+   
+    marginTop: isWeb? 10 : 3
   },
   iconTextContainer:{
-
+    
      width: "100%",
      height: "96%",
      flexDirection: "row"
@@ -454,8 +465,9 @@ const styles = StyleSheet.create({
     left: isWeb? "85%" : "55%"
   },
   imageTrunk:{
-     width: isWeb? "15%" : "45%", 
-    height: isWeb? "200%" : "200%", 
+    width: isWeb? "15%" : "45%", 
+    height: isWeb? "200%" : "300%", 
+    // transform: [{ rotate: "180deg"}],
     position: "absolute", 
     left: isWeb? "92.5%" : "76%",
     bottom: isWeb? "0%" : "0%"

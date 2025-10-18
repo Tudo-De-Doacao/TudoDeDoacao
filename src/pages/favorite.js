@@ -25,14 +25,14 @@ import { categorias } from '../../components/FilterBtn';
 
 function FavoriteScreen() {
   const [donationCards, setDonationCards] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [pendings, setPendings] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     async function fetchDonations() {
       try {
         const data = await getDonates('');
-        console.log(data)
         if (Array.isArray(data)) {
           setDonationCards(data);
         } else {
@@ -47,24 +47,51 @@ function FavoriteScreen() {
     fetchDonations();
   }, []);
 
-  const renderCardItem = ({ item }) => (
-    <Card
-      key={item.id}
-      name={item.name}
-      description={item.description}
-      location={item.location || 'Localização desconhecida'}
-      image={`http://127.0.0.1:8000/storage/${item.image}`}
+  // const donations = [ {
+  //   id: 1,
+  //   name: "Bola de Futebol",
+  //   location: "São Paulo - SP",
+  //   description: "Bola usada em boas condições, ideal para treinos infantis.",
+  //   image: "bola.jpg",
+  //   status: "pending",
+  // },
+  // {
+  //   id: 2,
+  //   name: "Carrinho de Brinquedo",
+  //   location: "Rio de Janeiro - RJ",
+  //   description: "Carrinho elétrico em ótimo estado, funcionando perfeitamente.",
+  //   image: "carrinho.jpg",
+  //   status: "disable",
+  // },
+  // {
+  //   id: 3,
+  //   name: "Roupa Infantil",
+  //   location: "Belo Horizonte - MG",
+  //   description: "Conjunto infantil tamanho 6, usado poucas vezes.",
+  //   image: "roupa.jpg",
+  //   status: "pending",
+  // },
+  // {
+  //   id: 4,
+  //   name: "Cesta Básica",
+  //   location: "Curitiba - PR",
+  //   description: "Cesta com alimentos não perecíveis para doação imediata.",
+  //   image: "cesta.jpg",
+  //   status: "disable",
+  // },
+  // {
+  //   id: 5,
+  //   name: "Tênis Infantil",
+  //   location: "Salvador - BA",
+  //   description: "Par de tênis tamanho 33, quase novo.",
+  //   image: "tenis.jpg",
+  //   status: "pending",
+  // }]
 
-    />
-  );
-  const donations = [
-    { id: 1, name: "Bola", location: "São Paulo, Campo limpo - SP", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
-    { id: 2, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
-    { id: 3, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,  
-    { id: 4, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,
-    { id: 5, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,
-
-  ]
+  const pendingDonations = donationCards.filter(item => item.status === "pending");
+  const active = donationCards.filter(item => item.status === "active");
+  const disable = donationCards.filter(item => item.status === "disable");
+ 
 
   return (
     <>
@@ -76,89 +103,68 @@ function FavoriteScreen() {
         resizeMode="stretch"
       >
         <ScrollView 
-        contentContainerStyle={{paddingBottom: 70}}>
-          
-          {/* <View style={styles.bodyPrin}> */}
-            {/* <View style={{flexDirection: 'row'}}>
-            <Icon
-              name="heart"
-              size={32}
-              color="#D93036"
-              style={styles.iconHeader}
-            />
-              <Text style={{ ...typog.txtDrw, textAlign: 'left' }}>
-                Doações Favoritas
-              </Text>
+         contentContainerStyle={{paddingBottom: 70}}
+        >
+
+          {loading && (
+              <View>
+                <ActivityIndicator size="large" color="#D93036"/>
+                <Text>
+                  Carregando doações...
+                </Text>
               </View>
-              {loading && (
-              <ActivityIndicator
-                size={100}
-                color="#D93036"
-                style={{ marginTop: 40 }}
-              />
-            )} */}
+          )}
 
-            {/* {errorMsg !== '' && (
-              <Text
-                style={{ color: 'red', textAlign: 'center', marginTop: 20 }}
-              >
-                {errorMsg}
-              </Text>
-            )} */}
+          {!loading && errorMsg !== "" && (
+            <Text style={{fontSize: 20, alignSelf: "center"}}>
+              {errorMsg}
+            </Text>
+          )}
 
-            {/* {!loading && donationCards.length === 0 && errorMsg === '' && (
-              <Text style={{ ...styles.txtCard,paddingRight: 24 }}>
-                Nenhuma doação favoritada ainda.
-              </Text>
-            )} */}
+          {!loading && errorMsg === ""  && donationCards.length === 0 && (
+            <Text style={{fontSize: 20, alignSelf: "center"}}>
+              Nenhuma doação encontrada
+            </Text>
+          )}
 
-            {/* {!loading && donationCards.length > 0 && (
-              <FlatList
-                data={donationCards}
-                renderItem={renderCardItem}
-                keyExtractor={(item) => item.id.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.bodyCard}
-              />
-            )} */}
-
-        
-            {/* <SavedCard 
-            name={"Bola"}
-            location={"São paulo, campo limpo - SP"}
-            description={"Bola quadrada do kiko"}
-            > 
-
-            </SavedCard> */}
-
+          {!loading && errorMsg === "" && donationCards.length > 0 &&(
+            <>
             <PendingDonationCard
-            title={"Pedidos pendentes"}
-            iconName={"heart"}
-            //image receives tree or trunk
-            image={"tree"}
-            dataCard={donations}
-            />
-            
-            <PendingDonationCard
-            title={"Pedidos pendentes"}
-            iconName={"heart"}
-            //image receives tree or trunk
-            image={"tree"}
-            dataCard={donations}
-            />
-            
-            <PendingDonationCard
-            title={"Pedidos pendentes"}
-            iconName={"heart"}
-            //image receives tree or trunk
-            image={"tree"}
-            dataCard={donations}
+            title="Pedidos pendentes"
+            iconName={"clock"}
+            image="tree"
+            dataCard={pendingDonations}
             />
 
+            <PendingDonationCard
+            title="Pedidos Finalizados"
+            iconName={"heart"}
+            image="trunk"
+            dataCard={disable}
+            />
+
+            <PendingDonationCard
+            title="Suas doações pendentes"
+            iconName={"clock"}
+            image="trunk"
+            dataCard={pendingDonations}
+            />
+
+          <PendingDonationCard
+            title="Suas doações Finalizadas"
+            iconName={"heart"}
+            image="trunk"
+            dataCard={disable}
+            />
+             
+            </>
+          )}
+          
+          
+
+       
             
-            
-            
+
            
           {/* </View> */}
           </ScrollView>

@@ -3,13 +3,11 @@ import api from './api'
 
 export async function getDonates(searchTerm = '') {
   try {
-    console.log('🔍 Iniciando busca de doações...');
     console.log('📥 Termo de busca recebido:', searchTerm);
 
     if (!searchTerm.trim()) {
       console.log('⚠️ Termo vazio. Buscando todas as doações...');
       const response = await api.get(`/donations`);
-      console.log('✅ Dados recebidos (geral):', response.data.data);
       return response.data.data;
     }
 
