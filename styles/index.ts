@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   loginInput: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   headerBar: {
     height: isWeb ? 70 : 120,
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
   card: {
     width: CARD_WIDTH,
     maxWidth: 200,
-    height: 440,
+    height: 360,
     borderTopLeftRadius : 0,
     borderTopRightRadius : 0,
     borderRadius: 8,
@@ -194,17 +194,19 @@ const styles = StyleSheet.create({
   },
   infoBox: {
     margin: 8,
-    gap: 2,
-    paddingLeft: 10,
+   
+    height: "100%"
+
   },
   locationCard: {
     gap: 2,
     marginBottom: 2,
     paddingTop: 8,
     flexDirection: 'row',
+    
   },
   imageBox: {
-    height: 250,
+    height: 150,
     borderTopWidth: 3, 
     borderBottomWidth: 3,
     borderColor: colors.marker,
@@ -232,13 +234,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   bodyPrin: {
-    justifyContent: 'center',
+    justifyContent: "flex-start",
     alignItems: 'center',
     flexDirection: 'column',
     padding: 4,
     paddingTop: isWeb? 0 : 36,
     marginTop: isWeb? 0 : 12,
     gap: 20,
+    flex: 1
   },
   bodySearch: {
     justifyContent: 'center',
@@ -378,6 +381,91 @@ const styles = StyleSheet.create({
     width: '80%',
     alignSelf: 'flex-end',
   },
+  savedCard:{
+     width: CARD_WIDTH,
+    maxWidth: 200,
+    height: 440,
+    borderTopLeftRadius : 0,
+    borderTopRightRadius : 0,
+    borderRadius: 8,
+    borderWidth: 2,
+    marginVertical: 18,
+    marginBottom: 20,
+    paddingBottom: 20,
+    borderColor: colors.marker,
+    backgroundColor: colors.background,
+    alignSelf: 'flex-start',
+    overflow: 'hidden',
+  },
+  imageBoxSavedCard:{
+    height: isWeb? 260: 260,
+    borderTopWidth: isWeb? 1 : 0, 
+    borderBottomWidth: 3,
+    borderColor: colors.marker,
+    backgroundColor: '#A97E76',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageSavedCard:{
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    resizeMode: 'cover'
+  },
+   infoBoxSavedCard: {
+    margin: 8,
+    gap: 2,
+    paddingLeft: 10,
+  },
+  locationSavedCard: {
+    gap: 2,
+    marginBottom: 2,
+    paddingTop: 8,
+    flexDirection: 'row',
+  },
+  donationFavContainer:{
+   borderWidth: 1,
+    height: "52%",
+    width: "100%",
+    overflow: "hidden"
+
+  },
+  favoriteTextContainer:{
+    
+    alignSelf: "center"
+
+  },
+  titleFavContainer:{
+    borderBottomWidth: 1,
+    overflow: "hidden",
+    width: "100%",
+    height: "20%"
+  },
+  iconDonationFav:{
+ 
+    marginTop: isWeb? "1%":"0%" ,
+    alignSelf: "center"
+  },
+  iconTextContainer:{
+   
+     width: "100%",
+     height: "96%",
+     flexDirection: "row"
+  },
+  imageTreeBranch: {
+    width: isWeb? "15%" : "45%", 
+    height: isWeb? "100%" : "100%", 
+    position: "absolute", 
+    left: isWeb? "85%" : "55%"
+  },
+  imageTrunk:{
+     width: isWeb? "15%" : "45%", 
+    height: isWeb? "200%" : "200%", 
+    position: "absolute", 
+    left: isWeb? "92.5%" : "76%",
+    bottom: isWeb? "0%" : "0%"
+  }
+
 });
 
 export default styles;

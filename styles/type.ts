@@ -60,13 +60,14 @@ const typog = {
   },
   txtCard: 
   {
-    fontSize: 18,
+    fontSize: 16,
     marginBottom: 8,
     lineHeight: 20,
     fontWeight: 500,
     textAlign: 'left',
     fontFamily: 'DGrotesque',
     color: colors.marker,
+    
   },
   txtSearch: 
   {
@@ -95,7 +96,36 @@ const typog = {
     fontFamily: 'DGrotesque-SemiBold',
     color: colors.marker,
     margin: isWeb ? 6 : 24,
-  }
+  },
+   nameSavedCard: 
+  {
+    fontSize: 20,
+    marginBottom : 8,
+    fontWeight: 580,
+    textAlign: 'left',
+    fontFamily: 'DGrotesque-SemiBold',
+  },
+   descriptionSavedCard: 
+  {
+    fontSize: 18,
+    marginBottom: 18,
+    lineHeight: 20,
+    fontWeight: 500,
+    textAlign: 'left',
+    fontFamily: 'DGrotesque',
+    color: colors.marker
+  },
+    locationTextSavedCard: 
+  {
+    fontSize: 16,
+    marginBottom: 8,
+    lineHeight: 20,
+    fontWeight: 500,
+    textAlign: 'left',
+    fontFamily: 'DGrotesque',
+    color: colors.marker,
+    
+  },
 };
 
 export default typog;

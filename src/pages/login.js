@@ -1,5 +1,5 @@
 
-import { ScrollView, View, Image, Alert, Text } from 'react-native';
+import { ScrollView, View, Image, Alert, Text, Button } from 'react-native';
 
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -35,9 +35,15 @@ function LoginScreen() {
         backgroundColor: colors.background,
         height: '100%',
       }}>
+<<<<<<< HEAD
       <View style={{...styles.bodyPrin, gap:2}}>
         <Image source={require('../../assets/Logo.png')} style={{...styles.logo, marginTop: 24}} />
         <Text style={typog.titleLogin}>Bem vindo</Text>
+=======
+      <View style={styles.bodyPrin}>
+        <Image source={require('../../assets/Logo.png')} style={{...styles.logo, marginTop: 24}} />
+        <Text style={typog.titleLogin}>Bem vindo de volta</Text>
+>>>>>>> 044c96f0d37dee445bb26843e293ae6f51ccd632
         <View style={styles.loginInput}>
           <Input
             ph="Email"
@@ -54,12 +60,13 @@ function LoginScreen() {
           />
         </View>
 
-        <RegisterButton route="Tabs" text="Entrar" onPress={handleLogin} />
+        <RegisterButton route="Tabs" text="Entrar" /*onPress={handleLogin}*/ onPress={() => navigation.navigate('Tabs')} />
         <RegisterButton
           route="Register"
           text="Cadastrar"
          onPress={() => navigation.navigate('Register')}  
         />
+       
       </View>
     </ScrollView>
   );
