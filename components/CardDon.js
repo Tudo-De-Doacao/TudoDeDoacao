@@ -32,6 +32,7 @@ export default function Card({ name, location, description, image }) {
             />
           </View>
       
+        </Pressable>
 
         
         <View style={styles.infoBox}>
@@ -55,6 +56,8 @@ export default function Card({ name, location, description, image }) {
         </View>
       </Pressable>
     </View>
+        
+      </View>
     
   );
 }

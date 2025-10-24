@@ -47,51 +47,24 @@ function FavoriteScreen() {
     fetchDonations();
   }, []);
 
-  // const donations = [ {
-  //   id: 1,
-  //   name: "Bola de Futebol",
-  //   location: "São Paulo - SP",
-  //   description: "Bola usada em boas condições, ideal para treinos infantis.",
-  //   image: "bola.jpg",
-  //   status: "pending",
-  // },
-  // {
-  //   id: 2,
-  //   name: "Carrinho de Brinquedo",
-  //   location: "Rio de Janeiro - RJ",
-  //   description: "Carrinho elétrico em ótimo estado, funcionando perfeitamente.",
-  //   image: "carrinho.jpg",
-  //   status: "disable",
-  // },
-  // {
-  //   id: 3,
-  //   name: "Roupa Infantil",
-  //   location: "Belo Horizonte - MG",
-  //   description: "Conjunto infantil tamanho 6, usado poucas vezes.",
-  //   image: "roupa.jpg",
-  //   status: "pending",
-  // },
-  // {
-  //   id: 4,
-  //   name: "Cesta Básica",
-  //   location: "Curitiba - PR",
-  //   description: "Cesta com alimentos não perecíveis para doação imediata.",
-  //   image: "cesta.jpg",
-  //   status: "disable",
-  // },
-  // {
-  //   id: 5,
-  //   name: "Tênis Infantil",
-  //   location: "Salvador - BA",
-  //   description: "Par de tênis tamanho 33, quase novo.",
-  //   image: "tenis.jpg",
-  //   status: "pending",
-  // }]
+  const renderCardItem = ({ item }) => (
+    <Card
+      key={item.id}
+      name={item.name}
+      description={item.description}
+      location={item.location || 'Localização desconhecida'}
+      image={`http://127.0.0.1:8000/storage/${item.image}`}
 
-  const pendingDonations = donationCards.filter(item => item.status === "pending");
-  const active = donationCards.filter(item => item.status === "active");
-  const disable = donationCards.filter(item => item.status === "disable");
- 
+    />
+  );
+  const donations = [
+    { id: 1, name: "Bola", location: "São Paulo, Campo limpoaaaaaaaaaaaaaaaa", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
+    { id: 2, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
+    { id: 3, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,  
+    { id: 4, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,
+    { id: 5, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,
+
+  ]
 
   return (
     <>
