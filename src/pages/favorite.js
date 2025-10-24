@@ -25,14 +25,14 @@ import { categorias } from '../../components/FilterBtn';
 
 function FavoriteScreen() {
   const [donationCards, setDonationCards] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [pendings, setPendings] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     async function fetchDonations() {
       try {
         const data = await getDonates('');
-        console.log(data)
         if (Array.isArray(data)) {
           setDonationCards(data);
         } else {
@@ -69,101 +69,80 @@ function FavoriteScreen() {
   return (
     <>
       <Header />
+      
       <ImageBackground
         source={require('../../assets/BGHome.png')}
-        style={styles.bgimagem}
-        resizeMode="stretch">
+        style={[styles.bgimagem]}
+        resizeMode="stretch"
+      >
+        <ScrollView 
+         contentContainerStyle={{paddingBottom: 70}}
+        >
 
-
-        <ScrollView
-          
-            contentContainerStyle={{
-              ...styles.scroll,
-              
-              flex: 1
-            }}
-            showsVerticalScrollIndicator={false}
-          >
-          
-
-          <View style={styles.bodyPrin}>
-            {/* <View style={{flexDirection: 'row'}}>
-            <Icon
-              name="heart"
-              size={32}
-              color="#D93036"
-              style={styles.iconHeader}
-            />
-              <Text style={{ ...typog.txtDrw, textAlign: 'left' }}>
-                Doações Favoritas
-              </Text>
+          {loading && (
+              <View>
+                <ActivityIndicator size="large" color="#D93036"/>
+                <Text>
+                  Carregando doações...
+                </Text>
               </View>
-              {loading && (
-              <ActivityIndicator
-                size={100}
-                color="#D93036"
-                style={{ marginTop: 40 }}
-              />
-            )} */}
+          )}
 
-            {/* {errorMsg !== '' && (
-              <Text
-                style={{ color: 'red', textAlign: 'center', marginTop: 20 }}
-              >
-                {errorMsg}
-              </Text>
-            )} */}
+          {!loading && errorMsg !== "" && (
+            <Text style={{fontSize: 20, alignSelf: "center"}}>
+              {errorMsg}
+            </Text>
+          )}
 
-            {/* {!loading && donationCards.length === 0 && errorMsg === '' && (
-              <Text style={{ ...styles.txtCard,paddingRight: 24 }}>
-                Nenhuma doação favoritada ainda.
-              </Text>
-            )} */}
+          {!loading && errorMsg === ""  && donationCards.length === 0 && (
+            <Text style={{fontSize: 20, alignSelf: "center"}}>
+              Nenhuma doação encontrada
+            </Text>
+          )}
 
-            {/* {!loading && donationCards.length > 0 && (
-              <FlatList
-                data={donationCards}
-                renderItem={renderCardItem}
-                keyExtractor={(item) => item.id.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.bodyCard}
-              />
-            )} */}
-
-        
-            {/* <SavedCard 
-            name={"Bola"}
-            location={"São paulo, campo limpo - SP"}
-            description={"Bola quadrada do kiko"}
-            > 
-
-            </SavedCard> */}
+          {!loading && errorMsg === "" && donationCards.length > 0 &&(
+            <>
+            <PendingDonationCard
+            title="Pedidos pendentes"
+            iconName={"clock"}
+            image="tree"
+            dataCard={pendingDonations}
+            />
 
             <PendingDonationCard
-            title={"Doações pendentes"}
+            title="Pedidos Finalizados"
             iconName={"heart"}
-            //image receives tree or trunk
-            image={"tree"}
-            dataCard={donations}
+            image="trunk"
+            dataCard={disable}
             />
+
             <PendingDonationCard
-            title={"Doações pendentes"}
-            iconName={"heart"}
-            //image receives tree or trunk
-            image={"tree"}
-            dataCard={donations}
+            title="Suas doações pendentes"
+            iconName={"clock"}
+            image="trunk"
+            dataCard={pendingDonations}
             />
+
+          <PendingDonationCard
+            title="Suas doações Finalizadas"
+            iconName={"heart"}
+            image="trunk"
+            dataCard={disable}
+            />
+             
+            </>
+          )}
+          
           
 
-             
+       
+            
 
            
-          
-
-          </View>
-        </ScrollView>
+          {/* </View> */}
+          </ScrollView>
       </ImageBackground>
+        
     </>
   );
 }

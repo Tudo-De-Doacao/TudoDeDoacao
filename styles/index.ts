@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     
   },
   imageBox: {
-    height: 150,
+    height: 180,
     borderTopWidth: 3, 
     borderBottomWidth: 3,
     borderColor: colors.marker,
@@ -236,11 +236,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   bodyPrin: {
-    justifyContent: "flex-start",
     alignItems: 'center',
     flexDirection: 'column',
-    padding: 4,
-    gap: 20,
+    padding: "0.5%",
     flex: 1
   },
   bodySearch: {
@@ -423,30 +421,39 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   donationFavContainer:{
-   borderWidth: 1,
-    height: "52%",
+  borderWidth: 1,
+    height: 500,
     width: "100%",
     overflow: "hidden"
 
   },
   favoriteTextContainer:{
-    
     alignSelf: "center"
 
   },
   titleFavContainer:{
-    borderBottomWidth: 1,
     overflow: "hidden",
     width: "100%",
     height: "20%"
   },
-  iconDonationFav:{
- 
-    marginTop: isWeb? "1%":"0%" ,
-    alignSelf: "center"
+  clockIconStyle:{
+    padding: isWeb? 4: 18,
+    // marginTop: isWeb? "1%":"1%" ,
+    alignContent: "center",
+    alignSelf: "center",
+    
+    marginTop: isWeb? 10 : 3
+  },
+  heartIconStyle: {
+     padding: isWeb? 4: 18,
+    // marginTop: isWeb? "1%":"1%" ,
+    alignContent: "center",
+    alignSelf: "center",
+   
+    marginTop: isWeb? 10 : 3
   },
   iconTextContainer:{
-   
+    
      width: "100%",
      height: "96%",
      flexDirection: "row"
@@ -458,8 +465,9 @@ const styles = StyleSheet.create({
     left: isWeb? "85%" : "55%"
   },
   imageTrunk:{
-     width: isWeb? "15%" : "45%", 
-    height: isWeb? "200%" : "200%", 
+    width: isWeb? "15%" : "45%", 
+    height: isWeb? "200%" : "300%", 
+    // transform: [{ rotate: "180deg"}],
     position: "absolute", 
     left: isWeb? "92.5%" : "76%",
     bottom: isWeb? "0%" : "0%"

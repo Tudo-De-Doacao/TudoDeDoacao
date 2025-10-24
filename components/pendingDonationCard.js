@@ -31,7 +31,8 @@ export default function PendingDonationCard({title, content, iconName, image, da
                       name={iconName}
                       size={30}
                       color="#D93036"
-                      style={styles.iconDonationFav}
+                      // style={styles.iconDonationFav}
+                      style={iconName === "heart"? styles.heartIconStyle : iconName === "clock" ?  styles.clockIconStyle : null}
                     />
 
                     <View style={styles.favoriteTextContainer}>
@@ -49,9 +50,9 @@ export default function PendingDonationCard({title, content, iconName, image, da
 
                 
               </View>
-
+                      
               {/* Corpo do card*/}
-              <View style={{backgroundColor:colors.background, width: "100%", height: "80%", borderWidth: 1}}>
+            <View style={{backgroundColor:colors.background, width: "100%", height: "80%", borderWidth: 1}}>
                 
               <FlatList
               data={dataCard}
@@ -61,15 +62,16 @@ export default function PendingDonationCard({title, content, iconName, image, da
                 name={item.name}
                 location={item.location}
                 description={item.description}
+                image={item.image}
                 />
               )}
               horizontal
-              contentContainerStyle={{ paddingHorizontal: 16, alignItems: "center", gap: 20}}
+              contentContainerStyle={{ paddingHorizontal: 16, alignItems: "center", gap: 20, marginTop: 15, marginBottom: 15}}
               showsHorizontalScrollIndicator={false}
               />
                  
     
-              </View>
+            </View>
 
             </View>
     )
