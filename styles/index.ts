@@ -471,6 +471,73 @@ const styles = StyleSheet.create({
     position: "absolute", 
     left: isWeb? "92.5%" : "76%",
     bottom: isWeb? "0%" : "0%"
+  },
+  requestContainer:{
+    borderWidth: 1,
+    height: isWeb? 100 : 100,
+    width: isWeb? "85%" : "85%",
+    borderRadius: 19,
+    backgroundColor: colors.background,
+    flexDirection: "row"
+  },
+  ImageCardRequest:{
+    borderWidth: 1,
+    resizeMode: "cover",
+    height: isWeb? 50 : 50,
+    width: isWeb? 50 : 50,
+    borderRadius: 100
+  },
+  imageCardRequestContainer:{
+    height: isWeb? 50 : 50,
+    width: isWeb? 50 : 50,
+    borderRadius: 40,
+    marginTop: isWeb? 25 : 25,
+    marginLeft: isWeb? 25 : 25
+    
+  },
+  dataContainerDonate:{
+    borderWidth: 1,
+    width: isWeb? 200 : 200,
+    marginLeft: 7
+  },
+  donationNameContainer:{
+    borderWidth: 1
+  },
+  donationNameText:{
+    fontSize: isWeb? 25 : 25
+  },
+  requestUserContainer:{
+    borderWidth: 1
+  },
+  requestUserText:{
+    fontSize: isWeb? 18 : 18
+  },
+  requestLocalContainer:{
+    borderWidth: 1
+  },
+  requestLocalText:{
+    fontSize: isWeb? 18 : 18,
+  },
+  requestDateContainer:{
+    borderWidth: 1,
+  },
+  requestDateText:{
+    fontSize: isWeb? 10 : 10,
+  },
+  containerButtons:{
+    borderWidth: 1,
+    width: isWeb? 130 : 130,
+    flexDirection: "row"
+  },
+  acceptButton:{
+    borderWidth: 1,
+    height: isWeb? 60 : 60,
+    width: isWeb? 50 : 50
+  },
+  declineButton:{
+    borderWidth: 1,
+     height: isWeb? 60 : 60,
+     width: isWeb? 50 : 50
   }
 
 });

@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Card from '../../components/CardDon';
 import SavedCard from '../../components/SavedCard';
 import Header from '../../components/Header';
-import PendingDonationCard from '../../components/pendingDonationCard';
+import PendingDonationList from '../../components/pendingDonationList';
 
 import styles from '../../styles/index';
 import typog from '../../styles/type';
@@ -25,8 +25,7 @@ import { categorias } from '../../components/FilterBtn';
 
 function FavoriteScreen() {
   const [donationCards, setDonationCards] = useState([]);
-  const [pendings, setPendings] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
@@ -47,50 +46,8 @@ function FavoriteScreen() {
     fetchDonations();
   }, []);
 
-  // const donations = [ {
-  //   id: 1,
-  //   name: "Bola de Futebol",
-  //   location: "São Paulo - SP",
-  //   description: "Bola usada em boas condições, ideal para treinos infantis.",
-  //   image: "bola.jpg",
-  //   status: "pending",
-  // },
-  // {
-  //   id: 2,
-  //   name: "Carrinho de Brinquedo",
-  //   location: "Rio de Janeiro - RJ",
-  //   description: "Carrinho elétrico em ótimo estado, funcionando perfeitamente.",
-  //   image: "carrinho.jpg",
-  //   status: "disable",
-  // },
-  // {
-  //   id: 3,
-  //   name: "Roupa Infantil",
-  //   location: "Belo Horizonte - MG",
-  //   description: "Conjunto infantil tamanho 6, usado poucas vezes.",
-  //   image: "roupa.jpg",
-  //   status: "pending",
-  // },
-  // {
-  //   id: 4,
-  //   name: "Cesta Básica",
-  //   location: "Curitiba - PR",
-  //   description: "Cesta com alimentos não perecíveis para doação imediata.",
-  //   image: "cesta.jpg",
-  //   status: "disable",
-  // },
-  // {
-  //   id: 5,
-  //   name: "Tênis Infantil",
-  //   location: "Salvador - BA",
-  //   description: "Par de tênis tamanho 33, quase novo.",
-  //   image: "tenis.jpg",
-  //   status: "pending",
-  // }]
-
   const pendingDonations = donationCards.filter(item => item.status === "pending");
-  const active = donationCards.filter(item => item.status === "active");
-  const disable = donationCards.filter(item => item.status === "disable");
+  const disableDonations = donationCards.filter(item => item.status === "disable");
  
 
   return (
@@ -129,44 +86,37 @@ function FavoriteScreen() {
 
           {!loading && errorMsg === "" && donationCards.length > 0 &&(
             <>
-            <PendingDonationCard
+            <PendingDonationList
             title="Pedidos pendentes"
             iconName={"clock"}
             image="tree"
             dataCard={pendingDonations}
             />
 
-            <PendingDonationCard
+            <PendingDonationList
             title="Pedidos Finalizados"
             iconName={"heart"}
             image="trunk"
-            dataCard={disable}
+            dataCard={disableDonations}
             />
 
-            <PendingDonationCard
+            <PendingDonationList
             title="Suas doações pendentes"
             iconName={"clock"}
             image="trunk"
             dataCard={pendingDonations}
             />
 
-          <PendingDonationCard
+          <PendingDonationList
             title="Suas doações Finalizadas"
             iconName={"heart"}
             image="trunk"
-            dataCard={disable}
+            dataCard={disableDonations}
             />
              
             </>
           )}
           
-          
-
-       
-            
-
-           
-          {/* </View> */}
           </ScrollView>
       </ImageBackground>
         
