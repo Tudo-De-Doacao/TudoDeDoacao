@@ -488,56 +488,59 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   imageCardRequestContainer:{
-    height: isWeb? 50 : 50,
-    width: isWeb? 50 : 50,
-    borderRadius: 40,
-    marginTop: isWeb? 25 : 25,
-    marginLeft: isWeb? 25 : 25
-    
+    height: isWeb? 50 : 97,
+    width: isWeb? 50 : 75,
+    alignItems: "center",
+    justifyContent: "center"
   },
   dataContainerDonate:{
-    borderWidth: 1,
     width: isWeb? 200 : 200,
-    marginLeft: 7
+   
   },
   donationNameContainer:{
-    borderWidth: 1
+   
   },
   donationNameText:{
     fontSize: isWeb? 25 : 25
   },
   requestUserContainer:{
-    borderWidth: 1
+  
   },
   requestUserText:{
     fontSize: isWeb? 18 : 18
   },
   requestLocalContainer:{
-    borderWidth: 1
+  
   },
   requestLocalText:{
     fontSize: isWeb? 18 : 18,
   },
   requestDateContainer:{
-    borderWidth: 1,
+   
   },
   requestDateText:{
     fontSize: isWeb? 10 : 10,
   },
   containerButtons:{
-    borderWidth: 1,
+   
     width: isWeb? 130 : 130,
-    flexDirection: "row"
+    flexDirection: "row",
+    alignItems: "center",
+   justifyContent: "space-around",
+   borderRadius: 20
   },
   acceptButton:{
-    borderWidth: 1,
+    
     height: isWeb? 60 : 60,
-    width: isWeb? 50 : 50
+    width: isWeb? 50 : 50,
+    alignItems: "center",
+    
   },
   declineButton:{
-    borderWidth: 1,
+    
      height: isWeb? 60 : 60,
-     width: isWeb? 50 : 50
+     width: isWeb? 50 : 50,
+     alignItems: "center"
   }
 
 });
