@@ -474,11 +474,12 @@ const styles = StyleSheet.create({
   },
   requestContainer:{
     borderWidth: 1,
-    height: isWeb? 100 : 100,
-    width: isWeb? "85%" : "85%",
+    height: isWeb? 100 : 130,
+    width: isWeb? 430 : 430,
     borderRadius: 19,
     backgroundColor: colors.background,
-    flexDirection: "row"
+    flexDirection: "row",
+    alignItems: "center"
   },
   ImageCardRequest:{
     borderWidth: 1,
@@ -541,6 +542,9 @@ const styles = StyleSheet.create({
      height: isWeb? 60 : 60,
      width: isWeb? 50 : 50,
      alignItems: "center"
+  },
+  requestListContainer:{
+    flex: 1,
   }
 
 });

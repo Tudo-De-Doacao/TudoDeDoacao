@@ -5,9 +5,9 @@ import Header from "../../components/Header";
 import RequestList from "../../components/requestList";
 
 
-function requestScreeen(){
+function RequestScreen(){
   return(
-    <View>
+    <View style={{flex: 1, paddingBottom: 80}}>
       <Header/>
       
       <ImageBackground
@@ -16,11 +16,11 @@ function requestScreeen(){
         resizeMode="stretch"
       >
       
-      <RequestList/>
+     <RequestList></RequestList>
 
       </ImageBackground>
     </View>
   )
 };
 
-export default requestScreeen;
+export default RequestScreen;

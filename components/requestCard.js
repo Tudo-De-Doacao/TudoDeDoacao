@@ -4,6 +4,7 @@ import  Animated, {useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 
 
 import styles from "../styles";
 import colors from "../styles/color";
+import { LinearGradient } from "expo-linear-gradient";
 const isWeb = Platform.OS === 'web';
 
 
@@ -37,16 +38,17 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
 
   
     return(
+      
     <Animated.View style={[styles.requestContainer, animatedStyle]}>
       <View style={styles.imageCardRequestContainer}>
         <Image
          style={styles.ImageCardRequest}
-         source={require("../assets/tenis.png")}
-        //  source={{
-        //  uri: requestImage,
-        // }}
+         source={{
+         uri: requestImage,
+        }}
         />
       </View>
+      
 
       <View style={styles.dataContainerDonate}> 
         <View style={styles.donationNameContainer}>
@@ -101,9 +103,12 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
             />
             <Text> Aceitar</Text>
         </TouchableOpacity>
+
        
       </View>
+      
     </Animated.View>
+    
   )
 };
 

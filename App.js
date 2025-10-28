@@ -11,7 +11,7 @@ import typog from './styles/type';
 import colors from './styles/color';
 import styles from './styles/index';
 
-import requestScreeen from './src/pages/request';
+import RequestScreen from "./src/pages/request";
 import HomeScreen from './src/pages/home';
 import RegisterScreen from './src/pages/register';
 import LoginScreen from './src/pages/login';
@@ -101,7 +101,7 @@ function TabsNav() {
           }}
         />
         <Tabs.Screen name="Favorites" component={FavoriteScreen} />
-        <Tabs.Screen name="Request" component={requestScreeen} />
+        <Tabs.Screen name="Request" component={RequestScreen} />
       </Tabs.Navigator>
     </>
   );

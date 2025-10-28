@@ -28,6 +28,7 @@
     "react-native": "^0.79.5",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-image-crop-picker": "*",
+    "react-native-linear-gradient": "^2.8.3",
     "react-native-paper": "4.9.2",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
