@@ -480,6 +480,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     flexDirection: "row",
     alignItems: "center"
+
   },
   ImageCardRequest:{
     borderWidth: 1,

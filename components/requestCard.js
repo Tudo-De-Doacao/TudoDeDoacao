@@ -5,41 +5,59 @@ import  Animated, {useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 
 import styles from "../styles";
 import colors from "../styles/color";
 import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
 const isWeb = Platform.OS === 'web';
 
 
 export default function RequestCard({donateName, userName, userLocal, requestDate, requestImage, onRemove}){
   const translateX = useSharedValue(0);
-  const opacity = useSharedValue(1);
+  const gradientHeight = useSharedValue(0);
+  const gradientColor = useSharedValue("");
+  const [click, setClick] = useState(false)
 
-  const animatedStyle = useAnimatedStyle(() => {
+  const animatedGradientStyle = useAnimatedStyle(() => {
     return{
-        transform: [{translateX: translateX.value}],
-        opacity: opacity.value,
+       height: `${gradientHeight.value}%`,
+       backgroundColor: gradientColor.value,
+       borderRadius: 19,
     }
   })
 
-  const handleAccept = () => {
-    translateX.value = withTiming (isWeb? 2000 : 2000, {duration: 500}, () => {
-        opacity.value = withTiming(0, { duration: 100}, () => {
-            runOnJS(onRemove)();
-        });
-    });
-  };
+  const animatedCardStyle = useAnimatedStyle(() => {
+    return{
+        transform: [{translateX: translateX.value}],
+    };
+  })
 
+  const handleAccept = () => {
+    setClick(true);
+    gradientColor.value = "rgba(36, 204, 36, 1)";
+    gradientHeight.value = withTiming(100, {duration: 500}, () => {
+      translateX.value = withTiming (isWeb? 2000 : -30, {duration: 500}, () => {
+          translateX.value = withTiming(isWeb? 200 : 2000, {duration: 500}, () => {
+            runOnJS(onRemove)();
+          })
+          });
+
+    });   
+    };
   
   const handleDecline = () => {
-    translateX.value = withTiming (isWeb? -2000 : -2000, {duration: 500}, () => {
-        opacity.value = withTiming(0, { duration: 100}, () => {
+    setClick(true)
+    gradientColor.value = "rgba(216, 41, 41, 1)";
+    gradientHeight.value = withTiming (isWeb? 100 : 100, {duration: 500}, () => {
+      translateX.value = withTiming (isWeb? -2000 : 30, {duration: 500}, () => {
+          translateX.value = withTiming (isWeb? -2000 : -2000, {duration: 500}, () => {
             runOnJS(onRemove)();
-        });
-    });
+          })
+      });
+    })
   };
 
   
     return(
       
-    <Animated.View style={[styles.requestContainer, animatedStyle]}>
+    <Animated.View style={[styles.requestContainer, animatedCardStyle]}>
       <View style={styles.imageCardRequestContainer}>
         <Image
          style={styles.ImageCardRequest}
@@ -82,6 +100,7 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
         style={styles.acceptButton}
         activeOpacity={0.4}
         onPress={handleDecline}
+        disabled={click}
         >
             <Icon
             name={"trash-2"}
@@ -95,6 +114,7 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
         style={styles.declineButton}
         activeOpacity={0.4}
         onPress={handleAccept}
+        disabled={click}
         >
             <Icon
             name={"check"}
@@ -102,11 +122,32 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
             color={colors.border}
             />
             <Text> Aceitar</Text>
-        </TouchableOpacity>
-
-       
+        </TouchableOpacity> 
       </View>
-      
+
+      <Animated.View style={[
+        {  
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+        },
+        animatedGradientStyle
+      ]}>
+        <LinearGradient
+            colors={["hsla(0, 0%, 100%, 0.00)", "rgba(36, 204, 36, 0)"]}
+            start={{ x: 0.5, y: 1 }}
+            end={{ x: 0.5, y: 0 }}
+            style={{
+              borderRadius: 19,
+              flex: 1,
+              
+            }}
+          > 
+          <Text> Seilá</Text>
+          </LinearGradient>
+      </Animated.View>
+    
     </Animated.View>
     
   )

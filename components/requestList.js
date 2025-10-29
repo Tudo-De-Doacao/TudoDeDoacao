@@ -1,12 +1,15 @@
-import { ImageBackground, Text, View, FlatList } from "react-native";
+import { ImageBackground, Text, View, FlatList} from "react-native";
+import {useState} from "react"
 
 import styles from "../styles";
 import RequestCard from "./requestCard";
 
 
 export default function RequestList(){
-const dataCard = [
-  { id: 1, donate_name: "Cesta Básica", request_user_name: "Maria Silva", request_user_local: "São Paulo - SP", request_data: "2025-10-27", request_image: "https://picsum.photos/200/200" },
+// const [cards, setCards] = useState();
+
+const card = [
+   { id: 1, donate_name: "Cesta Básica", request_user_name: "Maria Silva", request_user_local: "São Paulo - SP", request_data: "2025-10-27", request_image: "https://picsum.photos/200/200" },
   { id: 2, donate_name: "Roupas de Inverno", request_user_name: "Carlos Souza", request_user_local: "Curitiba - PR", request_data: "2025-10-25", request_image: "https://picsum.photos/201/200" },
   { id: 3, donate_name: "Brinquedos Infantis", request_user_name: "Ana Paula", request_user_local: "Recife - PE", request_data: "2025-10-20", request_image: "https://picsum.photos/202/200" },
   { id: 4, donate_name: "Alimentos Não Perecíveis ", request_user_name: "Lucas Pereira", request_user_local: "Belo Horizonte - MG", request_data: "2025-10-18", request_image: "https://picsum.photos/203/200" },
@@ -26,13 +29,18 @@ const dataCard = [
   { id: 18, donate_name: "Utensílios de Cozinha", request_user_name: "Rafael Lima", request_user_local: "Aracaju - SE", request_data: "2025-09-29", request_image: "https://picsum.photos/217/200" },
   { id: 19, donate_name: "Instrumentos Musicais", request_user_name: "Isabela Martins", request_user_local: "Maceió - AL", request_data: "2025-09-28", request_image: "https://picsum.photos/218/200" },
   { id: 20, donate_name: "Materiais de Construção", request_user_name: "Diego Ferreira", request_user_local: "Londrina - PR", request_data: "2025-09-27", request_image: "https://picsum.photos/219/200" }
-];
+]
 
+const removeCard = (id) => {
+  return(
+    card.filter((card) => card.id !== id)
+  )
+}
 
   return(
     <View style={styles.requestListContainer}>
       <FlatList
-        data={dataCard}
+        data={card}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({item}) => (
           <RequestCard
@@ -40,6 +48,7 @@ const dataCard = [
             userName ={item.request_user_name}
             userLocal={item.request_user_local}
             requestDate={item.request_data}
+            onRemove={() => removeCard(item.id)}
           />
         )}
         contentContainerStyle={{ alignItems: "center", gap: 8, marginTop: 10}}
