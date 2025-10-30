@@ -1,14 +1,12 @@
 import { ImageBackground, Text, View, FlatList} from "react-native";
-import {useState} from "react"
+import {useEffect, useState} from "react"
 
 import styles from "../styles";
 import RequestCard from "./requestCard";
 
 
-export default function RequestList(){
-// const [cards, setCards] = useState();
-
-const card = [
+export default function RequestList(dataCard){
+const cardTest = [
    { id: 1, donate_name: "Cesta Básica", request_user_name: "Maria Silva", request_user_local: "São Paulo - SP", request_data: "2025-10-27", request_image: "https://picsum.photos/200/200" },
   { id: 2, donate_name: "Roupas de Inverno", request_user_name: "Carlos Souza", request_user_local: "Curitiba - PR", request_data: "2025-10-25", request_image: "https://picsum.photos/201/200" },
   { id: 3, donate_name: "Brinquedos Infantis", request_user_name: "Ana Paula", request_user_local: "Recife - PE", request_data: "2025-10-20", request_image: "https://picsum.photos/202/200" },
@@ -30,17 +28,17 @@ const card = [
   { id: 19, donate_name: "Instrumentos Musicais", request_user_name: "Isabela Martins", request_user_local: "Maceió - AL", request_data: "2025-09-28", request_image: "https://picsum.photos/218/200" },
   { id: 20, donate_name: "Materiais de Construção", request_user_name: "Diego Ferreira", request_user_local: "Londrina - PR", request_data: "2025-09-27", request_image: "https://picsum.photos/219/200" }
 ]
+const [cards, setCards] = useState(cardTest);
+
 
 const removeCard = (id) => {
-  return(
-    card.filter((card) => card.id !== id)
-  )
-}
+    setCards(((prev) => prev.filter((obj) => obj.id !== id)))
+};
 
   return(
     <View style={styles.requestListContainer}>
       <FlatList
-        data={card}
+        data={cards}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({item}) => (
           <RequestCard
@@ -48,6 +46,7 @@ const removeCard = (id) => {
             userName ={item.request_user_name}
             userLocal={item.request_user_local}
             requestDate={item.request_data}
+            requestImage={item.request_image}
             onRemove={() => removeCard(item.id)}
           />
         )}

@@ -13,7 +13,18 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
   const translateX = useSharedValue(0);
   const gradientHeight = useSharedValue(0);
   const gradientColor = useSharedValue("");
-  const [click, setClick] = useState(false)
+  const iconScale = useSharedValue(0);
+  const iconOpacity = useSharedValue(0);
+
+  const [click, setClick] = useState(false);
+  const [iconState, setIconState] = useState("");
+
+  const animatedCheckStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{scale: iconScale.value}],
+      opacity: iconOpacity.value,
+    }
+  })
 
   const animatedGradientStyle = useAnimatedStyle(() => {
     return{
@@ -31,26 +42,39 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
 
   const handleAccept = () => {
     setClick(true);
+    setIconState("check")
     gradientColor.value = "rgba(36, 204, 36, 1)";
-    gradientHeight.value = withTiming(100, {duration: 500}, () => {
-      translateX.value = withTiming (isWeb? 2000 : -30, {duration: 500}, () => {
-          translateX.value = withTiming(isWeb? 200 : 2000, {duration: 500}, () => {
-            runOnJS(onRemove)();
-          })
-          });
 
+    gradientHeight.value = withTiming(100, {duration: 500}, () => {
+      iconScale.value = withTiming(1, {duration: 300}, () => {
+        iconOpacity.value = withTiming(1, {duration: 500}, () => {
+          translateX.value = withTiming (isWeb? 2000 : -30, {duration: 500}, () => {
+              translateX.value = withTiming(isWeb? 200 : 2000, {duration: 500}, () => {
+                runOnJS(onRemove)();
+              })
+              });
+        })
+      })
     });   
-    };
+  };
   
   const handleDecline = () => {
     setClick(true)
+    setIconState("x");
     gradientColor.value = "rgba(216, 41, 41, 1)";
+
+
     gradientHeight.value = withTiming (isWeb? 100 : 100, {duration: 500}, () => {
-      translateX.value = withTiming (isWeb? -2000 : 30, {duration: 500}, () => {
-          translateX.value = withTiming (isWeb? -2000 : -2000, {duration: 500}, () => {
-            runOnJS(onRemove)();
-          })
-      });
+      iconScale.value = withTiming(1,{duration: 300}, () => {
+        iconOpacity.value = withTiming(1, {duration: 500}, () => {
+          translateX.value = withTiming (isWeb? -2000 : 30, {duration: 500}, () => {
+              translateX.value = withTiming (isWeb? -2000 : -2000, {duration: 500}, () => {
+                runOnJS(onRemove)();
+              })
+          });
+
+        })
+      })
     })
   };
 
@@ -144,7 +168,17 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
               
             }}
           > 
-          <Text> Seilá</Text>
+          <Animated.View
+          style={[animatedCheckStyle, {flex: 1, flexDirection: "row", justifyContent: "center", alignItems: "center"}]}
+          >
+            <Icon 
+            name={iconState} 
+            size={100} 
+            color="black"
+           
+            />
+          </Animated.View>
+
           </LinearGradient>
       </Animated.View>
     
