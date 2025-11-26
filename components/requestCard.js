@@ -9,7 +9,7 @@ import { useState } from "react";
 const isWeb = Platform.OS === 'web';
 
 
-export default function RequestCard({donateName, userName, userLocal, requestDate, requestImage, onRemove}){
+export default function RequestCard({donateName, userName, userLocal, requestDate, requestImage, onAccept, onRecuse}){
   const translateX = useSharedValue(0);
   const gradientHeight = useSharedValue(0);
   const gradientColor = useSharedValue("");
@@ -43,14 +43,14 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
   const handleAccept = () => {
     setClick(true);
     setIconState("check")
-    gradientColor.value = "rgba(36, 204, 36, 1)";
+    gradientColor.value = "#62b162ff";
 
-    gradientHeight.value = withTiming(100, {duration: 500}, () => {
+    gradientHeight.value = withTiming(isWeb? 100 : 100, {duration: 500}, () => {
       iconScale.value = withTiming(1, {duration: 300}, () => {
         iconOpacity.value = withTiming(1, {duration: 500}, () => {
-          translateX.value = withTiming (isWeb? 2000 : -30, {duration: 500}, () => {
-              translateX.value = withTiming(isWeb? 200 : 2000, {duration: 500}, () => {
-                runOnJS(onRemove)();
+          translateX.value = withTiming (isWeb? -30 : -30, {duration: 500}, () => {
+              translateX.value = withTiming(isWeb? 2000 : 2000, {duration: 500}, () => {
+                runOnJS(onAccept)();
               })
               });
         })
@@ -61,15 +61,15 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
   const handleDecline = () => {
     setClick(true)
     setIconState("x");
-    gradientColor.value = "rgba(216, 41, 41, 1)";
+    gradientColor.value = "#e24665ff";
 
 
     gradientHeight.value = withTiming (isWeb? 100 : 100, {duration: 500}, () => {
       iconScale.value = withTiming(1,{duration: 300}, () => {
         iconOpacity.value = withTiming(1, {duration: 500}, () => {
-          translateX.value = withTiming (isWeb? -2000 : 30, {duration: 500}, () => {
+          translateX.value = withTiming (isWeb? 30 : 30, {duration: 500}, () => {
               translateX.value = withTiming (isWeb? -2000 : -2000, {duration: 500}, () => {
-                runOnJS(onRemove)();
+                runOnJS(onRecuse)();
               })
           });
 
@@ -111,17 +111,12 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
             </Text>
         </View>
         
-        <View style={styles.requestDateContainer}>
-            <Text style={styles.requestDateText}>
-                {requestDate}
-            </Text>
-        </View>
       </View>
 
       <View style={styles.containerButtons}>
         
         <TouchableOpacity 
-        style={styles.acceptButton}
+        style={styles.declineButton}
         activeOpacity={0.4}
         onPress={handleDecline}
         disabled={click}

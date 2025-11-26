@@ -474,8 +474,8 @@ const styles = StyleSheet.create({
   },
   requestContainer:{
     borderWidth: 1,
-    height: isWeb? 100 : 130,
-    width: isWeb? 430 : 430,
+    height: isWeb? 130 : 130,
+    width: isWeb? 500 : 430,
     borderRadius: 19,
     backgroundColor: colors.background,
     flexDirection: "row",
@@ -490,8 +490,9 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   imageCardRequestContainer:{
-    height: isWeb? 50 : 97,
-    width: isWeb? 50 : 75,
+    height: isWeb? 100 : 97,
+    width: isWeb? 75 : 75,
+
     alignItems: "center",
     justifyContent: "center"
   },
@@ -532,14 +533,11 @@ const styles = StyleSheet.create({
    borderRadius: 20
   },
   acceptButton:{
-    
-    height: isWeb? 60 : 60,
+    height: isWeb? 15 : 60,
     width: isWeb? 50 : 50,
-    alignItems: "center",
-    
+    alignItems: "center"
   },
   declineButton:{
-    
      height: isWeb? 60 : 60,
      width: isWeb? 50 : 50,
      alignItems: "center"

@@ -3,51 +3,197 @@ import {useEffect, useState} from "react"
 
 import styles from "../styles";
 import RequestCard from "./requestCard";
+import { updateDonation } from "../src/data/updateDonation";
+import { getUserById } from "../src/data/getUser";
 
 
-export default function RequestList(dataCard){
-const cardTest = [
-   { id: 1, donate_name: "Cesta Básica", request_user_name: "Maria Silva", request_user_local: "São Paulo - SP", request_data: "2025-10-27", request_image: "https://picsum.photos/200/200" },
-  { id: 2, donate_name: "Roupas de Inverno", request_user_name: "Carlos Souza", request_user_local: "Curitiba - PR", request_data: "2025-10-25", request_image: "https://picsum.photos/201/200" },
-  { id: 3, donate_name: "Brinquedos Infantis", request_user_name: "Ana Paula", request_user_local: "Recife - PE", request_data: "2025-10-20", request_image: "https://picsum.photos/202/200" },
-  { id: 4, donate_name: "Alimentos Não Perecíveis ", request_user_name: "Lucas Pereira", request_user_local: "Belo Horizonte - MG", request_data: "2025-10-18", request_image: "https://picsum.photos/203/200" },
-  { id: 5, donate_name: "Material Escolar", request_user_name: "Fernanda Costa", request_user_local: "Fortaleza - CE", request_data: "2025-10-15", request_image: "https://picsum.photos/204/200" },
-  { id: 6, donate_name: "Fraldas", request_user_name: "Ricardo Almeida", request_user_local: "Salvador - BA", request_data: "2025-10-12", request_image: "https://picsum.photos/205/200" },
-  { id: 7, donate_name: "Produtos de Higiene", request_user_name: "Patrícia Mendes", request_user_local: "Natal - RN", request_data: "2025-10-11", request_image: "https://picsum.photos/206/200" },
-  { id: 8, donate_name: "Cobertores", request_user_name: "João Vitor", request_user_local: "Porto Alegre - RS", request_data: "2025-10-09", request_image: "https://picsum.photos/207/200" },
-  { id: 9, donate_name: "Livros Usados", request_user_name: "Laura Fernandes", request_user_local: "Campinas - SP", request_data: "2025-10-08", request_image: "https://picsum.photos/208/200" },
-  { id: 10, donate_name: "Cadeiras de Rodas", request_user_name: "Marcelo Tavares", request_user_local: "Florianópolis - SC", request_data: "2025-10-07", request_image: "https://picsum.photos/209/200" },
-  { id: 11, donate_name: "Brinquedos Educativos", request_user_name: "Beatriz Ramos", request_user_local: "Manaus - AM", request_data: "2025-10-06", request_image: "https://picsum.photos/210/200" },
-  { id: 12, donate_name: "Leite em Pó", request_user_name: "Gabriel Santos", request_user_local: "Belém - PA", request_data: "2025-10-05", request_image: "https://picsum.photos/211/200" },
-  { id: 13, donate_name: "Ração Animal", request_user_name: "Carolina Nunes", request_user_local: "Goiânia - GO", request_data: "2025-10-04", request_image: "https://picsum.photos/212/200" },
-  { id: 14, donate_name: "Computadores Usados", request_user_name: "Pedro Henrique", request_user_local: "Vitória - ES", request_data: "2025-10-03", request_image: "https://picsum.photos/213/200" },
-  { id: 15, donate_name: "Móveis Domésticos", request_user_name: "Juliana Rocha", request_user_local: "Ribeirão Preto - SP", request_data: "2025-10-02", request_image: "https://picsum.photos/214/200" },
-  { id: 16, donate_name: "Medicamentos", request_user_name: "Thiago Moreira", request_user_local: "João Pessoa - PB", request_data: "2025-10-01", request_image: "https://picsum.photos/215/200" },
-  { id: 17, donate_name: "Ferramentas", request_user_name: "Camila Oliveira", request_user_local: "Teresina - PI", request_data: "2025-09-30", request_image: "https://picsum.photos/216/200" },
-  { id: 18, donate_name: "Utensílios de Cozinha", request_user_name: "Rafael Lima", request_user_local: "Aracaju - SE", request_data: "2025-09-29", request_image: "https://picsum.photos/217/200" },
-  { id: 19, donate_name: "Instrumentos Musicais", request_user_name: "Isabela Martins", request_user_local: "Maceió - AL", request_data: "2025-09-28", request_image: "https://picsum.photos/218/200" },
-  { id: 20, donate_name: "Materiais de Construção", request_user_name: "Diego Ferreira", request_user_local: "Londrina - PR", request_data: "2025-09-27", request_image: "https://picsum.photos/219/200" }
-]
-const [cards, setCards] = useState(cardTest);
+export default function RequestList({dataCard}){
+const [cards, setCards] = useState([{
+    id: 1,
+    name: "Cesta básica",
+    request_user_name: "Maria Silva",
+    location: "São Paulo - SP",
+    image: "https://picsum.photos/200?1"
+  },
+  {
+    id: 2,
+    name: "Roupas de inverno",
+    request_user_name: "João Pereira",
+    location: "Rio de Janeiro - RJ",
+    image: "https://picsum.photos/200?2"
+  },
+  {
+    id: 3,
+    name: "Brinquedos usados",
+    request_user_name: "Ana Costa",
+    location: "Belo Horizonte - MG",
+    image: "https://picsum.photos/200?3"
+  },
+  {
+    id: 4,
+    name: "Livros escolares",
+    request_user_name: "Carlos Mendes",
+    location: "Curitiba - PR",
+    image: "https://picsum.photos/200?4"
+  },
+  {
+    id: 5,
+    name: "Móveis pequenos",
+    request_user_name: "Fernanda Rocha",
+    location: "Salvador - BA",
+    image: "https://picsum.photos/200?5"
+  },
+  {
+    id: 6,
+    name: "Pacote de fraldas",
+    request_user_name: "Luciana Gomes",
+    location: "Brasília - DF",
+    image: "httpsum.photos/200?6"
+  },
+  {
+    id: 7,
+    name: "Ração para cães",
+    request_user_name: "Bruno Lima",
+    location: "Fortaleza - CE",
+    image: "https://picsum.photos/200?7"
+  },
+  {
+    id: 8,
+    name: "Kit de higiene",
+    request_user_name: "Marcos Antônio",
+    location: "Manaus - AM",
+    image: "https://picsum.photos/200?8"
+  },
+  {
+    id: 9,
+    name: "Materiais escolares",
+    request_user_name: "Juliana Duarte",
+    location: "Recife - PE",
+    image: "https://picsum.photos/200?9"
+  },
+  {
+    id: 10,
+    name: "Sacos de arroz",
+    request_user_name: "Rafael Souza",
+    location: "Goiânia - GO",
+    image: "https://picsum.photos/200?10"
+  },
+  {
+    id: 11,
+    name: "Sapatos usados",
+    request_user_name: "Patrícia Melo",
+    location: "Porto Alegre - RS",
+    image: "https://picsum.photos/200?11"
+  },
+  {
+    id: 12,
+    name: "Cobertores",
+    request_user_name: "Eduardo Freitas",
+    location: "Belém - PA",
+    image: "https://picsum.photos/200?12"
+  },
+  {
+    id: 13,
+    name: "Óleo de cozinha",
+    request_user_name: "Letícia Ribeiro",
+    location: "Natal - RN",
+    image: "https://picsum.photos/200?13"
+  },
+  {
+    id: 14,
+    name: "Itens para bebê",
+    request_user_name: "Fábio Santana",
+    location: "João Pessoa - PB",
+    image: "https://picsum.photos/200?14"
+  },
+  {
+    id: 15,
+    name: "Kits de limpeza",
+    request_user_name: "Renata Afonso",
+    location: "Florianópolis - SC",
+    image: "https://picsum.photos/200?15"
+  },
+  {
+    id: 16,
+    name: "Leite em pó",
+    request_user_name: "Gabriel Nunes",
+    location: "Campo Grande - MS",
+    image: "https://picsum.photos/200?16"
+  },
+  {
+    id: 17,
+    name: "Cadeira de rodas",
+    request_user_name: "Sueli Castro",
+    location: "Teresina - PI",
+    image: "https://picsum.photos/200?17"
+  },
+  {
+    id: 18,
+    name: "Material de construção",
+    request_user_name: "Vinícius Borges",
+    location: "Aracaju - SE",
+    image: "https://picsum.photos/200?18"
+  },
+  {
+    id: 19,
+    name: "Cestas verdes",
+    request_user_name: "Camila Prado",
+    location: "Maceió - AL",
+    image: "https://picsum.photos/200?19"
+  },
+  {
+    id: 20,
+    name: "Toalhas",
+    request_user_name: "Thiago Camargo",
+    location: "Vitória - ES",
+    image: "https://picsum.photos/200?20"
+  }]);
 
+// useEffect(() => {
+//   async function loadUser(){
+//     const listWithNames = [];
 
-const removeCard = (id) => {
-    setCards(((prev) => prev.filter((obj) => obj.id !== id)))
-};
+//     for (const item of dataCard){
+      
+//       const user = await getUserById(item.user_id);
+      
+//       listWithNames.push({
+//         ...item, 
+//         request_user_name: user.name
+//       });
+//     }
+//     setCards(listWithNames);
+//   }
+//   loadUser();
+// }, [dataCard]);
+
+const donationRecused = async (id) => {
+    setCards(((prev) => prev.filter((obj) => obj.id !== id)));
+    const declined = await updateDonation(id, {
+      status: "active",
+    }
+  )};
+
+const donationAccepted = async (id) => {
+    setCards(((prev) => prev.filter((obj) => obj.id !== id)));
+    const accepted = await updateDonation(id, {
+    status: "disable"
+    })
+}
 
   return(
     <View style={styles.requestListContainer}>
       <FlatList
         data={cards}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id}
         renderItem={({item}) => (
           <RequestCard
-            donateName={item.donate_name}
+            donateName={item.name}
             userName ={item.request_user_name}
-            userLocal={item.request_user_local}
-            requestDate={item.request_data}
-            requestImage={item.request_image}
-            onRemove={() => removeCard(item.id)}
+            userLocal={item.location}
+            requestImage={item.image}
+            onRecuse={() => donationRecused(item.id)}
+            onAccept={() => donationAccepted(item.id)}
           />
         )}
         contentContainerStyle={{ alignItems: "center", gap: 8, marginTop: 10}}
