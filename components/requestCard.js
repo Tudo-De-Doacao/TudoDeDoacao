@@ -80,7 +80,6 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
 
   
     return(
-      
     <Animated.View style={[styles.requestContainer, animatedCardStyle]}>
       <View style={styles.imageCardRequestContainer}>
         <Image

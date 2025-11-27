@@ -172,7 +172,7 @@ const donationRecused = async (id) => {
     const declined = await updateDonation(id, {
       status: "active",
     }
-  )};
+)};
 
 const donationAccepted = async (id) => {
     setCards(((prev) => prev.filter((obj) => obj.id !== id)));

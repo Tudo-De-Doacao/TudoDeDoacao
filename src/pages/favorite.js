@@ -46,7 +46,6 @@ function FavoriteScreen() {
     fetchDonations();
   }, []);
 
-  const pendingDonations = donationCards.filter(item => item.status === "pending");
   const disableDonations = donationCards.filter(item => item.status === "disable");
  
 
@@ -100,12 +99,6 @@ function FavoriteScreen() {
             dataCard={disableDonations}
             />
 
-            <PendingDonationList
-            title="Suas doações pendentes"
-            iconName={"clock"}
-            image="trunk"
-            dataCard={pendingDonations}
-            />
 
           <PendingDonationList
             title="Suas doações Finalizadas"

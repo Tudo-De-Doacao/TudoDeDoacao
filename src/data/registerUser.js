@@ -4,18 +4,17 @@ import {getUser} from './getUser'
 import api from  '../../services/api/api';
 
 
-export async function registerUser({ name, email, location, user_id, phone, password }) {
+export async function registerUser({ name, email, location, code, password }) {
 
 
   const data = {
 
-    user_id,
     name,
     email,
     password,
     password_confirmation: password, 
     location,
-    phone,
+    code,
   };
 
   try {
@@ -25,7 +24,7 @@ export async function registerUser({ name, email, location, user_id, phone, pass
       return logged;
    }
   } catch (error) {
-    console.error(error.response?.data || error.message);
+    console.error(error.message);
     Alert.alert('Erro', 'Não foi possível cadastrar o usuário.');
     return false;
   }
