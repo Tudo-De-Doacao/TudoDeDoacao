@@ -15,6 +15,7 @@ import Card from '../../components/CardDon';
 import SavedCard from '../../components/SavedCard';
 import Header from '../../components/Header';
 import PendingDonationList from '../../components/pendingDonationList';
+import PendingDonationCard from '../../components/pendingDonationCard';
 
 import styles from '../../styles/index';
 import typog from '../../styles/type';
@@ -25,7 +26,8 @@ import { categorias } from '../../components/FilterBtn';
 
 function FavoriteScreen() {
   const [donationCards, setDonationCards] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [pendings, setPendings] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
@@ -85,31 +87,44 @@ function FavoriteScreen() {
 
           {!loading && errorMsg === "" && donationCards.length > 0 &&(
             <>
-            <PendingDonationList
+            <PendingDonationCard
             title="Pedidos pendentes"
             iconName={"clock"}
             image="tree"
             dataCard={pendingDonations}
             />
 
-            <PendingDonationList
+            <PendingDonationCard
             title="Pedidos Finalizados"
             iconName={"heart"}
             image="trunk"
-            dataCard={disableDonations}
+            dataCard={disable}
             />
 
+            <PendingDonationCard
+            title="Suas doações pendentes"
+            iconName={"clock"}
+            image="trunk"
+            dataCard={pendingDonations}
+            />
 
-          <PendingDonationList
+          <PendingDonationCard
             title="Suas doações Finalizadas"
             iconName={"heart"}
             image="trunk"
-            dataCard={disableDonations}
+            dataCard={disable}
             />
              
             </>
           )}
           
+          
+
+       
+            
+
+           
+          {/* </View> */}
           </ScrollView>
       </ImageBackground>
         
