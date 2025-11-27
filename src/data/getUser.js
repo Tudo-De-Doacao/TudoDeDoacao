@@ -29,3 +29,17 @@ export async function getUser({ email, password }) {
     return false;
   }
 }
+
+export async function getUserById(id)
+  {
+    try {
+      const response = await api.get(`users/${id}`);
+
+      return response.data;     
+    }catch(e){
+       const message = extractErrorMessage(e);
+       console.error(message);
+       return null
+    }
+  }
+

@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Card from '../../components/CardDon';
 import SavedCard from '../../components/SavedCard';
 import Header from '../../components/Header';
+import PendingDonationList from '../../components/pendingDonationList';
 import PendingDonationCard from '../../components/pendingDonationCard';
 
 import styles from '../../styles/index';
@@ -47,24 +48,8 @@ function FavoriteScreen() {
     fetchDonations();
   }, []);
 
-  const renderCardItem = ({ item }) => (
-    <Card
-      key={item.id}
-      name={item.name}
-      description={item.description}
-      location={item.location || 'Localização desconhecida'}
-      image={`http://127.0.0.1:8000/storage/${item.image}`}
-
-    />
-  );
-  const donations = [
-    { id: 1, name: "Bola", location: "São Paulo, Campo limpoaaaaaaaaaaaaaaaa", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
-    { id: 2, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" },
-    { id: 3, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,  
-    { id: 4, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,
-    { id: 5, name: "Carrinho", location: "Rio de Janeiro", description: "bola do meu filho que usavamos, Ele cresceu e não precisa mais. Buscando alguma criança que realmente" } ,
-
-  ]
+  const disableDonations = donationCards.filter(item => item.status === "disable");
+ 
 
   return (
     <>

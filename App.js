@@ -1,3 +1,4 @@
+import "react-native-reanimated";
 import { NavigationContainer, useRoute } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,7 +11,7 @@ import typog from './styles/type';
 import colors from './styles/color';
 import styles from './styles/index';
 
-import DrawerScreen from './src/pages/drawer';
+import RequestScreen from "./src/pages/request";
 import HomeScreen from './src/pages/home';
 import RegisterScreen from './src/pages/register';
 import LoginScreen from './src/pages/login';
@@ -61,8 +62,8 @@ function TabsNav() {
               case 'Donation':
                 iconName = 'plus-circle';
                 break;
-              case 'Menu':
-                iconName = 'menu';
+              case 'Request':
+                iconName = 'rotate-cw';
                 break;
             }
             return (
@@ -100,7 +101,7 @@ function TabsNav() {
           }}
         />
         <Tabs.Screen name="Favorites" component={FavoriteScreen} />
-        <Tabs.Screen name="Menu" component={DrawerScreen} />
+        <Tabs.Screen name="Request" component={RequestScreen} />
       </Tabs.Navigator>
     </>
   );
