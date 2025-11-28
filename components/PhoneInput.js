@@ -47,9 +47,9 @@ function Input({ value, onChangeText }) {
          style={{
           borderColor: colors.marker,
           fontSize: 20,
-          width: 220,
+          width: 240,
           height: isWeb ? 36 : 48,
-          padding: 10,
+          padding: 2,
         }}
         theme={{    
           roundness: 20, 
