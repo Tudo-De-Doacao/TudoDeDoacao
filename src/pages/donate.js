@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { ScrollView, View, Alert, Text } from 'react-native';
+=======
+import { ScrollView, View, Alert } from 'react-native';
+>>>>>>> origin/Joao's_branch
 
 import { useNavigation } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
@@ -62,7 +66,11 @@ function DonateScreen() {
         <View style={{...styles.bodyPrin, marginTop: 60, marginBottom: 8, paddingTop: 14 }}>
         <Text style={{...typog.headerTitle, fontSize: 24}}>O que você quer doar ?</Text>
           <Input
+<<<<<<< HEAD
             ph="Nome da doação"
+=======
+            ph="Nome da Doação"
+>>>>>>> origin/Joao's_branch
             autoComplete=""
             onChangeText={setName}
             value={name}
@@ -94,9 +102,15 @@ function DonateScreen() {
         text="Doar"
         onPress={handleRegister}
         />
+<<<<<<< HEAD
         </View>
       
    
+=======
+
+        </View>
+
+>>>>>>> origin/Joao's_branch
       </ScrollView>
   
 

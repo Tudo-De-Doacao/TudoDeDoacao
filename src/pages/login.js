@@ -36,12 +36,17 @@ function LoginScreen() {
         height: '100%',
       }}>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <View style={{...styles.bodyPrin, gap:2}}>
         <Image source={require('../../assets/Logo.png')} style={{...styles.logo, marginTop: 24}} />
         <Text style={typog.titleLogin}>Bem vindo</Text>
 =======
       <View style={styles.bodyPrin}>
         <Image source={require('../../assets/Logo.png')} style={{...styles.logo, marginTop: 24}} />
+=======
+      <View style={styles.bodyPrin}>
+        <Image source={require('../../assets/Logo.png')} style={{...styles.logo, marginTop: 42}} />
+>>>>>>> origin/Joao's_branch
         <Text style={typog.titleLogin}>Bem vindo de volta</Text>
 >>>>>>> 044c96f0d37dee445bb26843e293ae6f51ccd632
         <View style={styles.loginInput}>
@@ -60,7 +65,11 @@ function LoginScreen() {
           />
         </View>
 
+<<<<<<< HEAD
         <RegisterButton route="Tabs" text="Entrar" /*onPress={handleLogin}*/ onPress={() => navigation.navigate('Tabs')} />
+=======
+        <RegisterButton route="Tabs" text="Entrar" onPress={handleLogin} />
+>>>>>>> origin/Joao's_branch
         <RegisterButton
           route="Register"
           text="Cadastrar"

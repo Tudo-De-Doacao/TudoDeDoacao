@@ -22,7 +22,7 @@ export default function Card({ name, location, description, image }) {
 
   return (
     <View style={styles.card}>
-        <Pressable onPress={handlePress}>
+      <Pressable onPress={handlePress}>
           <View style={styles.imageBox}>
             <Image
               style={styles.image}
@@ -31,7 +31,7 @@ export default function Card({ name, location, description, image }) {
               }}
             />
           </View>
-        </Pressable>
+      
 
         
         <View style={styles.infoBox}>
@@ -53,8 +53,8 @@ export default function Card({ name, location, description, image }) {
             <Text style={{ ...typog.txtCard, fontSize: 16 }}>{location}</Text>
           </View>
         </View>
-        
-      </View>
+      </Pressable>
+    </View>
     
   );
 }

@@ -2,6 +2,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
+<<<<<<< HEAD
 // import { Platform } from 'react-native';
 
 // const getBaseURL = () => {
@@ -26,6 +27,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const api = axios.create({
   baseURL: 'http://localhost:8000/api',
+=======
+const api = axios.create({
+  baseURL: 'http://10.155.194.47:8000/api',
+>>>>>>> origin/Joao's_branch
 });
 
 api.interceptors.request.use(

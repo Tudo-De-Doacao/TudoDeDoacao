@@ -27,7 +27,7 @@ export default function FilterBtn({ rota, icon, filter, text }) {
       style={styles.filterBtn}
     >
       <View style={{...styles.bodyBtnBottom, height: 100}}>
-        <Ionicons
+           <Ionicons
           name={icon}
           size={isWeb ? 22 : 16}
           style={isWeb ? null : styles.iconFilterMob}

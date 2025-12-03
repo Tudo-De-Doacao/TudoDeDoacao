@@ -7,7 +7,7 @@ import styles from "../styles";
 import colors from "../styles/color";
 import typog from "../styles/type";
 
-export default function PendingDonationCard({title, content, iconName, image, dataCard}){
+export default function PendingDonationList({title, content, iconName, image, dataCard}){
   const images = {
   tree: require("../assets/treebranch.png"),
   trunk: require("../assets/trunk.png")

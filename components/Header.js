@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <LinearGradient
       colors={[colors.background, colors.primary]} 
-      start={{ x: 0, y: 0}}
+       start={{ x: 0, y: 0}}
       end={{ x: 1, y: 1}}
       style={styles.headerBar}
     >
@@ -72,6 +72,9 @@ export default function Header() {
             fontSize: isWeb ? 16 : 18,
           }}
           maxLength={16}
+           numberOfLines={1}
+          clearTextOnFocus = {true}
+          scrollEnabled = {false}
           value={searchTerm}
           numberOfLines={1}
           clearTextOnFocus = {true}
