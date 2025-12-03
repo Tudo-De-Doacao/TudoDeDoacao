@@ -87,12 +87,6 @@ function FavoriteScreen() {
 
           {!loading && errorMsg === "" && donationCards.length > 0 &&(
             <>
-            <PendingDonationCard
-            title="Pedidos pendentes"
-            iconName={"clock"}
-            image="tree"
-            dataCard={pendingDonations}
-            />
 
             <PendingDonationCard
             title="Pedidos Finalizados"
@@ -121,9 +115,6 @@ function FavoriteScreen() {
           
 
        
-            
-
-           
           {/* </View> */}
           </ScrollView>
       </ImageBackground>

@@ -471,6 +471,79 @@ const styles = StyleSheet.create({
     position: "absolute", 
     left: isWeb? "92.5%" : "76%",
     bottom: isWeb? "0%" : "0%"
+  },
+  requestContainer:{
+    borderWidth: 1,
+    height: isWeb? 130 : 130,
+    width: isWeb? 300 : 430,
+    borderRadius: 19,
+    backgroundColor: colors.background,
+    flexDirection: "row",
+    alignItems: "center"
+
+  },
+  ImageCardRequest:{
+    borderWidth: 1,
+    resizeMode: "cover",
+    height: isWeb? 50 : 50,
+    width: isWeb? 50 : 50,
+    borderRadius: 100
+  },
+  imageCardRequestContainer:{
+    height: isWeb? 100 : 97,
+    width: isWeb? 75 : 75,
+
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  dataContainerDonate:{
+    width: isWeb? 200 : 200,
+   
+  },
+  donationNameContainer:{
+   
+  },
+  donationNameText:{
+    fontSize: isWeb? 25 : 25
+  },
+  requestUserContainer:{
+  
+  },
+  requestUserText:{
+    fontSize: isWeb? 18 : 18
+  },
+  requestLocalContainer:{
+  
+  },
+  requestLocalText:{
+    fontSize: isWeb? 18 : 18,
+  },
+  requestDateContainer:{
+   
+  },
+  requestDateText:{
+    fontSize: isWeb? 10 : 10,
+  },
+  containerButtons:{
+   
+    width: isWeb? 130 : 130,
+    flexDirection: "row",
+    alignItems: "center",
+   justifyContent: "space-around",
+   borderRadius: 20
+  },
+  acceptButton:{
+    height: isWeb? 15 : 60,
+    width: isWeb? 50 : 50,
+    alignItems: "center"
+  },
+  declineButton:{
+     height: isWeb? 60 : 60,
+     width: isWeb? 50 : 50,
+     alignItems: "center"
+  },
+  requestListContainer:{
+    flex: 1,
   }
 
 });

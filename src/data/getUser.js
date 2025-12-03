@@ -46,13 +46,16 @@ export async function getUser({ email, password }) {
   }
 }
 
-export async function getUserById(id) {
-  try {
-    const response = await api.get(`users/${id}`);
-    return response.data;     
-  } catch(e) {
-    console.error('Erro ao buscar usuário:', e.message);
-    return null;
+export async function getUserById(id)
+  {
+    try {
+      const response = await api.get(`users/${id}`);
+
+      return response.data;     
+    }catch(e){
+       console.error("Erro ao atualizar doação:", e.response?.data || e.message);
+       return null
+    }
   }
 }
 

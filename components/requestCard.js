@@ -1,5 +1,5 @@
 import Icon from "react-native-vector-icons/Feather";
-import {View, Text, Image, Pressable, TouchableOpacity, Platform} from "react-native";
+import {View, Text, Image, TouchableOpacity, Platform} from "react-native";
 import  Animated, {useSharedValue, useAnimatedStyle, withTiming, runOnJS } from "react-native-reanimated";
 
 import styles from "../styles";
@@ -80,6 +80,7 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
 
   
     return(
+      
     <Animated.View style={[styles.requestContainer, animatedCardStyle]}>
       <View style={styles.imageCardRequestContainer}>
         <Image
@@ -180,4 +181,3 @@ export default function RequestCard({donateName, userName, userLocal, requestDat
     
   )
 };
-

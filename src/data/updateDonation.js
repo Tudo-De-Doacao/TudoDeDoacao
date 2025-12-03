@@ -4,11 +4,10 @@ import api from '../../services/api/api';
 export async function updateDonation(donationId, data)
 {
   try{
-    const response = await api.put(`/donations/${donationId}`, data);
+    const response = await api.put(`/donations/pendings/${donationId}`, data);
     return response.data;
   }catch(e){
-   const message = extractErrorMessage(e);
-   console.error(message);
-   return null;
+    console.error("Erro ao atualizar doação:", e.response?.data || e.message);
+    return null;
   }
 }
