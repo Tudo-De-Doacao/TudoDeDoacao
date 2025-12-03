@@ -1,5 +1,7 @@
 import api from '../../services/api/api';
 import { Alert, Platform } from 'react-native';
+import { getUserId } from './getUser';
+
 export async function registerDonate({
   name,
   location,
@@ -7,14 +9,17 @@ export async function registerDonate({
   image,
   description
 }) {
-
-
-
   try {
-    const formData = new FormData();
-
+    const userId = await getUserId();
     
-formData.append("user_id", userId);
+    if (!userId) {
+      Alert.alert('Erro', 'Usuário não autenticado. Faça login novamente.');
+      return false;
+    }
+
+    const formData = new FormData();
+    
+    formData.append("user_id", userId);
     formData.append("name", name);
     formData.append("category", category);
     formData.append("location", location);
