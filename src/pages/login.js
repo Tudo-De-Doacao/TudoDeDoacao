@@ -54,7 +54,7 @@ function LoginScreen() {
           />
         </View>
 
-        <RegisterButton route="Tabs" text="Entrar" /*onPress={handleLogin}*/ onPress={() => navigation.navigate('Tabs')} />
+        <RegisterButton route="Tabs" text="Entrar" onPress={handleLogin} />
         <RegisterButton
           route="Register"
           text="Cadastrar"

@@ -1,6 +1,5 @@
 import api from '../../services/api/api';
 import { Alert, Platform } from 'react-native';
-
 export async function registerDonate({
   name,
   location,
@@ -9,9 +8,13 @@ export async function registerDonate({
   description
 }) {
 
+
+
   try {
     const formData = new FormData();
 
+    
+formData.append("user_id", userId);
     formData.append("name", name);
     formData.append("category", category);
     formData.append("location", location);
@@ -28,7 +31,12 @@ export async function registerDonate({
       return false;
     }
 
-    const response = await api.post("/donations", formData);
+    const response = await api.post("/donations", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Accept": "application/json"  
+      },
+    });
 
     if (response.status === 200 || response.status === 201) {
       console.log("✅ Doação registrada:", response.data);
