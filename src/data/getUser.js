@@ -57,7 +57,7 @@ export async function getUserById(id)
        return null
     }
   }
-}
+
 
 export async function getUserId() {
   try {

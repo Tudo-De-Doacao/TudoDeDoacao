@@ -76,9 +76,6 @@ export default function Header() {
           clearTextOnFocus = {true}
           scrollEnabled = {false}
           value={searchTerm}
-          numberOfLines={1}
-          clearTextOnFocus = {true}
-          scrollEnabled = {false}
           onChangeText={setSearchTerm}
           onSubmitEditing={handleSearch}
         />
