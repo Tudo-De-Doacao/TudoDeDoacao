@@ -15,10 +15,7 @@ import Card from '../../components/CardDon';
 import SavedCard from '../../components/SavedCard';
 import Header from '../../components/Header';
 import PendingDonationList from '../../components/pendingDonationList';
-<<<<<<< HEAD
-=======
 import PendingDonationCard from '../../components/pendingDonationCard';
->>>>>>> 69a31ee8d0495b9ed7119dbae6b7ace14c4ba945
 
 import styles from '../../styles/index';
 import typog from '../../styles/type';
@@ -90,32 +87,7 @@ function FavoriteScreen() {
 
           {!loading && errorMsg === "" && donationCards.length > 0 &&(
             <>
-<<<<<<< HEAD
-            <PendingDonationList
-=======
-            <PendingDonationCard
->>>>>>> 69a31ee8d0495b9ed7119dbae6b7ace14c4ba945
-            title="Pedidos pendentes"
-            iconName={"clock"}
-            image="tree"
-            dataCard={pendingDonations}
-            />
 
-<<<<<<< HEAD
-            <PendingDonationList
-            title="Pedidos Finalizados"
-            iconName={"heart"}
-            image="trunk"
-            dataCard={disableDonations}
-            />
-
-
-          <PendingDonationList
-            title="Suas doações Finalizadas"
-            iconName={"heart"}
-            image="trunk"
-            dataCard={disableDonations}
-=======
             <PendingDonationCard
             title="Pedidos Finalizados"
             iconName={"heart"}
@@ -135,19 +107,15 @@ function FavoriteScreen() {
             iconName={"heart"}
             image="trunk"
             dataCard={disable}
->>>>>>> 69a31ee8d0495b9ed7119dbae6b7ace14c4ba945
             />
              
             </>
           )}
           
-<<<<<<< HEAD
-=======
           
 
        
           {/* </View> */}
->>>>>>> 69a31ee8d0495b9ed7119dbae6b7ace14c4ba945
           </ScrollView>
       </ImageBackground>
         

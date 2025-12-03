@@ -19,7 +19,7 @@ export default function FloatingInput({ label, value, secure, autoComplete, disa
         secureTextEntry={secure && secureMode}
         autoComplete={autoComplete}
         autoCapitalize =  "none"
-        maxLength={32}
+        maxLength={50}
         value={value}
         onChangeText={onChangeText}
         mode={'outlined'}

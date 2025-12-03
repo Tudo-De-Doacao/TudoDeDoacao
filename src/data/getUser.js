@@ -37,8 +37,7 @@ export async function getUserById(id)
 
       return response.data;     
     }catch(e){
-       const message = extractErrorMessage(e);
-       console.error(message);
+       console.error("Erro ao atualizar doação:", e.response?.data || e.message);
        return null
     }
   }

@@ -475,11 +475,7 @@ const styles = StyleSheet.create({
   requestContainer:{
     borderWidth: 1,
     height: isWeb? 130 : 130,
-<<<<<<< HEAD
-    width: isWeb? 500 : 430,
-=======
     width: isWeb? 300 : 430,
->>>>>>> 69a31ee8d0495b9ed7119dbae6b7ace14c4ba945
     borderRadius: 19,
     backgroundColor: colors.background,
     flexDirection: "row",
