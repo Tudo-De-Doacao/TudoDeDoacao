@@ -56,7 +56,7 @@ function RegisterScreen() {
             <View style={styles.bodyPrin}>
               <Image
                 source={require('../../assets/Logo.png')}
-                style={{ ...styles.logo, marginTop: 24 }}
+                style={{ ...styles.logo, marginTop: 42 }}
               />
               <Text style={typog.titleLogin}>Faça seu cadastro</Text>
               <View style={styles.loginInput}>

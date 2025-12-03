@@ -121,9 +121,6 @@ function FavoriteScreen() {
           
 
        
-            
-
-           
           {/* </View> */}
           </ScrollView>
       </ImageBackground>

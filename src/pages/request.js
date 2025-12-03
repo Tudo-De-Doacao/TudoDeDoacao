@@ -38,34 +38,10 @@ function RequestScreen(){
         style={[styles.bgimagem]}
         resizeMode="stretch"
       >
-      {load && (
-        <View>
-          <ActivityIndicator size="large" color="#D93036"/>
-          <Text>
-            Carregando doações...
-          </Text>
-        </View>
-      )}
 
-      {!load && errorMsg !== "" && (
-        <View>
-          <Text style={{fontSize: 20, alignSelf: "center"}}>
-            {errorMsg}
-          </Text>
-        </View>
-      )}
-
-      {!load && errorMsg == "" && data.length == 0 && (
-        <Text style={{fontSize: 20, alignSelf: "center"}}>
-          Nenhuma doação encontrada
-        </Text>
-      )}
-
-      {!load && errorMsg == "" && data.length > 0 && (
         <RequestList
-        dataCard={data}
-        />
-      )}
+        dataCard={data}></RequestList>
+    
 
       </ImageBackground>
     </View>
