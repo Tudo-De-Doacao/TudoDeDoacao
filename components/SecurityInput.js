@@ -34,9 +34,15 @@ export default function SecurityInput({ label, value, secure, autoComplete, disa
         style={{ 
           borderColor: colors.marker, 
           fontSize: 20, 
+<<<<<<< HEAD
           width: 220, 
           height: isWeb ? 36 : 48, 
           padding: 10
+=======
+          width: 230, 
+          height: isWeb ? 36 : 48, 
+          paddingTop: 4,
+>>>>>>> 69a31ee8d0495b9ed7119dbae6b7ace14c4ba945
         }} 
         outlineColor="#351313" 
         activeOutlineColor="#351313" 

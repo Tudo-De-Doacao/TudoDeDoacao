@@ -172,7 +172,11 @@ const donationRecused = async (id) => {
     const declined = await updateDonation(id, {
       status: "active",
     }
+<<<<<<< HEAD
 )};
+=======
+  )};
+>>>>>>> 69a31ee8d0495b9ed7119dbae6b7ace14c4ba945
 
 const donationAccepted = async (id) => {
     setCards(((prev) => prev.filter((obj) => obj.id !== id)));
@@ -202,4 +206,7 @@ const donationAccepted = async (id) => {
     </View>
   )
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 69a31ee8d0495b9ed7119dbae6b7ace14c4ba945

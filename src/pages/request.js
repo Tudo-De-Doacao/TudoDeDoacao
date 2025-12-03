@@ -38,6 +38,7 @@ function RequestScreen(){
         style={[styles.bgimagem]}
         resizeMode="stretch"
       >
+<<<<<<< HEAD
       {load && (
         <View>
           <ActivityIndicator size="large" color="#D93036"/>
@@ -66,6 +67,12 @@ function RequestScreen(){
         dataCard={data}
         />
       )}
+=======
+
+        <RequestList
+        dataCard={data}></RequestList>
+    
+>>>>>>> 69a31ee8d0495b9ed7119dbae6b7ace14c4ba945
 
       </ImageBackground>
     </View>
