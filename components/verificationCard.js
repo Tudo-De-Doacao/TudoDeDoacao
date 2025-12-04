@@ -1,8 +1,13 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import colors from "../styles/color";
 import typog from "../styles/type";
+import RegisterButton from "./RegisterButton";
+import { useState } from "react";
 
-export default function VerificationCard({ code, setCode }) {
+export default function VerificationCard({ setCode, click }) {
+
+  const [ showCodeCard ,setShowCodeCard] = useState(true)
+
   return (
     <View style={styles.overlay}>
       <View style={styles.card}>
@@ -19,6 +24,8 @@ export default function VerificationCard({ code, setCode }) {
           maxLength={6}
           onChangeText={setCode}
         />
+
+        <RegisterButton text="Confirmar" onPress={click}/>
       </View>
     </View>
   );

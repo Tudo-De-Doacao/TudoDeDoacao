@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import api from '../../services/api/api';
 
 export async function getUser({ email, password }) {
@@ -9,21 +8,23 @@ export async function getUser({ email, password }) {
     const response = await api.post('/auth/login', { email, password });
     console.log('📦 Resposta completa do login:', response.data);
     
-    const token = response.data.access_token; 
+    const token = response.data.access_token;
+    const refreshToken = response.data.refresh_token; // Pega o refresh token
 
-    if (token) {
+    if (token && refreshToken) {
       const decoded = jwtDecode(token);
-      console.log('🔍 ESTRUTURA COMPLETA DO TOKEN:', JSON.stringify(decoded, null, 2));
-
-      console.log('🔓 Token decodificado:', decoded);
-      
+      console.log('🔓 ESTRUTURA COMPLETA DO TOKEN:', JSON.stringify(decoded, null, 2));
 
       const userId = decoded.sub || decoded.user_id || decoded.id;
       
       if (userId) {
-        await AsyncStorage.setItem('token', token);
-        await AsyncStorage.setItem('userId', userId.toString());
-        console.log('✅ Token e userId salvos com sucesso');
+        await AsyncStorage.multiSet([
+          ['token', token],
+          ['refreshToken', refreshToken],
+          ['userId', userId.toString()]
+        ]);
+        
+        console.log('✅ Access token, refresh token e userId salvos com sucesso');
         console.log('👤 User ID:', userId);
         return true;
       } else {
@@ -32,8 +33,8 @@ export async function getUser({ email, password }) {
         return false;
       }
     } else {
-      console.warn('⚠️ Token inválido ou não recebido:', token);
-      Alert.alert('Erro', 'Token inválido ou ausente na resposta.');
+      console.warn('⚠️ Tokens inválidos ou não recebidos');
+      Alert.alert('Erro', 'Tokens inválidos ou ausentes na resposta.');
       return false;
     }
   } catch (error) {
@@ -46,18 +47,15 @@ export async function getUser({ email, password }) {
   }
 }
 
-export async function getUserById(id)
-  {
-    try {
-      const response = await api.get(`users/${id}`);
-
-      return response.data;     
-    }catch(e){
-       console.error("Erro ao atualizar doação:", e.response?.data || e.message);
-       return null
-    }
+export async function getUserById(id) {
+  try {
+    const response = await api.get(`users/${id}`);
+    return response.data;     
+  } catch(e) {
+    console.error("Erro ao buscar usuário:", e.response?.data || e.message);
+    return null;
   }
-
+}
 
 export async function getUserId() {
   try {
@@ -66,5 +64,33 @@ export async function getUserId() {
   } catch (error) {
     console.error('Erro ao recuperar userId:', error);
     return null;
+  }
+}
+
+export async function isAuthenticated() {
+  try {
+    const token = await AsyncStorage.getItem('token');
+    const refreshToken = await AsyncStorage.getItem('refreshToken');
+    return !!(token && refreshToken);
+  } catch (error) {
+    console.error('Erro ao verificar autenticação:', error);
+    return false;
+  }
+}
+
+export async function logout() {
+  try {
+    try {
+      await api.post('/auth/logout');
+    } catch (e) {
+      console.log('Erro ao chamar logout no backend:', e);
+    }
+    
+    await AsyncStorage.multiRemove(['token', 'refreshToken', 'userId']);
+    console.log('✅ Logout realizado com sucesso');
+    return true;
+  } catch (error) {
+    console.error('❌ Erro ao fazer logout:', error);
+    return false;
   }
 }

@@ -1,5 +1,4 @@
-
-import { ScrollView, View, Image, Alert, Text, Button } from 'react-native';
+import { ScrollView, View, Image, Alert, Text, ActivityIndicator } from 'react-native';
 
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -8,22 +7,42 @@ import styles from '../../styles/index';
 import typog from '../../styles/type';
 import colors from '../../styles/color';
 
-
 import Input from '../../components/Input';
 import RegisterButton from '../../components/RegisterButton';
 import BottomBtn from '../../components/BottomButton';
 
 import { getUser } from '../data/getUser';
+// import { useAuth } from '../../contexts/authContext'; // Se você usar o contexto
 
 function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
+  // const { login } = useAuth(); // Se você usar o contexto
 
   const handleLogin = async () => {
-    const success = await getUser({ email, password });
-    if (success) {
-      navigation.navigate('Tabs');
+    if (!email.trim() || !password.trim()) {
+      Alert.alert('Erro', 'Preencha email e senha');
+      return;
+    }
+
+    setLoading(true);
+    
+    try {
+      const success = await getUser({ email, password });
+      
+      if (success) {
+        // login(); // Se você usar o contexto
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Tabs' }],
+        });
+      }
+    } catch (error) {
+      console.error('Erro no login:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,26 +54,21 @@ function LoginScreen() {
         backgroundColor: colors.background,
         height: '100%',
       }}>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <View style={{...styles.bodyPrin, gap:2}}>
-        <Image source={require('../../assets/Logo.png')} style={{...styles.logo, marginTop: 24}} />
-        <Text style={typog.titleLogin}>Bem vindo</Text>
-=======
       <View style={styles.bodyPrin}>
-        <Image source={require('../../assets/Logo.png')} style={{...styles.logo, marginTop: 24}} />
-=======
-      <View style={styles.bodyPrin}>
-        <Image source={require('../../assets/Logo.png')} style={{...styles.logo, marginTop: 42}} />
->>>>>>> origin/Joao's_branch
+        <Image 
+          source={require('../../assets/Logo.png')} 
+          style={{...styles.logo, marginTop: 42}} 
+        />
         <Text style={typog.titleLogin}>Bem vindo de volta</Text>
->>>>>>> 044c96f0d37dee445bb26843e293ae6f51ccd632
+        
         <View style={styles.loginInput}>
           <Input
             ph="Email"
             autoComplete="email"
+            keyboardType="email-address"
             onChangeText={setEmail}
             value={email}
+            editable={!loading}
           />
           <Input
             ph="Senha"
@@ -62,20 +76,28 @@ function LoginScreen() {
             secure="true"
             onChangeText={setPassword}
             value={password}
+            editable={!loading}
           />
         </View>
 
-<<<<<<< HEAD
-        <RegisterButton route="Tabs" text="Entrar" /*onPress={handleLogin}*/ onPress={() => navigation.navigate('Tabs')} />
-=======
-        <RegisterButton route="Tabs" text="Entrar" onPress={handleLogin} />
->>>>>>> origin/Joao's_branch
-        <RegisterButton
-          route="Register"
-          text="Cadastrar"
-         onPress={() => navigation.navigate('Register')}  
-        />
-       
+        {loading ? (
+          <View style={{ marginVertical: 20 }}>
+            <ActivityIndicator size="large" color="#D93036" />
+          </View>
+        ) : (
+          <>
+            <RegisterButton 
+              route="Tabs" 
+              text="Entrar" 
+              onPress={handleLogin} 
+            />
+            <RegisterButton
+              route="Register"
+              text="Cadastrar"
+              onPress={() => navigation.navigate('Register')}  
+            />
+          </>
+        )}
       </View>
     </ScrollView>
   );

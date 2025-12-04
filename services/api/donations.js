@@ -1,5 +1,4 @@
-import { Alert } from 'react-native';
-import api from './api'
+import api from "./api";
 
 export async function getDonates(searchTerm = '') {
   try {
@@ -8,7 +7,7 @@ export async function getDonates(searchTerm = '') {
     if (!searchTerm.trim()) {
       console.log('⚠️ Termo vazio. Buscando todas as doações...');
       const response = await api.get(`/donations`);
-      return response.data.data;
+       return response.data.donations ?? [];  
     }
 
     const term = searchTerm.trim().toLowerCase();
@@ -19,23 +18,29 @@ export async function getDonates(searchTerm = '') {
     let response = await api.get(`/donations/`, {
       params: { name: term }
     });
-    console.log('🔁 Resposta (nome):', response.data.data);
-    if (response.data.data?.length) return response.data.data;
+    console.log('🔁 Resposta (nome):', response.data);
+      if (response.data?.donations?.length > 0) {
+      return response.data.donations;
+    }
 
     console.log(`➡️ Buscando por categoria: ${term}`);
     response = await api.get(`/donations/`, {
       params: { category: term }
     });
-    console.log('🔁 Resposta (categoria):', response.data.data);
-    if (response.data.data?.length) return response.data.data;
+    console.log('🔁 Resposta (categoria):', response.data);
+   if (response.data?.donations?.length > 0) {
+      return response.data.donations;
+    }
 
 
     console.log(`➡️ Buscando por localização: ${term}`);
     response = await api.get(`/donations/ `, {
       params: { location: term }
     });
-    console.log('🔁 Resposta (localização):', response.data.data);
-    if (response.data.data?.length) return response.data.data;
+    console.log('🔁 Resposta (localização):', response.data);
+      if (response.data?.donations?.length > 0) {
+      return response.data.donations;
+    }
 
     return [];
 

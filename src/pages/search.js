@@ -33,7 +33,7 @@ useEffect(() => {
       if (searchTerm.trim() !== '') {
         const data = await getDonates(searchTerm);
         console.log('Dados recebidos para busca:', data); // DEBUG
-        setFilterDonation(data);
+        setFilterDonation(data ?? []);
       } else {
         setFilterDonation([]); 
       }
@@ -66,24 +66,20 @@ const handleSubmit = () => {
 
         <ScrollView contentContainerStyle={{ ...styles.scroll, paddingBottom: 22 }}>
           <View style={styles.bodySearch}>
-            {filterDonation.length > 0 ? (
-              filterDonation.map((item, index) => {
+
+            {  filterDonation.map((item, index) => {
                 console.log('Item para renderizar card:', item); // DEBUG
                 return (
                   <Card
                     key={item.id ?? index} 
-                    name={item.donation_name}
-                    description={item.donation_description}
-                    location={item.donation_location}
-                    image={`http://127.0.0.1:8000/storage/${item.donation_image}`}
+                    name={item.name}
+                    description={item.description}
+                    location={item.location}
+                    image={`http://10.173.20.95:8000/storage/${item.image}`}
                   />
                 );
               })
-            ) : (
-              <Text style={{ ...styles.txtSearch, color: '#351313' }}>
-                Nenhuma doação encontrada.
-              </Text>
-            )}
+          }
           </View>
         </ScrollView>
       </ImageBackground>

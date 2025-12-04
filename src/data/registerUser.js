@@ -1,10 +1,10 @@
-import axios from 'axios';
+
 import { Alert } from 'react-native';
 import {getUser} from './getUser'
-import api from  '../../services/api/api';
+import api from  '../../services/api/api'
 
 
-export async function registerUser({ name, email, location, code, password }) {
+export async function registerUser({ name, email, location, code, phone, password }) {
 
 
   const data = {
@@ -13,6 +13,7 @@ export async function registerUser({ name, email, location, code, password }) {
     email,
     password,
     password_confirmation: password, 
+    phone,
     location,
     code,
   };

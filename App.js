@@ -19,6 +19,7 @@ import CardScreen from './src/pages/card';
 import FavoriteScreen from './src/pages/favorite';
 import SearchScreen from './src/pages/search';
 import DonateScreen from './src/pages/donate';
+import { AuthProvider } from "./contexts/authContext";
 
 const Tabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -122,6 +123,7 @@ export default function App() {
 {/* <Stack.Screen name="Register" component={RegisterScreen} /> <Stack.Screen name="Login" component={LoginScreen} />   <Stack.Screen name="Tabs" component={TabsNav} */}
 
   return (
+    <AuthProvider> 
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={LoginScreen} />
@@ -129,5 +131,6 @@ export default function App() {
         <Stack.Screen name="Tabs" component={TabsNav} />
       </Stack.Navigator>
     </NavigationContainer>
+    </AuthProvider>
   );
 }
