@@ -54,7 +54,7 @@ function FavoriteScreen() {
   return (
     <>
       <Header />
-      
+
       <ImageBackground
         source={require('../../assets/BGHome.png')}
         style={[styles.bgimagem]}

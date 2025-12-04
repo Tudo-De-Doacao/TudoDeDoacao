@@ -37,7 +37,7 @@ export default function Card({ name, location, description, image }) {
         <View style={styles.infoBox}>
           <Text style={typog.titleCard}>{name}</Text>
           <Text
-            style={{ ...typog.txtCard, marginBottom: 18 }}
+            style={{ ...typog.txtCard, marginBottom: 18, marginHorizontal: 4 }}
             numberOfLines={4}
             ellipsizeMode="tail">
             {description}

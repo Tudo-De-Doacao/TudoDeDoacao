@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius : 0,
     borderTopRightRadius : 0,
     borderRadius: 8,
-    borderWidth: 2,
+    borderWidth: 1,
     marginVertical: 18,
     marginBottom: 20,
     paddingBottom: 20,
@@ -188,13 +188,12 @@ const styles = StyleSheet.create({
   },
   bodyCard: {
     flexDirection: 'row',
-    gap: 20,
-    paddingRight: 16,
+    paddingLeft: 22,
+    paddingHorizontal: 4,
     paddingBottom: 20,
   },
   infoBox: {
-    margin: 8,
-   
+    margin: 4,
     height: "100%"
 
   },

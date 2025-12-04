@@ -52,7 +52,7 @@ export default function HomeScreen() {
       name={item.name}
       description={item.description}
       location={item.location || 'Localização desconhecida'}
-      image={`http://127.0.0.1:8000/storage/${item.image}`}
+      image={`http://10.205.202.95:8000/storage/${item.image}`}
     />
   );
 
@@ -82,7 +82,6 @@ export default function HomeScreen() {
             paddingHorizontal: 16,
             maxHeight: 100,
             paddingVertical: 4,
-            flex: 1,
             marginBottom: 12,
           }}
 
@@ -93,7 +92,6 @@ export default function HomeScreen() {
             ...styles.scroll,
             alignContent: 'center',
             justifyContent: 'center',
-            flex: 1,
             paddingBottom: 60,
           }}
           showsVerticalScrollIndicator={false}
@@ -125,8 +123,8 @@ export default function HomeScreen() {
 
           {!loading && donationCards.length > 0 && (
             <View>
-             <Text style={{ ...typog.txtDrw, textAlign: 'left' }}>
-              Doações Favoritas
+             <Text style={{ ...typog.txtDrw, textAlign: 'left', marginHorizontal: 12,  }}>
+              Doações na sua área
             </Text>
              <ScrollView
         horizontal={true} showsHorizontalScrollIndicator={false}>
