@@ -1,4 +1,4 @@
-import { Text, View, Image, Pressable, ScrollView } from 'react-native';
+import { Text, View, Image, Pressable } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -8,7 +8,7 @@ import styles from '../styles/index';
 import typog from '../styles/type';
 import colors from '../styles/color';
 
-export default function Card({ name, location, description, image }) {
+export default function SavedCard({ name, location, description, image }) {
   const navigation = useNavigation();
 
   const handlePress = () => {
@@ -21,40 +21,37 @@ export default function Card({ name, location, description, image }) {
   };
 
   return (
-    <View style={styles.card}>
-      <Pressable onPress={handlePress}>
-          <View style={styles.imageBox}>
-            <Image
-              style={styles.image}
-              source={{
-                uri: image,
-              }}
-            />
-          </View>
-      
+    <Pressable onPress={handlePress}>
+      <View style={styles.savedCard}>
+        <View style={styles.imageBoxSavedCard}>
+          <Image
+            style={styles.imageSavedCard}
+            source={{
+              uri: image,
+            }}
+          />
+        </View>
 
-        
-        <View style={styles.infoBox}>
-          <Text style={typog.titleCard}>{name}</Text>
+        <View style={styles.infoBoxSavedCard}>
+          <Text style={typog.nameSavedCard}>{name}</Text>
           <Text
-            style={{ ...typog.txtCard, marginBottom: 18 }}
+            style={typog.descriptionSavedCard}
             numberOfLines={4}
             ellipsizeMode="tail">
             {description}
           </Text>
 
-          <View style={styles.locationCard}>
+          <View style={styles.locationSavedCard}>
             <Icon
               name="map-pin"
               size={18}
               color={colors.marker}
               style={styles.iconMapHeader}
             />
-            <Text style={{ ...typog.txtCard, fontSize: 16 }}>{location}</Text>
+            <Text style={typog.locationTextSavedCard}>{location}</Text>
           </View>
         </View>
-      </Pressable>
-    </View>
-    
+      </View>
+    </Pressable>
   );
 }

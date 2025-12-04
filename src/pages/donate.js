@@ -8,14 +8,14 @@ import InputImage from '../../components/InputImage';
 import InputDescription from '../../components/InputDescription';
 import InputCategory from '../../components/InputCategory';
 import RegisterButton from '../../components/RegisterButton'
-import TabDonation from '../../components/TabDonation';
 
 import styles from '../../styles/index';
 import colors from '../../styles/color';
 
 import { registerDonate } from '../data/registerDonate'
-import BottomBtn from '../../components/BottomButton';
+import BackButton from '../../components/BackButton';
 
+import Icon from 'react-native-vector-icons/Feather';
 
 function DonateScreen() {
    const navigation = useNavigation();
@@ -92,9 +92,13 @@ function DonateScreen() {
         onPress={handleRegister}
         />
 
-        </View>
+        </View> 
 
-      <BottomBtn  route={'Home'} icon={"home"} text="home"/>
+       <BackButton  
+      route="Home" 
+      icon={<Icon name="arrow-left-circle" size={28} color="#351313" />}
+       />
+
       </ScrollView>
   
 

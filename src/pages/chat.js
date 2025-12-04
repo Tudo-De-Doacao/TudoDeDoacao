@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, FlatList, KeyboardAvoidingView, Platform } from "react-native";
+import { View, Text, TextInput, Pressable, FlatList, KeyboardAvoidingView, Platform,} from "react-native";
 import Icon from "react-native-vector-icons/Feather";
+import { useNavigation } from "@react-navigation/native"; // <-- IMPORTANTE
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
+
+  const navigation = useNavigation(); // <-- NECESSÁRIO
 
   const sendMessage = () => {
     if (!text.trim()) return;
@@ -24,7 +27,6 @@ export default function Chat() {
       style={{ flex: 1, backgroundColor: "#FFE0E0" }}
       behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
-
       {/* HEADER FIXO */}
       <View
         style={{
@@ -36,11 +38,14 @@ export default function Chat() {
           elevation: 4,
         }}
       >
-        <Text style={{ fontSize: 20, fontWeight: "bold", color: "#351313", flex: 1 }}>
+        <Text
+          style={{ fontSize: 20, fontWeight: "bold", color: "#351313", flex: 1 }}
+        >
           Atendimento
         </Text>
 
-        <Pressable onPress={() => {}}>
+        {/* BOTÃO VOLTAR */}
+        <Pressable onPress={() => navigation.goBack()}>
           <Icon name="x" size={26} color="#351313" />
         </Pressable>
       </View>
@@ -74,7 +79,7 @@ export default function Chat() {
         )}
       />
 
-      {/* INPUT FIXO EMBAIXO */}
+      {/* INPUT FIXO */}
       <View
         style={{
           flexDirection: "row",
@@ -112,7 +117,6 @@ export default function Chat() {
           <Icon name="send" size={22} color="#FFF" />
         </Pressable>
       </View>
-
     </KeyboardAvoidingView>
   );
 }

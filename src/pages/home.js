@@ -22,7 +22,9 @@ import { categorias } from '../../components/FilterBtn';
 
 import styles from '../../styles/index';
 import colors from '../../styles/color';
-import typog from '../../styles/type';
+import typog from '../../styles/type'; 
+
+import FloatingButton from '../../components/FloatingButton';
 
 export default function HomeScreen() {
   const [donationCards, setDonationCards] = useState([]);
@@ -40,6 +42,8 @@ export default function HomeScreen() {
       navigation.setParams({ openChat: false });
     }
   }, [route.params?.openChat]);
+
+
   // ----------------------------------
 
   useEffect(() => {
@@ -170,6 +174,8 @@ export default function HomeScreen() {
             </View>
           )}
         </ScrollView>
+        <FloatingButton onPress={() => navigation.navigate("Chat")} />
+
       </ImageBackground>
 
       {/* ------- CHAT AQUI ------- */}

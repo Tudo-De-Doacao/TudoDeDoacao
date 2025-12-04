@@ -7,7 +7,7 @@ import styles from '../styles/index';
 import typog from '../styles/type';
 const { width } = Dimensions.get('window');
 
-export default function Drawer() {
+export default function Drawer({route}) {
   const slideAnim = useRef(new Animated.Value(width)).current;
   const navigation = useNavigation();
   useFocusEffect(
@@ -31,26 +31,48 @@ const [hoverOn, setHoverOn] = useState(false);
           <Text style={typog.drwTitle}> Menu </Text>
               <View style={styles.separatorMenu} />
           <Pressable 
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => {console.log("Navegando para:", route);
+          navigation.navigate('Home')}}
           onHoverOut = {() => setHoverOn(false)}
           onHoverIn = {() =>setHoverOn(true)}
           style={ hoverOn  ? { ...styles.separatorHome, borderBottomWidth: 3 }
     : { ...styles.separatorHome }}>
+
             <Text style={typog.txtDrw}> Home </Text>
+
           </Pressable>
            
           <Pressable 
-          onPress={() => navigation.navigate('Search')}
-          style={styles.separatorSearch} >
+          onPress={() =>{ console.log("Navegando para:", route);
+          navigation.navigate('Search')}}
+          onHoverOut = {() => setHoverOn(false)}
+          onHoverIn = {() =>setHoverOn(true)}
+          style={ hoverOn  ? { ...styles.separatorSearch, borderBottomWidth: 3 }
+    : { ...styles.separatorSearch }}>
+
             <Text style={typog.txtDrw}> Pesquisa </Text>
+
           </Pressable>
-          <Pressable onPress={() => navigation.navigate('Donate')}
-          style={styles.separatorDonate}>
-            <Text style={typog.txtDrw}> Doação </Text>
+          <Pressable onPress={() => {
+            console.log("Navegando para:", route);
+            navigation.navigate('Donation')}}
+          onHoverOut = {() => setHoverOn(false)}
+          onHoverIn = {() =>setHoverOn(true)}
+          style={ hoverOn  ? { ...styles.separatorDonate, borderBottomWidth: 3 }
+    : { ...styles.separatorDonate }}>
+
+            <Text style={typog.txtDrw}> Donation </Text>
+
           </Pressable>
-          <Pressable onPress={() => navigation.navigate('Favorite')}
-          style={styles.separatorFavorite}>
-            <Text style={typog.txtDrw}> Favoritos </Text>
+          <Pressable onPress={() => {
+            console.log("Navegando para:", route);
+           navigation.navigate('Favorites')}}
+          onHoverOut = {() => setHoverOn(false)}
+          onHoverIn = {() =>setHoverOn(true)}
+          style={ hoverOn  ? { ...styles.separatorFavorite, borderBottomWidth: 3 }
+    : { ...styles.separatorFavorite }}>
+
+            <Text style={typog.txtDrw}> Favorites </Text>
           </Pressable>
         </View>
       </Animated.View>
