@@ -13,6 +13,7 @@ import Header from '../../components/Header';
 import Card from '../../components/CardDon';
 import CardTemp from '../../components/CardTemp';
 
+import { useNavigation } from '@react-navigation/native';
 
 import { getDonates } from '../../services/api/donations';
 import { categorias } from '../../components/FilterBtn';
@@ -20,8 +21,10 @@ import { categorias } from '../../components/FilterBtn';
 import styles from '../../styles/index';
 import colors from '../../styles/color';
 import typog from '../../styles/type';
+import FloatingButton from '../../components/FloatingButton';
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   const [donationCards, setDonationCards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
@@ -46,15 +49,20 @@ export default function HomeScreen() {
 
 
 
-  const renderCardItem = ({ item }) => (
-    <Card
-      key={item.id}
-      name={item.name}
-      description={item.description}
-      location={item.location || 'Localização desconhecida'}
-      image={`http://10.205.202.95:8000/storage/${item.image}`}
-    />
-  );
+const renderCardItem = ({ item }) => (
+  <Card
+    key={item.id}
+    id={item.id}
+    name={item.name}
+    description={item.description}
+    location={item.location || 'Localização desconhecida'}
+    image={`http://172.20.117.95:8000/storage/${item.image}`}
+    status={item.status}
+    created_at={item.created_at}
+    user_id={item.user_id}
+    category={item.category}
+  />
+);
 
   const renderFilterItem = ({ item }) => (
     <FilterBtn
@@ -140,6 +148,7 @@ export default function HomeScreen() {
             </View>
           )}
         </ScrollView>
+<FloatingButton onPress={() => navigation.navigate('Chat')} />      
       </ImageBackground>
     </>
   );

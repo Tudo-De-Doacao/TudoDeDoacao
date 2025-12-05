@@ -235,8 +235,7 @@ const styles = StyleSheet.create({
   bodyPrin: {
     alignItems: 'center',
     flexDirection: 'column',
-    padding: "0.5%",
-    flex: 1
+    padding: 12,
   },
   bodySearch: {
     justifyContent: 'center',

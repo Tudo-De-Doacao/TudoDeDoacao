@@ -61,17 +61,17 @@ function RegisterScreen() {
     }
 
     const success = await registerUser({
-      name,
-      email,
-      location,
-      phone,
-      password,
-      code,
+      name: name,
+      email: email,
+      location: location,
+      phone: phone,
+      password: password,
+      code: code,
     });
 
     if (success) {
       Alert.alert("Sucesso", "Cadastro realizado!");
-      // navigation.navigate('Login');
+      navigation.navigate('Login');
     }
   };
 
@@ -91,7 +91,7 @@ function RegisterScreen() {
       >
 
         {showCodeCard && (
-          <VerificationCard setCode={setCode} click={setShowCodeCard(false)}/>
+          <VerificationCard setCode={setCode} click={() => setShowCodeCard(false)}/>
         )}
 
         <ScrollView style={{ flex: 1 }}>

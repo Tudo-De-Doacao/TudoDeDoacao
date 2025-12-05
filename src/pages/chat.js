@@ -14,7 +14,7 @@ import Icon from "react-native-vector-icons/Feather";
 import { useRoute, useNavigation } from "@react-navigation/native";
 
 import { getMessages, sendMessage } from "../../services/api/messages";
-import { getUserId } from "../../services/data/getUser";
+import { getUserId } from "../../src/data/getUser";
 
 export default function Chat() {
   const route = useRoute();

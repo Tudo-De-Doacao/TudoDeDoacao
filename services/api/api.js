@@ -2,7 +2,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const api = axios.create({
-  baseURL: 'http://10.205.202.95:8000/api',
+  baseURL: 'http://172.20.117.95:8000/api',
 });
 
 let isRefreshing = false;
@@ -68,7 +68,7 @@ api.interceptors.response.use(
         console.log('🔄 Renovando access token...');
 
         const response = await axios.post(
-          'http://10.205.202.95:8000/api/auth/refresh',
+          'http://172.20.117.95:8000/api/auth/refresh',
           { refreshToken },
         );
 
