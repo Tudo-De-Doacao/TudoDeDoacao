@@ -91,7 +91,7 @@ function RegisterScreen() {
       >
 
         {showCodeCard && (
-          <VerificationCard setCode={setCode} click={setShowCodeCard(false)}/>
+          <VerificationCard setCode={setCode} click={() => {setShowCodeCard(false)}}/>
         )}
 
         <ScrollView style={{ flex: 1 }}>
