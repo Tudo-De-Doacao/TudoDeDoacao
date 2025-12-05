@@ -75,7 +75,7 @@ const handleSubmit = () => {
                     name={item.name}
                     description={item.description}
                     location={item.location}
-                    image={`http://10.173.20.95:8000/storage/${item.image}`}
+                    image={`http://172.20.117.95:8000/storage/${item.image}`}
                   />
                 );
               })

@@ -1,124 +1,204 @@
 import {
   ScrollView,
   View,
-  FlatList,
   ImageBackground,
   ActivityIndicator,
   Text,
-  Image
+  RefreshControl
 } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
-import Icon from 'react-native-vector-icons/Feather';
-
-import Card from '../../components/CardDon';
-import SavedCard from '../../components/SavedCard';
 import Header from '../../components/Header';
-import PendingDonationList from '../../components/pendingDonationList';
 import PendingDonationCard from '../../components/pendingDonationCard';
 
 import styles from '../../styles/index';
-import typog from '../../styles/type';
 import colors from '../../styles/color';
 
-import { getDonates } from '../../services/api/donations';
-import { categorias } from '../../components/FilterBtn';
+import {
+  getUserDonations,
+  getUserPendingDonations,
+  getAcceptedDonations,
+  getUserAcceptedRequests
+} from '../../services/api/getUserDonations';
 
 function FavoriteScreen() {
-  const [donationCards, setDonationCards] = useState([]);
-  const [pendings, setPendings] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [myDonations, setMyDonations] = useState([]);
+  const [pendingDonations, setPendingDonations] = useState([]);
+  const [finishedDonations, setFinishedDonations] = useState([]);
+  const [acceptedRequests, setAcceptedRequests] = useState([]);
+  
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  useEffect(() => {
-    async function fetchDonations() {
-      try {
-        const data = await getDonates('');
-        if (Array.isArray(data)) {
-          setDonationCards(data);
-        } else {
-          setErrorMsg('Formato inesperado dos dados');
-        }
-      } catch (error) {
-        setErrorMsg('Erro ao carregar doações: ' + error.message);
-      } finally {
-        setLoading(false);
-      }
+  const fetchAllData = async (isRefreshing = false) => {
+    if (!isRefreshing) setLoading(true);
+    setErrorMsg('');
+
+    try {
+      const [
+        myDonationsData,
+        pendingData,
+        acceptedData,
+        requestsData
+      ] = await Promise.all([
+        getUserDonations(),
+        getUserPendingDonations(),
+        getAcceptedDonations(),
+        getUserAcceptedRequests()
+      ]);
+
+      console.log('📊 Dados carregados:');
+      console.log('- Minhas doações:', myDonationsData.length);
+      console.log('- Pendentes:', pendingData.length);
+      console.log('- Finalizadas:', acceptedData.length);
+      console.log('- Pedidos aceitos:', requestsData.length);
+
+      setMyDonations(myDonationsData);
+      setPendingDonations(pendingData);
+      setFinishedDonations(acceptedData);
+      setAcceptedRequests(requestsData);
+
+    } catch (error) {
+      console.error('❌ Erro ao carregar dados:', error);
+      setErrorMsg('Erro ao carregar suas doações');
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
     }
-    fetchDonations();
+  };
+
+  // Carrega dados ao montar o componente
+  useEffect(() => {
+    fetchAllData();
   }, []);
 
-  const disableDonations = donationCards.filter(item => item.status === "disable");
- 
+  // Pull to refresh
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchAllData(true);
+  }, []);
+
+  // Renderiza loading inicial
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <ImageBackground
+          source={require('../../assets/BGHome.png')}
+          style={styles.bgimagem}
+          resizeMode="stretch"
+        >
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <ActivityIndicator size="large" color="#D93036" />
+            <Text style={{ marginTop: 16, color: colors.marker, fontSize: 16 }}>
+              Carregando suas doações...
+            </Text>
+          </View>
+        </ImageBackground>
+      </>
+    );
+  }
+
+  // Renderiza erro
+  if (errorMsg) {
+    return (
+      <>
+        <Header />
+        <ImageBackground
+          source={require('../../assets/BGHome.png')}
+          style={styles.bgimagem}
+          resizeMode="stretch"
+        >
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
+            <Text style={{ fontSize: 18, color: '#D93036', textAlign: 'center' }}>
+              {errorMsg}
+            </Text>
+            <Text
+              style={{ marginTop: 16, color: colors.marker, textDecorationLine: 'underline' }}
+              onPress={() => fetchAllData()}
+            >
+              Tentar novamente
+            </Text>
+          </View>
+        </ImageBackground>
+      </>
+    );
+  }
+
+  // Verifica se tem algum dado
+  const hasAnyData = 
+    myDonations.length > 0 ||
+    pendingDonations.length > 0 ||
+    finishedDonations.length > 0 ||
+    acceptedRequests.length > 0;
 
   return (
     <>
       <Header />
-      
       <ImageBackground
         source={require('../../assets/BGHome.png')}
-        style={[styles.bgimagem]}
+        style={styles.bgimagem}
         resizeMode="stretch"
       >
-        <ScrollView 
-         contentContainerStyle={{paddingBottom: 70}}
+        <ScrollView
+          contentContainerStyle={{ paddingBottom: 80 }}
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              colors={['#D93036']}
+              tintColor="#D93036"
+            />
+          }
         >
-
-          {loading && (
-              <View>
-                <ActivityIndicator size="large" color="#D93036"/>
-                <Text>
-                  Carregando doações...
-                </Text>
-              </View>
-          )}
-
-          {!loading && errorMsg !== "" && (
-            <Text style={{fontSize: 20, alignSelf: "center"}}>
-              {errorMsg}
-            </Text>
-          )}
-
-          {!loading && errorMsg === ""  && donationCards.length === 0 && (
-            <Text style={{fontSize: 20, alignSelf: "center"}}>
-              Nenhuma doação encontrada
-            </Text>
-          )}
-
-          {!loading && errorMsg === "" && donationCards.length > 0 &&(
+          {!hasAnyData ? (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 40, marginTop: 100 }}>
+              <Text style={{ fontSize: 18, color: colors.marker, textAlign: 'center' }}>
+                Você ainda não tem doações cadastradas
+              </Text>
+              <Text style={{ marginTop: 8, color: '#666', textAlign: 'center' }}>
+                Cadastre sua primeira doação para ajudar quem precisa!
+              </Text>
+            </View>
+          ) : (
             <>
+              {/* Minhas Doações */}
+              <PendingDonationCard
+                title="Minhas Doações"
+                iconName="gift"
+                image="tree"
+                dataCard={myDonations}
+              />
 
-            <PendingDonationCard
-            title="Pedidos Finalizados"
-            iconName={"heart"}
-            image="trunk"
-            dataCard={disable}
-            />
+              {/* Doações Pendentes */}
+              <PendingDonationCard
+                title="Doações Pendentes"
+                iconName="clock"
+                image="trunk"
+                dataCard={pendingDonations}
+              />
 
-            <PendingDonationCard
-            title="Suas doações pendentes"
-            iconName={"clock"}
-            image="trunk"
-            dataCard={pendingDonations}
-            />
+              {/* Pedidos Finalizados (que você recebeu) */}
+              <PendingDonationCard
+                title="Pedidos Finalizados"
+                iconName="check-circle"
+                image="tree"
+                dataCard={acceptedRequests}
+              />
 
-          <PendingDonationCard
-            title="Suas doações Finalizadas"
-            iconName={"heart"}
-            image="trunk"
-            dataCard={disable}
-            />
-             
+              {/* Doações Finalizadas (geral ou suas que foram aceitas) */}
+              <PendingDonationCard
+                title="Doações Finalizadas"
+                iconName="heart"
+                image="trunk"
+                dataCard={finishedDonations}
+              />
             </>
           )}
-          
-          
-
-       
-          {/* </View> */}
-          </ScrollView>
+        </ScrollView>
       </ImageBackground>
-        
     </>
   );
 }

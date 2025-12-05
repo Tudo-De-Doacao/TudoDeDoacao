@@ -20,6 +20,8 @@ import FavoriteScreen from './src/pages/favorite';
 import SearchScreen from './src/pages/search';
 import DonateScreen from './src/pages/donate';
 import { AuthProvider } from "./contexts/authContext";
+import SettingScreen from "./src/pages/settings";
+import ChatScreen from "./src/pages/chat"
 
 const Tabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -30,7 +32,7 @@ function TabsNav() {
 
   return (
     <>
-      {Platform.OS !== 'web' && route.name !== DonateScreen && (
+      {Platform.OS !== 'web' && route.name !== "Donation" && (
         <View
           style={{
             position: 'absolute',
@@ -57,14 +59,17 @@ function TabsNav() {
               case 'Search':
                 iconName = 'search';
                 break;
-              case 'Favorites':
+              case 'Doações':
                 iconName = 'heart';
                 break;
-              case 'Donation':
+              case 'Doe':
                 iconName = 'plus-circle';
                 break;
               case 'Request':
                 iconName = 'rotate-cw';
+                break;
+              case 'Settings':
+                iconName = 'settings'
                 break;
             }
             return (
@@ -95,13 +100,14 @@ function TabsNav() {
         <Tabs.Screen name="Home" component={HomeScreen} />
         <Tabs.Screen name="Search" component={SearchScreen} />
         <Tabs.Screen
-          name="Donation"
+          name="Doe"
           component={DonateScreen}
           options={{
           }}
         />
-        <Tabs.Screen name="Favorites" component={FavoriteScreen} />
+        <Tabs.Screen name="Doações" component={FavoriteScreen} />
         <Tabs.Screen name="Request" component={RequestScreen} />
+        <Tabs.Screen name="Settings" component={SettingScreen} />
       </Tabs.Navigator>
     </>
   );
@@ -129,6 +135,8 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Tabs" component={TabsNav} />
+        <Stack.Screen name="Card" component={CardScreen} />
+        <Stack.Screen name="Chat" component={ChatScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     </AuthProvider>

@@ -13,6 +13,7 @@ import Header from '../../components/Header';
 import Card from '../../components/CardDon';
 import CardTemp from '../../components/CardTemp';
 
+import { useNavigation } from '@react-navigation/native';
 
 import { getDonates } from '../../services/api/donations';
 import { categorias } from '../../components/FilterBtn';
@@ -20,8 +21,10 @@ import { categorias } from '../../components/FilterBtn';
 import styles from '../../styles/index';
 import colors from '../../styles/color';
 import typog from '../../styles/type';
+import FloatingButton from '../../components/FloatingButton';
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   const [donationCards, setDonationCards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
@@ -46,15 +49,20 @@ export default function HomeScreen() {
 
 
 
-  const renderCardItem = ({ item }) => (
-    <Card
-      key={item.id}
-      name={item.name}
-      description={item.description}
-      location={item.location || 'Localização desconhecida'}
-      image={`http://127.0.0.1:8000/storage/${item.image}`}
-    />
-  );
+const renderCardItem = ({ item }) => (
+  <Card
+    key={item.id}
+    id={item.id}
+    name={item.name}
+    description={item.description}
+    location={item.location || 'Localização desconhecida'}
+    image={`http://172.20.117.95:8000/storage/${item.image}`}
+    status={item.status}
+    created_at={item.created_at}
+    user_id={item.user_id}
+    category={item.category}
+  />
+);
 
   const renderFilterItem = ({ item }) => (
     <FilterBtn
@@ -82,7 +90,6 @@ export default function HomeScreen() {
             paddingHorizontal: 16,
             maxHeight: 100,
             paddingVertical: 4,
-            flex: 1,
             marginBottom: 12,
           }}
 
@@ -93,7 +100,6 @@ export default function HomeScreen() {
             ...styles.scroll,
             alignContent: 'center',
             justifyContent: 'center',
-            flex: 1,
             paddingBottom: 60,
           }}
           showsVerticalScrollIndicator={false}
@@ -125,8 +131,8 @@ export default function HomeScreen() {
 
           {!loading && donationCards.length > 0 && (
             <View>
-             <Text style={{ ...typog.txtDrw, textAlign: 'left' }}>
-              Doações Favoritas
+             <Text style={{ ...typog.txtDrw, textAlign: 'left', marginHorizontal: 12,  }}>
+              Doações na sua área
             </Text>
              <ScrollView
         horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -142,6 +148,7 @@ export default function HomeScreen() {
             </View>
           )}
         </ScrollView>
+<FloatingButton onPress={() => navigation.navigate('Chat')} />      
       </ImageBackground>
     </>
   );

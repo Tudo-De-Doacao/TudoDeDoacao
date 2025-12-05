@@ -18,7 +18,7 @@ function Password({ secure, ph, autoComplete, value, onChangeText }) {
         secureTextEntry={secure && secureMode}
         autoComplete={autoComplete}
         autoCapitalize =  "none"
-        maxLength={32}
+        maxLength={42}
         value={value}
         onChangeText={onChangeText}
         style={[

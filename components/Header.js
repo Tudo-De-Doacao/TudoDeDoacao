@@ -24,7 +24,9 @@ export default function Header() {
   }, [route.params?.termo, route.params?.filter]);
 
   const isSearchScreen = ['Search'].includes(route.name);
+  const isSettingsScreen = ['Settings'].includes(route.name);
 
+  
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
       navigation.navigate('Search', { termo: searchTerm });
@@ -91,9 +93,9 @@ export default function Header() {
       ) : (
         <Pressable
           style={styles.iconCont}
-          onPress={() => navigation.navigate('Search', { termo: searchTerm })}
+          onPress={() => navigation.navigate('Settings')}
         >
-          <Icon name="search" size={32} color="#351313" style={styles.iconHeader} />
+          <Icon name="settings" size={32} color="#351313" style={styles.iconHeader} />
         </Pressable>
       )}
     </LinearGradient>
