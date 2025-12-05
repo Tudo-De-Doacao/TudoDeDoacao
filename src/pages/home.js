@@ -56,7 +56,7 @@ const renderCardItem = ({ item }) => (
     name={item.name}
     description={item.description}
     location={item.location || 'Localização desconhecida'}
-    image={`http://172.20.117.95:8000/storage/${item.image}`}
+    image={`http://tudodedoacao-backend.onrender.com/storage/${item.image}`}
     status={item.status}
     created_at={item.created_at}
     user_id={item.user_id}

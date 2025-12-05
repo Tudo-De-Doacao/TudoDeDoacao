@@ -75,7 +75,7 @@ const handleSubmit = () => {
                     name={item.name}
                     description={item.description}
                     location={item.location}
-                    image={`http://172.20.117.95:8000/storage/${item.image}`}
+                    image={`http://tudodedoacao-backend.onrender.com/storage/${item.image}`}
                   />
                 );
               })
