@@ -15,53 +15,86 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 
 import { getMessages, sendMessage } from "../../services/api/messages";
 import { getUserId } from "../../src/data/getUser";
+import { 
+  confirmDonationByDonor, 
+  confirmDonationByRecipient,
+  getDonationConfirmationStatus 
+} from "../../services/api/confirmations";
 
 export default function Chat() {
   const route = useRoute();
   const navigation = useNavigation();
   const flatListRef = useRef(null);
 
-
-  const recipientId = route.params?.recipientId || 1; 
+  const recipientId = route.params?.recipientId || 1;
   const recipientName = route.params?.recipientName || "Atendimento";
+  const donationId = route.params?.donationId; // ID da doação associada
+  const isDonor = route.params?.isDonor; // true se é o doador, false se é o recebedor
 
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [sending, setSending] = useState(false);
   const [currentUserId, setCurrentUserId] = useState(null);
+  
+  // Estados de confirmação
+  const [donorConfirmed, setDonorConfirmed] = useState(false);
+  const [recipientConfirmed, setRecipientConfirmed] = useState(false);
+  const [confirmationLoading, setConfirmationLoading] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
-    async function loadUserId() {
-      const userId = await getUserId();
-      setCurrentUserId(userId);
-    }
     loadUserId();
   }, []);
 
   useEffect(() => {
     if (currentUserId) {
       loadMessages();
+      if (donationId) {
+        loadConfirmationStatus();
+      }
     }
-  }, [currentUserId, recipientId]);
+  }, [currentUserId, recipientId, donationId]);
 
   useEffect(() => {
-    if (!currentUserId) return;
+    if (!currentUserId || !donationId) return;
 
     const interval = setInterval(() => {
-      loadMessages(true); 
+      loadMessages(true);
+      loadConfirmationStatus(true);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [currentUserId, recipientId]);
+  }, [currentUserId, recipientId, donationId]);
+
+  const loadUserId = async () => {
+    const uid = await getUserId();
+    setCurrentUserId(uid);
+  };
+
+  const loadConfirmationStatus = async (silent = false) => {
+    if (!donationId) return;
+
+    try {
+      const status = await getDonationConfirmationStatus(donationId);
+      if (status) {
+        setDonorConfirmed(status.donor_confirmed);
+        setRecipientConfirmed(status.recipient_confirmed);
+        setIsCompleted(status.status === 'disable' || status.status === 'completed');
+      }
+    } catch (error) {
+      if (!silent) {
+        console.error('Erro ao carregar status:', error);
+      }
+    }
+  };
 
   const loadMessages = async (silent = false) => {
     if (!silent) setLoading(true);
     
     try {
       const data = await getMessages(recipientId);
-  
-
+      
       const formattedMessages = data.map(msg => ({
         id: msg.id.toString(),
         text: msg.text,
@@ -88,7 +121,7 @@ export default function Chat() {
     if (!text.trim() || sending) return;
 
     const messageText = text.trim();
-    setText(""); 
+    setText("");
 
     const optimisticMessage = {
       id: `temp-${Date.now()}`,
@@ -106,7 +139,6 @@ export default function Chat() {
         text: messageText
       });
 
-
       setMessages(prev => 
         prev.map(msg => 
           msg.id === optimisticMessage.id 
@@ -115,12 +147,10 @@ export default function Chat() {
         )
       );
 
- 
       setTimeout(() => {
         flatListRef.current?.scrollToEnd({ animated: true });
       }, 100);
     } catch (error) {
-
       setMessages(prev => prev.filter(msg => msg.id !== optimisticMessage.id));
       Alert.alert("Erro", "Não foi possível enviar a mensagem. Tente novamente.");
       setText(messageText);
@@ -129,8 +159,67 @@ export default function Chat() {
     }
   };
 
+  const handleConfirmReceipt = async () => {
+    if (!donationId) {
+      Alert.alert('Erro', 'Doação não identificada');
+      return;
+    }
+
+    const confirmTitle = isDonor 
+      ? 'Confirmar Entrega'
+      : 'Confirmar Recebimento';
+    
+    const confirmMessage = isDonor
+      ? 'Você confirma que entregou esta doação?'
+      : 'Você confirma que recebeu esta doação?';
+
+    Alert.alert(
+      confirmTitle,
+      confirmMessage,
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Confirmar',
+          onPress: async () => {
+            setConfirmationLoading(true);
+            try {
+              const result = isDonor
+                ? await confirmDonationByDonor(donationId)
+                : await confirmDonationByRecipient(donationId);
+
+              if (result) {
+                await loadConfirmationStatus();
+                
+                if (isDonor) {
+                  setDonorConfirmed(true);
+                } else {
+                  setRecipientConfirmed(true);
+                }
+              }
+            } catch (error) {
+              console.error('Erro ao confirmar:', error);
+            } finally {
+              setConfirmationLoading(false);
+            }
+          }
+        }
+      ]
+    );
+  };
+
   const handleClose = () => {
     navigation.goBack();
+  };
+
+  // Verifica se deve mostrar o botão de confirmação
+  const showConfirmButton = () => {
+    if (!donationId || isCompleted) return false;
+    
+    if (isDonor) {
+      return !donorConfirmed;
+    } else {
+      return !recipientConfirmed;
+    }
   };
 
   return (
@@ -139,6 +228,7 @@ export default function Chat() {
       behavior={Platform.OS === "ios" ? "padding" : undefined}
       keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
     >
+      {/* HEADER */}
       <View
         style={{
           height: 60,
@@ -158,7 +248,64 @@ export default function Chat() {
         </Pressable>
       </View>
 
+      {/* STATUS DE CONFIRMAÇÃO */}
+      {donationId && !isCompleted && (
+        <View
+          style={{
+            backgroundColor: '#FFF3E0',
+            padding: 12,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 12, color: '#F57C00', fontWeight: '600' }}>
+              Status da Entrega
+            </Text>
+            <View style={{ flexDirection: 'row', marginTop: 6, gap: 8 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Icon 
+                  name={donorConfirmed ? "check-circle" : "circle"} 
+                  size={16} 
+                  color={donorConfirmed ? "#4CAF50" : "#999"} 
+                />
+                <Text style={{ fontSize: 11, marginLeft: 4, color: '#666' }}>
+                  Doador
+                </Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Icon 
+                  name={recipientConfirmed ? "check-circle" : "circle"} 
+                  size={16} 
+                  color={recipientConfirmed ? "#4CAF50" : "#999"} 
+                />
+                <Text style={{ fontSize: 11, marginLeft: 4, color: '#666' }}>
+                  Recebedor
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      )}
 
+      {/* DOAÇÃO FINALIZADA */}
+      {isCompleted && (
+        <View
+          style={{
+            backgroundColor: '#E8F5E9',
+            padding: 12,
+            alignItems: 'center',
+          }}
+        >
+          <Icon name="check-circle" size={24} color="#4CAF50" />
+          <Text style={{ fontSize: 14, color: '#2E7D32', fontWeight: '600', marginTop: 4 }}>
+            Doação Concluída! 🎉
+          </Text>
+        </View>
+      )}
+
+      {/* MENSAGENS */}
       {loading && messages.length === 0 ? (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <ActivityIndicator size="large" color="#D93036" />
@@ -166,7 +313,6 @@ export default function Chat() {
         </View>
       ) : (
         <>
-
           <FlatList
             ref={flatListRef}
             data={messages}
@@ -206,7 +352,6 @@ export default function Chat() {
                   {item.text}
                 </Text>
                 
-
                 {item.timestamp && (
                   <Text
                     style={{
@@ -226,7 +371,36 @@ export default function Chat() {
             )}
           />
 
+          {/* BOTÃO DE CONFIRMAÇÃO */}
+          {showConfirmButton() && (
+            <View style={{ paddingHorizontal: 10, paddingVertical: 8, backgroundColor: "#FFE0E0" }}>
+              <Pressable
+                onPress={handleConfirmReceipt}
+                disabled={confirmationLoading}
+                style={{
+                  backgroundColor: confirmationLoading ? "#CCC" : "#4CAF50",
+                  padding: 14,
+                  borderRadius: 25,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                {confirmationLoading ? (
+                  <ActivityIndicator size="small" color="#FFF" />
+                ) : (
+                  <>
+                    <Icon name="check-circle" size={20} color="#FFF" />
+                    <Text style={{ color: '#FFF', fontSize: 16, fontWeight: 'bold', marginLeft: 8 }}>
+                      {isDonor ? 'Confirmar Entrega' : 'Confirmar Recebimento'}
+                    </Text>
+                  </>
+                )}
+              </Pressable>
+            </View>
+          )}
 
+          {/* INPUT DE MENSAGEM */}
           <View
             style={{
               flexDirection: "row",

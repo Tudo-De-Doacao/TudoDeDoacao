@@ -241,9 +241,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    padding: 4,
-    paddingTop: 16,
+    paddingHorizontal: 120,
+    paddingTop: 12,
+    paddingBottom: 12,
+    marginBottom: 42,
     gap: 8,
+
   },
   bgimagem: {
     width: width,

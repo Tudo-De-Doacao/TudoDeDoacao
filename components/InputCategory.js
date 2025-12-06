@@ -60,13 +60,13 @@ export default function InputCategory({ value, onChangeText, ph }) {
               borderColor: '#351313',
               fontFamily: 'DGrotesque-SemiBold',
               fontSize: 18,
-              paddingRight: 35,
+              paddingRight: 28,
             },
           ]}
         />
         <Icon
           name={dropdownVisible ? 'chevron-up' : 'chevron-down'}
-          size={22}
+          size={20}
           color="#351313"
           style={{
             position: 'absolute',

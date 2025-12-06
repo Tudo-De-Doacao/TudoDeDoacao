@@ -6,13 +6,8 @@ import styles from "../styles";
 import colors from "../styles/color";
 import typog from "../styles/type";
 
-export default function PendingDonationCard({ title, content, iconName, image, dataCard }) {
-  const images = {
-    tree: require("../assets/treebranch.png"),
-    trunk: require("../assets/trunk.png")
-  };
+export default function PendingDonationCard({ title, content, iconName, dataCard }) {
 
-  // Se não houver dados, não renderiza o card
   if (!dataCard || dataCard.length === 0) {
     return null;
   }
@@ -28,7 +23,7 @@ export default function PendingDonationCard({ title, content, iconName, image, d
           marginBottom: 8,
         }}
       >
-        <Icon name={iconName} size={24} color={colors.primary} />
+        <Icon name={iconName} size={24} color={colors.active} />
         <Text
           style={{
             ...typog.txtDrw,
@@ -38,13 +33,6 @@ export default function PendingDonationCard({ title, content, iconName, image, d
         >
           {title}
         </Text>
-        {image && images[image] && (
-          <Image
-            source={images[image]}
-            style={{ width: 30, height: 30 }}
-            resizeMode="contain"
-          />
-        )}
       </View>
 
       {/* Corpo do card - Lista horizontal */}
@@ -56,7 +44,7 @@ export default function PendingDonationCard({ title, content, iconName, image, d
             name={item.name || item.donation_name}
             description={item.description || item.donation_description}
             location={item.location || item.donation_location}
-            image={`http://10.155.194.47:8000/storage/${item.image || item.donation_image}`}
+            image={`http://10.215.204.95:8000/storage/${item.image || item.donation_image}`}
             status={item.status}
           />
         )}
@@ -64,7 +52,7 @@ export default function PendingDonationCard({ title, content, iconName, image, d
         contentContainerStyle={{
           paddingHorizontal: 16,
           alignItems: "center",
-          gap: 20,
+          gap: 32,
         }}
         showsHorizontalScrollIndicator={false}
       />

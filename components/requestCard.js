@@ -1,183 +1,167 @@
-import Icon from "react-native-vector-icons/Feather";
-import {View, Text, Image, TouchableOpacity, Platform} from "react-native";
-import  Animated, {useSharedValue, useAnimatedStyle, withTiming, runOnJS } from "react-native-reanimated";
+import { View, Text, Image, Pressable } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import styles from '../styles';
+import colors from '../styles/color';
 
-import styles from "../styles";
-import colors from "../styles/color";
-import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
-const isWeb = Platform.OS === 'web';
-
-
-export default function RequestCard({donateName, userName, userLocal, requestDate, requestImage, onAccept, onRecuse}){
-  const translateX = useSharedValue(0);
-  const gradientHeight = useSharedValue(0);
-  const gradientColor = useSharedValue("");
-  const iconScale = useSharedValue(0);
-  const iconOpacity = useSharedValue(0);
-
-  const [click, setClick] = useState(false);
-  const [iconState, setIconState] = useState("");
-
-  const animatedCheckStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{scale: iconScale.value}],
-      opacity: iconOpacity.value,
-    }
-  })
-
-  const animatedGradientStyle = useAnimatedStyle(() => {
-    return{
-       height: `${gradientHeight.value}%`,
-       backgroundColor: gradientColor.value,
-       borderRadius: 19,
-    }
-  })
-
-  const animatedCardStyle = useAnimatedStyle(() => {
-    return{
-        transform: [{translateX: translateX.value}],
-    };
-  })
-
-  const handleAccept = () => {
-    setClick(true);
-    setIconState("check")
-    gradientColor.value = "#62b162ff";
-
-    gradientHeight.value = withTiming(isWeb? 100 : 100, {duration: 500}, () => {
-      iconScale.value = withTiming(1, {duration: 300}, () => {
-        iconOpacity.value = withTiming(1, {duration: 500}, () => {
-          translateX.value = withTiming (isWeb? -30 : -30, {duration: 500}, () => {
-              translateX.value = withTiming(isWeb? 2000 : 2000, {duration: 500}, () => {
-                runOnJS(onAccept)();
-              })
-              });
-        })
-      })
-    });   
-  };
-  
-  const handleDecline = () => {
-    setClick(true)
-    setIconState("x");
-    gradientColor.value = "#e24665ff";
-
-
-    gradientHeight.value = withTiming (isWeb? 100 : 100, {duration: 500}, () => {
-      iconScale.value = withTiming(1,{duration: 300}, () => {
-        iconOpacity.value = withTiming(1, {duration: 500}, () => {
-          translateX.value = withTiming (isWeb? 30 : 30, {duration: 500}, () => {
-              translateX.value = withTiming (isWeb? -2000 : -2000, {duration: 500}, () => {
-                runOnJS(onRecuse)();
-              })
-          });
-
-        })
-      })
-    })
-  };
-
-  
-    return(
-      
-    <Animated.View style={[styles.requestContainer, animatedCardStyle]}>
-      <View style={styles.imageCardRequestContainer}>
+export default function RequestCard({ 
+  donateName, 
+  userName, 
+  userLocal, 
+  requestImage, 
+  onRecuse, 
+  onAccept 
+}) {
+  return (
+    <View
+      style={{
+        backgroundColor: '#FFF',
+        borderRadius: 16,
+        padding: 16,
+        marginVertical: 8,
+        width: '100%',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+      }}
+    >
+      {/* Header com imagem da doação */}
+      <View style={{ flexDirection: 'row', marginBottom: 16 }}>
         <Image
-         style={styles.ImageCardRequest}
-         source={{
-         uri: requestImage,
-        }}
+          source={{ uri: requestImage }}
+          style={{
+            width: 80,
+            height: 80,
+            borderRadius: 12,
+            backgroundColor: '#FFE0E0',
+          }}
+          resizeMode="cover"
         />
-      </View>
-      
-
-      <View style={styles.dataContainerDonate}> 
-        <View style={styles.donationNameContainer}>
-            <Text style={styles.donationNameText}>
-                {donateName}
-            </Text>
-        </View>
-
-        <View style={styles.requestUserContainer}>
-            <Text style={styles.requestUserText}>
-                {userName}
-            </Text>
-        </View>
-
-        <View style={styles.requestLocalContainer}>
-            <Text style={styles.requestLocalText}>
-                {userLocal}
-            </Text>
-        </View>
         
-      </View>
-
-      <View style={styles.containerButtons}>
-        
-        <TouchableOpacity 
-        style={styles.declineButton}
-        activeOpacity={0.4}
-        onPress={handleDecline}
-        disabled={click}
-        >
-            <Icon
-            name={"trash-2"}
-            size={30}
-            color={colors.border}
-            />
-            <Text> Recusar</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity
-        style={styles.declineButton}
-        activeOpacity={0.4}
-        onPress={handleAccept}
-        disabled={click}
-        >
-            <Icon
-            name={"check"}
-            size={30}
-            color={colors.border}
-            />
-            <Text> Aceitar</Text>
-        </TouchableOpacity> 
-      </View>
-
-      <Animated.View style={[
-        {  
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-        },
-        animatedGradientStyle
-      ]}>
-        <LinearGradient
-            colors={["hsla(0, 0%, 100%, 0.00)", "rgba(36, 204, 36, 0)"]}
-            start={{ x: 0.5, y: 1 }}
-            end={{ x: 0.5, y: 0 }}
+        <View style={{ flex: 1, marginLeft: 12, justifyContent: 'center' }}>
+          <Text
             style={{
-              borderRadius: 19,
-              flex: 1,
-              
+              fontSize: 16,
+              fontWeight: 'bold',
+              color: '#351313',
+              marginBottom: 4,
             }}
-          > 
-          <Animated.View
-          style={[animatedCheckStyle, {flex: 1, flexDirection: "row", justifyContent: "center", alignItems: "center"}]}
+            numberOfLines={2}
           >
-            <Icon 
-            name={iconState} 
-            size={100} 
-            color="black"
-           
-            />
-          </Animated.View>
+            {donateName}
+          </Text>
+          
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
+            <Icon name="map-pin" size={14} color="#999" />
+            <Text
+              style={{
+                fontSize: 13,
+                color: '#666',
+                marginLeft: 4,
+              }}
+              numberOfLines={1}
+            >
+              {userLocal}
+            </Text>
+          </View>
+        </View>
+      </View>
 
-          </LinearGradient>
-      </Animated.View>
-    
-    </Animated.View>
-    
-  )
-};
+      {/* Informações do solicitante */}
+      <View
+        style={{
+          backgroundColor: '#FFE0E0',
+          padding: 12,
+          borderRadius: 12,
+          marginBottom: 16,
+        }}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 18,
+              backgroundColor: '#FFB8B8',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginRight: 10,
+            }}
+          >
+            <Icon name="user" size={18} color="#D93036" />
+          </View>
+          
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 12, color: '#999', marginBottom: 2 }}>
+              Solicitado por:
+            </Text>
+            <Text
+              style={{ fontSize: 14, fontWeight: '600', color: '#351313' }}
+              numberOfLines={1}
+            >
+              {userName}
+            </Text>
+          </View>
+        </View>
+      </View>
+
+      {/* Botões de ação */}
+      <View style={{ flexDirection: 'row', gap: 10 }}>
+        {/* Botão Recusar */}
+        <Pressable
+          onPress={onRecuse}
+          style={({ pressed }) => ({
+            flex: 1,
+            backgroundColor: pressed ? '#F5F5F5' : '#FFF',
+            borderWidth: 2,
+            borderColor: '#F44336',
+            padding: 12,
+            borderRadius: 25,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+          })}
+        >
+          <Icon name="x" size={18} color="#F44336" />
+          <Text
+            style={{
+              color: '#F44336',
+              fontSize: 15,
+              fontWeight: 'bold',
+              marginLeft: 6,
+            }}
+          >
+            Recusar
+          </Text>
+        </Pressable>
+
+        {/* Botão Aceitar */}
+        <Pressable
+          onPress={onAccept}
+          style={({ pressed }) => ({
+            flex: 1,
+            backgroundColor: pressed ? '#C02830' : '#D93036',
+            padding: 12,
+            borderRadius: 25,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+          })}
+        >
+          <Icon name="check" size={18} color="#FFF" />
+          <Text
+            style={{
+              color: '#FFF',
+              fontSize: 15,
+              fontWeight: 'bold',
+              marginLeft: 6,
+            }}
+          >
+            Aceitar
+          </Text>
+        </Pressable>
+      </View>
+    </View>
+  );
+}

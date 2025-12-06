@@ -13,18 +13,19 @@ export async function getDonates(searchTerm = '') {
     const term = searchTerm.trim().toLowerCase();
     console.log('🔎 Termo tratado:', term);
 
-
-    console.log(`➡️ Buscando por nome: ${term}`);
-    let response = await api.get(`/donations/`, {
-      params: { name: term }
+    console.log(`➡️ Buscando por localização: ${term}`);
+    response = await api.get(`/donations`, {
+      params: { location: term }
     });
-    console.log('🔁 Resposta (nome):', response.data);
+    console.log('🔁 Resposta (localização):', response.data);
       if (response.data?.donations?.length > 0) {
       return response.data.donations;
     }
 
+
+    
     console.log(`➡️ Buscando por categoria: ${term}`);
-    response = await api.get(`/donations/`, {
+    response = await api.get(`/donations`, {
       params: { category: term }
     });
     console.log('🔁 Resposta (categoria):', response.data);
@@ -32,15 +33,15 @@ export async function getDonates(searchTerm = '') {
       return response.data.donations;
     }
 
-
-    console.log(`➡️ Buscando por localização: ${term}`);
-    response = await api.get(`/donations/ `, {
-      params: { location: term }
+    console.log(`➡️ Buscando por nome: ${term}`);
+    let response = await api.get(`/donations`, {
+      params: { name: term }
     });
-    console.log('🔁 Resposta (localização):', response.data);
+    console.log('🔁 Resposta (nome):', response.data);
       if (response.data?.donations?.length > 0) {
       return response.data.donations;
     }
+
 
     return [];
 

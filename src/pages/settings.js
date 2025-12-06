@@ -24,6 +24,7 @@ import RegisterButton from '../../components/RegisterButton';
 
 import { getUserById, getUserId, logout } from '../data/getUser';
 import { updateUser, updatePassword, deleteAccount } from '../data/updateUser';
+import FloatingButton from '../../components/FloatingButton';
 
 function SettingsScreen() {
   const navigation = useNavigation();
@@ -359,6 +360,7 @@ function SettingsScreen() {
             Versão 1.0.0
           </Text>
         </View>
+        <FloatingButton onPress={() => navigation.navigate('Chat')} />      
       </ScrollView>
     </KeyboardAvoidingView>
   );

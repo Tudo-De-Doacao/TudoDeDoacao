@@ -14,7 +14,7 @@
           if (onPress) {
           try {
             const success = await onPress(); 
-            if (success.status == 201) {
+            if (success === true) {
             console.log('Navegando para rota:' , route)
               navigation.navigate(route);
             }

@@ -16,6 +16,7 @@ import typog from '../../styles/type';
 
 import { registerDonate } from '../data/registerDonate'
 import BottomBtn from '../../components/BottomButton';
+import FloatingButton from '../../components/FloatingButton';
 
 
 function DonateScreen() {
@@ -96,7 +97,7 @@ function DonateScreen() {
         />
 
         </View>
-
+<FloatingButton onPress={() => navigation.navigate('Chat')} />      
       </ScrollView>
   
 

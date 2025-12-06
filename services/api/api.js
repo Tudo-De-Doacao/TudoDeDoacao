@@ -2,7 +2,8 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const api = axios.create({
-  baseURL: 'http://172.20.117.95:8000/api',
+  // baseURL: 'https://tudodedoacao-backend.onrender.com/api' || 'http://172.16.10.46:8000/api' || 'http://localhost:8000/api',
+  baseURL: 'http://10.215.204.95:8000/api'
 });
 
 let isRefreshing = false;
@@ -68,7 +69,8 @@ api.interceptors.response.use(
         console.log('🔄 Renovando access token...');
 
         const response = await axios.post(
-          'http://172.20.117.95:8000/api/auth/refresh',
+        //  'http://https://tudodedoacao-backend.onrender.com/api/auth/refresh' || 'http://172.16.10.46:8000/api/auth/refresh' || 
+            'http://10.111.231.95:8000/api/auth/refresh',
           { refreshToken },
         );
 

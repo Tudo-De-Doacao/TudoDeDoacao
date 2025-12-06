@@ -54,7 +54,9 @@ export default function Card({
       case 'rejected':
         return { color: '#F44336', icon: 'x-circle', text: 'Rejeitado' };
       case 'disable':
-        return { color: '#9E9E9E', icon: 'slash', text: 'Desativado' };
+        return { color: '#9E9E9E', icon: 'slash', text: 'Finalizado' };
+      case 'active':
+        return { color: '#2196F3', icon: 'gift', text: 'Disponível' };
       default:
         return null;
     }
@@ -63,73 +65,113 @@ export default function Card({
   const statusConfig = getStatusConfig(status);
 
   return (
-    <View style={styles.card}>
-      <Pressable onPress={handlePress}>
-        <View style={styles.imageBox}>
-          <Image
-            style={styles.image}
-            source={{ uri: image }}
-            resizeMode="cover"
-          />
-          
-          {/* Badge de Status */}
-          {statusConfig && (
-            <View
-              style={{
-                position: 'absolute',
-                top: 8,
-                right: 8,
-                flexDirection: 'row',
-                alignItems: 'center',
-                backgroundColor: statusConfig.color,
-                paddingHorizontal: 8,
-                paddingVertical: 4,
-                borderRadius: 12,
-              }}
-            >
-              <Icon name={statusConfig.icon} size={12} color="#FFF" />
-              <Text style={{ 
-                color: '#FFF', 
-                fontSize: 10, 
-                marginLeft: 4, 
-                fontWeight: 'bold' 
-              }}>
-                {statusConfig.text}
-              </Text>
-            </View>
-          )}
-        </View>
-
-        <View style={styles.infoBox}>
-          <Text style={typog.titleCard} numberOfLines={1}>
-            {name}
-          </Text>
-          
-          <Text
-            style={{ 
-              ...typog.txtCard, 
-              marginBottom: 18, 
-              marginHorizontal: 4 
+    <Pressable 
+      onPress={handlePress}
+      style={({ pressed }) => [
+        styles.card,
+        {
+          transform: [{ scale: pressed ? 0.98 : 1 }],
+          opacity: pressed ? 0.9 : 1,
+        }
+      ]}
+    >
+      <View style={styles.imageBox}>
+        <Image
+          style={styles.image}
+          source={{ uri: image }}
+          resizeMode="cover"
+        />
+        
+        {/* Badge de Status */}
+        {statusConfig && (
+          <View
+            style={{
+              position: 'absolute',
+              top: 8,
+              right: 8,
+              flexDirection: 'row',
+              alignItems: 'center',
+              backgroundColor: statusConfig.color,
+              paddingHorizontal: 10,
+              paddingVertical: 6,
+              borderRadius: 16,
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
             }}
-            numberOfLines={4}
-            ellipsizeMode="tail"
           >
-            {description}
-          </Text>
-
-          <View style={styles.locationCard}>
-            <Icon
-              name="map-pin"
-              size={18}
-              color={colors.marker}
-              style={styles.iconMapHeader}
-            />
-            <Text style={{ ...typog.txtCard, fontSize: 16 }}>
-              {location}
+            <Icon name={statusConfig.icon} size={14} color="#FFF" />
+            <Text style={{ 
+              color: '#FFF', 
+              fontSize: 11, 
+              marginLeft: 5, 
+              fontWeight: 'bold' 
+            }}>
+              {statusConfig.text}
             </Text>
           </View>
+        )}
+
+        {/* Categoria Badge */}
+        {category && (
+          <View
+            style={{
+              position: 'absolute',
+              bottom: 8,
+              left: 8,
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
+              paddingHorizontal: 10,
+              paddingVertical: 5,
+              borderRadius: 12,
+            }}
+          >
+            <Text style={{ 
+              color: '#FFF', 
+              fontSize: 11, 
+              fontWeight: '600' 
+            }}>
+              {category}
+            </Text>
+          </View>
+        )}
+      </View>
+
+      <View style={styles.infoBox}>
+        <Text style={typog.titleCard} numberOfLines={1}>
+          {name}
+        </Text>
+        
+        <Text
+          style={{ 
+            ...typog.txtCard, 
+            marginBottom: 12, 
+            marginHorizontal: 4,
+            color: '#666',
+            lineHeight: 20
+          }}
+          numberOfLines={3}
+          ellipsizeMode="tail"
+        >
+          {description}
+        </Text>
+
+        <View style={styles.locationCard}>
+          <Icon
+            name="map-pin"
+            size={16}
+            color={colors.marker}
+            style={styles.iconMapHeader}
+          />
+          <Text 
+            style={{ ...typog.txtCard, fontSize: 14, flex: 1 }}
+            numberOfLines={1}
+          >
+            {location}
+          </Text>
         </View>
-      </Pressable>
-    </View>
+      </View>
+    </Pressable>
   );
 }

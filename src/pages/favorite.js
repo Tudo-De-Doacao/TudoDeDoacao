@@ -20,10 +20,10 @@ import {
   getAcceptedDonations,
   getUserAcceptedRequests
 } from '../../services/api/getUserDonations';
+import FloatingButton from '../../components/FloatingButton';
 
 function FavoriteScreen() {
   const [myDonations, setMyDonations] = useState([]);
-  const [pendingDonations, setPendingDonations] = useState([]);
   const [finishedDonations, setFinishedDonations] = useState([]);
   const [acceptedRequests, setAcceptedRequests] = useState([]);
   
@@ -38,7 +38,6 @@ function FavoriteScreen() {
     try {
       const [
         myDonationsData,
-        pendingData,
         acceptedData,
         requestsData
       ] = await Promise.all([
@@ -50,12 +49,10 @@ function FavoriteScreen() {
 
       console.log('📊 Dados carregados:');
       console.log('- Minhas doações:', myDonationsData.length);
-      console.log('- Pendentes:', pendingData.length);
       console.log('- Finalizadas:', acceptedData.length);
       console.log('- Pedidos aceitos:', requestsData.length);
 
       setMyDonations(myDonationsData);
-      setPendingDonations(pendingData);
       setFinishedDonations(acceptedData);
       setAcceptedRequests(requestsData);
 
@@ -168,23 +165,13 @@ function FavoriteScreen() {
               <PendingDonationCard
                 title="Minhas Doações"
                 iconName="gift"
-                image="tree"
                 dataCard={myDonations}
-              />
-
-              {/* Doações Pendentes */}
-              <PendingDonationCard
-                title="Doações Pendentes"
-                iconName="clock"
-                image="trunk"
-                dataCard={pendingDonations}
               />
 
               {/* Pedidos Finalizados (que você recebeu) */}
               <PendingDonationCard
                 title="Pedidos Finalizados"
                 iconName="check-circle"
-                image="tree"
                 dataCard={acceptedRequests}
               />
 
@@ -192,12 +179,12 @@ function FavoriteScreen() {
               <PendingDonationCard
                 title="Doações Finalizadas"
                 iconName="heart"
-                image="trunk"
                 dataCard={finishedDonations}
               />
             </>
           )}
         </ScrollView>
+        <FloatingButton onPress={() => navigation.navigate('Chat')} />      
       </ImageBackground>
     </>
   );

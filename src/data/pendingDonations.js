@@ -1,5 +1,5 @@
 import api from '../../services/api/api';
-import { getUserId } from '../data/getUser';
+import { getUserId } from './getUser';
 import { Alert } from 'react-native';
 
 /**
@@ -15,15 +15,19 @@ export async function requestDonation(donationId) {
       return false;
     }
 
-    console.log('📤 Solicitando doação:', donationId);
+    // Converte ambos para números inteiros
+    const donationIdInt = parseInt(donationId, 10);
+    const userIdInt = parseInt(userId, 10);
+
+    console.log('📤 Solicitando doação:', { donationId: donationIdInt, userId: userIdInt });
 
     const response = await api.post('/donations/pending', {
-      donation_id: donationId,
-      user_id: parseInt(userId)
+      donation_id: donationIdInt,
+      user_id: userIdInt
     });
 
-    console.log('✅ Solicitação enviada:', response.data);
-    return response.data;
+    console.log('✅ Solicitação enviada:', response.data.data);
+    return response.data.data;
   } catch (error) {
     console.error('❌ Erro ao solicitar doação:', error.response?.data || error.message);
     
@@ -49,8 +53,11 @@ export async function getUserPendingDonations() {
       return [];
     }
 
-    console.log(`📥 Buscando doações pendentes do usuário ${userId}...`);
-    const response = await api.get(`/users/${userId}/pending`);
+    // Converte para número inteiro
+    const userIdInt = parseInt(userId, 10);
+
+    console.log(`📥 Buscando doações pendentes do usuário ${userIdInt}...`);
+    const response = await api.get(`/users/${userIdInt}/pending`);
     
     console.log('✅ Doações pendentes recebidas:', response.data);
     return response.data.data || response.data || [];
@@ -73,11 +80,39 @@ export async function getReceivedPendingDonations() {
       return [];
     }
 
-    console.log(`📥 Buscando pedidos recebidos do usuário...`);
-    const response = await api.get(`/users/${userId}/received-pendings`);
+    const userIdInt = parseInt(userId, 10);
+
+    console.log(`📥 Buscando pedidos recebidos do usuário ${userIdInt}...`);
+    const response = await api.get(`/users/${userIdInt}/received-pendings`);
     
-    console.log('✅ Pedidos recebidos:', response.data);
-    return response.data.data || response.data || [];
+    console.log('✅ Pedidos recebidos RAW:', response.data);
+    
+    // Adapta a estrutura de resposta do backend
+    let donations = [];
+    
+    if (response.data.donation) {
+      // Se retornar { donation: [...] }
+      donations = Array.isArray(response.data.donation) 
+        ? response.data.donation 
+        : [response.data.donation];
+    } else if (response.data.data) {
+      // Se retornar { data: [...] }
+      donations = response.data.data;
+    } else if (Array.isArray(response.data)) {
+      // Se retornar [...] diretamente
+      donations = response.data;
+    }
+
+    // Adiciona o solicitante_id se existir
+    if (response.data.solicitante_id) {
+      donations = donations.map(d => ({
+        ...d,
+        request_user_id: response.data.solicitante_id
+      }));
+    }
+    
+    console.log('✅ Pedidos processados:', donations);
+    return donations;
   } catch (error) {
     console.error('❌ Erro ao buscar pedidos recebidos:', error.response?.data || error.message);
     return [];
@@ -88,16 +123,21 @@ export async function getReceivedPendingDonations() {
  * Aceita uma solicitação de doação
  * POST /donations/accepted
  */
-export async function acceptDonationRequest(donationId, data) {
+export async function acceptDonationRequest(donationId, requestUserId) {
   try {
-    console.log('✅ Aceitando pedido de doação:', { donationId });
+    // Converte ambos para números inteiros
+    const donationIdInt = parseInt(donationId, 10);
+    const requestUserIdInt = parseInt(requestUserId, 10);
 
-    const deleteDonationPending = await api.patch("/donatrions/pendings", {
-      donationId: donationId
-    })
+    console.log('✅ Aceitando pedido de doação:', { 
+      donationId: donationIdInt, 
+      requestUserId: requestUserIdInt 
+    });
 
-
-    const response = await api.patch("/donations", data);
+    const response = await api.post('/donations/accepted', {
+      donation_id: donationIdInt,
+      request_user_id: requestUserIdInt
+    });
 
     console.log('✅ Pedido aceito:', response.data);
     Alert.alert('Sucesso', 'Pedido aceito! O usuário será notificado.');
@@ -115,12 +155,19 @@ export async function acceptDonationRequest(donationId, data) {
  */
 export async function declineDonationRequest(donationId, requestUserId) {
   try {
-    console.log('❌ Recusando pedido de doação:', { donationId, requestUserId });
+    // Converte ambos para números inteiros
+    const donationIdInt = parseInt(donationId, 10);
+    const requestUserIdInt = parseInt(requestUserId, 10);
+
+    console.log('❌ Recusando pedido de doação:', { 
+      donationId: donationIdInt, 
+      requestUserId: requestUserIdInt 
+    });
 
     const response = await api.delete('/donations/pending', {
       data: {
-        donation_id: donationId,
-        request_user_id: requestUserId
+        donation_id: donationIdInt,
+        request_user_id: requestUserIdInt
       }
     });
 
@@ -147,12 +194,19 @@ export async function cancelDonationRequest(donationId) {
       return false;
     }
 
-    console.log('🔄 Cancelando solicitação de doação:', donationId);
+    // Converte ambos para números inteiros
+    const donationIdInt = parseInt(donationId, 10);
+    const userIdInt = parseInt(userId, 10);
+
+    console.log('🔄 Cancelando solicitação de doação:', { 
+      donationId: donationIdInt, 
+      userId: userIdInt 
+    });
 
     const response = await api.delete('/donations/pending', {
       data: {
-        donation_id: donationId,
-        user_id: parseInt(userId)
+        donation_id: donationIdInt,
+        user_id: userIdInt
       }
     });
 

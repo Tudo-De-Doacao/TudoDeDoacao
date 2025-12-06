@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import RequestList from "../../components/requestList";
 import { getReceivedPendingDonations } from "../data/pendingDonations";
 import { useEffect, useState, useCallback } from "react";
+import FloatingButton from "../../components/FloatingButton";
 
 function RequestScreen(){
   const [data, setData] = useState([]);
@@ -105,6 +106,7 @@ function RequestScreen(){
             />
           )}
         </ScrollView>
+        <FloatingButton onPress={() => navigation.navigate('Chat')} />      
       </ImageBackground>
     </View>
   )

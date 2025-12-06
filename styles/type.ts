@@ -46,7 +46,7 @@ const typog = {
     padding: 8,
     fontSize: 24,
     marginBottom : 5,
-    textAlign: 'right',
+    textAlign: 'left',
     fontWeight: 'bold',
     fontFamily: 'DGrotesque-Medium',
   },

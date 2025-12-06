@@ -16,7 +16,7 @@ import typog from '../../styles/type';
 import styles from '../../styles/index';
 
 import { getUserId } from '../data/getUser';
-import { requestDonation } from '../data/pendingDonations';
+import { requestDonation } from '../data/pendingDonations'; // ✅ CAMINHO CORRETO
 
 export default function CardScreen() {
   const route = useRoute();
@@ -96,25 +96,17 @@ export default function CardScreen() {
 
   const statusInfo = getStatusInfo(status);
 
-  // Verifica se pode solicitar
-  const canRequest = () => {
-    // Não pode solicitar se:
-    // - Não está logado
-    if (!currentUserId) return false;
-    // - É o próprio doador
-    if (userId?.toString() === currentUserId) return false;
-    // - Já foi aceita/finalizada
-    if (status === 'accepted' || status === 'disable') return false;
-    // - Já está pendente (já solicitou)
-    if (status === 'pending' || hasRequested) return false;
-    
-    return true;
-  };
-
   // Função para solicitar doação
   const handleRequestDonation = async () => {
+    console.log('🔍 Tentando solicitar doação:', { id, currentUserId, userId });
+
     if (!currentUserId) {
       Alert.alert('Erro', 'Você precisa estar logado para solicitar doações');
+      return;
+    }
+
+    if (!id) {
+      Alert.alert('Erro', 'ID da doação não encontrado');
       return;
     }
 
@@ -133,7 +125,10 @@ export default function CardScreen() {
           onPress: async () => {
             setRequesting(true);
             try {
+              console.log('📤 Enviando solicitação...');
               const result = await requestDonation(id);
+              
+              console.log('📥 Resultado:', result);
               
               if (result) {
                 setHasRequested(true);
@@ -149,7 +144,8 @@ export default function CardScreen() {
                 );
               }
             } catch (error) {
-              console.error('Erro ao solicitar:', error);
+              console.error('❌ Erro ao solicitar:', error);
+              Alert.alert('Erro', 'Ocorreu um erro ao solicitar a doação');
             } finally {
               setRequesting(false);
             }
@@ -157,18 +153,6 @@ export default function CardScreen() {
         }
       ]
     );
-  };
-
-  const handleChat = () => {
-    if (!userId) {
-      Alert.alert('Erro', 'Informações do doador não disponíveis');
-      return;
-    }
-
-    navigation.navigate('Chat', {
-      recipientId: userId,
-      recipientName: `Doador de ${name}`
-    });
   };
 
   // Texto e estado do botão
@@ -212,7 +196,8 @@ export default function CardScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           backgroundColor: colors.background,
-          paddingBottom: 100
+          paddingBottom: 100,
+          height: '100%'
         }}
       >
         {/* Header com botão voltar */}
@@ -325,7 +310,7 @@ export default function CardScreen() {
 
           {/* Descrição */}
           <View style={{ marginBottom: 24 }}>
-            <Text style={{ ...typog.txtDrw, fontSize: 18, marginBottom: 8 }}>
+            <Text style={{ ...typog.txtDrw, fontSize: 18, marginBottom: 8, textAlign: 'left' }}>
               Descrição
             </Text>
             <Text style={{ 

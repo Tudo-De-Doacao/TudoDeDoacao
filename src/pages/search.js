@@ -9,6 +9,7 @@ import colors from '../../styles/color';
 import InputSearch from '../../components/InputSearch';
 import Header from '../../components/Header';
 import Card from '../../components/CardDon';
+import FloatingButton from '../../components/FloatingButton';
 
 function SearchScreen() {
 
@@ -64,7 +65,7 @@ const handleSubmit = () => {
           />
         </View>
 
-        <ScrollView contentContainerStyle={{ ...styles.scroll, paddingBottom: 22 }}>
+        <ScrollView contentContainerStyle={{ ...styles.scroll, paddingBottom: 22, marginHorizontal: 20, alignContent: 'center', justifyContent: 'center' }}>
           <View style={styles.bodySearch}>
 
             {  filterDonation.map((item, index) => {
@@ -75,13 +76,16 @@ const handleSubmit = () => {
                     name={item.name}
                     description={item.description}
                     location={item.location}
-                    image={`http://172.20.117.95:8000/storage/${item.image}`}
+                    image={
+                      //`https://tudodedoacao-backend.onrender.com/storage/${item.image}` || `http://172.16.10.46:8000/storage/${item.image}` || 
+                    `http://10.215.204.95:8000/storage/${item.image}`}
                   />
                 );
               })
           }
           </View>
         </ScrollView>
+        <FloatingButton onPress={() => navigation.navigate('Chat')} />      
       </ImageBackground>
     </>
   );
